@@ -27,11 +27,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {image && <meta property="og:image" content={image} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#f8f7f3" />
+    <script is:inline>
+      // Masque les éléments animés avant leur entrée. Filet de sécurité : tout réapparaît si le script d'animation ne démarre pas.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-motion');
+        setTimeout(function () { if (!window.__motion) document.documentElement.classList.remove('js-motion'); }, 4000);
+      }
+    </script>
   </head>
   <body>
-    <Header landing={landing} />
+    <div class="site-header-wrap"><Header landing={landing} /></div>
     <main><slot /></main>
     <Footer landing={landing} />
+    <script>
+      import '../scripts/motion.ts';
+      (window as any).__motion = true;
+    </script>
     <script>
       // Lecture Vimeo au clic : aucune requête vers Vimeo avant que le visiteur ne le demande.
       document.addEventListener('click', (e) => {

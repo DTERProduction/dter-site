@@ -2,32 +2,36 @@
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Faq from '../components/Faq.astro';
-import Cta from '../components/Cta.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import clients from '../data/clients.json';
 import testimonials from '../data/testimonials.json';
-import { getProjects, getServices } from '../lib/site';
+import { getProjects, getServices, categories } from '../lib/site';
 
 const projects = await getProjects();
-const featured = projects.filter((p) => p.data.featured).slice(0, 3);
+const featured = projects.filter((p) => p.data.featured).slice(0, 4);
+const thumbOf = (vimeoId?: string) => projects.find((p) => p.data.vimeoId === vimeoId)?.data.thumb;
+const trail = projects.map((p) => p.data.thumb).filter(Boolean).slice(0, 8);
 const services = await getServices();
 const [mainQuote, ...quotes] = testimonials.items;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={home.seoTitle} description={home.seoDescription} image={home.heroPoster}>
-  <section class="wide">
-    <div class="hero">
-      <div class="hero-bg" data-hero={home.heroVimeoId}>
+  <section class="wrap intro">
+    <p class="wordmark" aria-hidden="true"><span>DTER<sup>®</sup></span><span>Production</span></p>
+    <div class="intro-meta mono">
+      <h1 class="dot">{home.h1}</h1>
+      <span class="mut2">Défiler ↓</span>
+    </div>
+  </section>
+
+  <section class="hero-wrap" data-hero-wrap>
+    <div class="hero-sticky">
+      <div class="hero-window" data-hero={home.heroVimeoId}>
         {home.heroPoster && <img src={home.heroPoster} alt="" fetchpriority="high" />}
       </div>
-      <div class="hero-top mono"><span class="dot">Vidéo · Photo · Post-production</span></div>
-      <div class="hero-bottom">
-        <div class="hero-text">
-          <h1 class="hero-h1">{home.h1}</h1>
-          <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
-          <p class="hero-lead">{home.heroLead}</p>
-        </div>
+      <div class="hero-over">
+        <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
         <a class="hero-card" href={site.calendar}>
           <span class="avatar">TD</span>
           <span><strong>Parler à Thomas</strong><small>Fondateur de DTER® · appel de 20 min</small></span>
@@ -36,9 +40,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </div>
   </section>
 
-  <section class="wrap section stack" aria-label="Clients" style="padding-bottom:0">
-    <div class="head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
-    <div class="logos">{clients.items.map((c) => <span>{c}</span>)}</div>
+  <section class="section stack" aria-label="Clients" style="padding-bottom:0">
+    <div class="wrap head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
+    <div class="marquee">
+      <div class="marquee-track">
+        {[...clients.items, ...clients.items].map((c, i) => <span class="marquee-item" aria-hidden={i >= clients.items.length ? 'true' : undefined}>{c}</span>)}
+      </div>
+    </div>
   </section>
 
   <section class="wrap section stack">
@@ -59,8 +67,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <h2 class="h-xl">{home.projectsTitle}<span class="accent">.</span></h2>
       <a class="btn btn-dark" href="/realisations/">Tous les projets</a>
     </div>
-    {featured[0] && <ProjectCard project={featured[0]} large />}
-    <div class="projects fit">{featured.slice(1).map((p) => <ProjectCard project={p} />)}</div>
+    <div class="stack-cards">
+      {featured.map((p, i) => (
+        <a class="stack-card" style={`--i:${i}`} href={`/realisations/${p.id}/`}>
+          <div class="stack-inner">
+            <div class="media">{p.data.thumb && <img src={p.data.thumb} alt="" loading="lazy" decoding="async" />}</div>
+            <div class="stack-meta"><strong>{p.data.client} · {p.data.title}</strong><span class="mono mut2">{categories[p.data.category]}</span></div>
+          </div>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="wide" aria-label="Témoignages">
@@ -87,7 +103,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </div>
     <div class="rows">
       {services.map((s, i) => (
-        <a href={`/services/${s.id}/`}>
+        <a href={`/services/${s.id}/`} data-preview={thumbOf(s.data.vimeoId)}>
           <span class="idx">{i + 1}</span>
           <h3 class="name">{s.data.name}</h3>
           <span class="desc">
@@ -129,13 +145,20 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="main"><Faq items={home.faq} /></div>
   </section>
 
-  <Cta title={home.ctaTitle}>
-    <a class="link" style="font-weight:500" href={`mailto:${site.email}`}>{site.email}</a>
-  </Cta>
+  <section class="wide">
+    <div class="panel cta" data-trail={JSON.stringify(trail)}>
+      <span class="mono trail-hint">Bougez la souris</span>
+      <h2 class="cta-title" style="font-size:clamp(44px,7.4vw,120px);flex-basis:100%">{home.ctaTitle}</h2>
+      <div class="row" style="align-items:center;gap:12px 28px">
+        <a class="btn btn-accent" href={site.calendar}>Réserver un appel</a>
+        <a class="link" style="font-weight:500" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+  </section>
 
   <script>
     // Vidéo de fond du hero : chargée après l'affichage de la page, jamais si l'utilisateur limite les animations ou les données.
-    const bg = document.querySelector<HTMLElement>('[data-hero]');
+    const bg = document.querySelector<HTMLElement>('.hero-window[data-hero]');
     const conn = (navigator as any).connection;
     const ok = bg?.dataset.hero && !matchMedia('(prefers-reduced-motion: reduce)').matches && !conn?.saveData;
     if (bg && ok) {

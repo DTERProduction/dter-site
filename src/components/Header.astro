@@ -17,8 +17,8 @@ const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
     <nav class="nav" aria-label="Navigation principale">
       <a href="/realisations/" aria-current={cur('/realisations/')}>Projets</a>
       <a href="/#services" aria-current={cur('/services/')}>Services</a>
-      <a href="/#methode">Méthode</a>
-      <a href="/#faq">FAQ</a>
+      <a class="nav-opt" href="/#methode">Méthode</a>
+      <a class="nav-opt" href="/#faq">FAQ</a>
       <a class="btn btn-dark" href="/contact/">Demander un devis</a>
     </nav>
   )}
