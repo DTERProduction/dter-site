@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /lp/
+Disallow: /admin/
+
+Sitemap: https://thomasdubois.pro/sitemap-index.xml

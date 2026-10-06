@@ -1,0 +1,35 @@
+{
+  "seoTitle": "DTER Production · Production vidéo et photo à Bruxelles",
+  "seoDescription": "Studio de production vidéo et photo à Bruxelles : films corporate, aftermovies, brand content et post-production. Un seul interlocuteur, livraison en une à trois semaines.",
+  "h1": "Production vidéo et photo pour les marques, à Bruxelles",
+  "heroLines": ["Pensé comme du marketing.", "Tourné comme du cinéma."],
+  "heroLead": "Un seul interlocuteur du brief au master, et des films livrés en une à trois semaines.",
+  "heroVimeoId": "1181916220",
+  "heroPoster": "https://i.vimeocdn.com/video/2144399608-15727d1ecb2d89e4eb9c3531e5deb2fe45170796b6bb78de5037fddf7a286187-d_1280?region=us",
+  "clientsTitle": "Des équipes exigeantes nous confient leurs histoires.",
+  "whyTitle": "Un film n'est utile que s'il sert votre objectif.",
+  "promises": [
+    { "title": "Pensé pour performer", "text": "Avant la caméra, il y a eu le marketing. Chaque projet part de ce que vous voulez obtenir, puis se décline dès le tournage dans les formats où il sera vu." },
+    { "title": "Livré vite, sans surprise", "text": "Une à trois semaines de la préparation à la livraison. Délai annoncé au devis, prix transparent, deux tours inclus." },
+    { "title": "Un seul interlocuteur", "text": "Thomas suit votre projet du brief au master. Autour de lui, une équipe composée sur mesure : second cadreur, pilote de drone, motion designer." }
+  ],
+  "projectsTitle": "Réalisations récentes",
+  "methodTitle": "Comment se déroule une production vidéo avec DTER.",
+  "method": [
+    { "label": "Brief", "title": "Comprendre", "text": "Un appel pour cerner votre objectif et votre public. Vous recevez un devis clair, avec un délai." },
+    { "label": "Préparation", "title": "Écrire", "text": "Angle, déroulé, repérages, planning. Tout est cadré avant le premier plan." },
+    { "label": "Tournage", "title": "Tourner", "text": "Une équipe légère qui met vos collaborateurs à l'aise. En Belgique et partout en Europe." },
+    { "label": "Livraison", "title": "Livrer", "text": "Vous commentez directement sur la vidéo. Deux tours de retours, puis les fichiers prêts à publier." }
+  ],
+  "studioTitle": "Un studio de production à Bruxelles, né du marketing.",
+  "studioText": "DTER est un studio de production vidéo et photo basé à Bruxelles, fondé par Thomas Dubois. Après plusieurs années en marketing, il a fait de son instinct créatif son métier à temps plein : la rigueur d'un stratège, le regard d'un réalisateur.",
+  "studioImage": "",
+  "faqTitle": "Vos questions, nos réponses.",
+  "faq": [
+    { "q": "Combien de temps pour produire une vidéo d'entreprise ?", "a": "En général une à trois semaines, de la préparation à la livraison. Nous nous adaptons à votre calendrier chaque fois que c'est possible." },
+    { "q": "Où êtes-vous basés ? Vous déplacez-vous ?", "a": "À Bruxelles, avec des tournages dans toute la Belgique et en Europe." },
+    { "q": "Qui travaille sur mon projet ?", "a": "Thomas est votre interlocuteur du concept à la livraison. Selon le projet, il s'entoure des bons profils : second cadreur, pilote de drone, motion designer." },
+    { "q": "Et si je veux des modifications ?", "a": "Chaque projet comprend deux tours de retours. Vous laissez vos commentaires directement sur la vidéo, avec un outil simple." }
+  ],
+  "ctaTitle": "Lancez votre projet avec DTER®"
+}

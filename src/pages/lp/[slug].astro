@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Vimeo from '../../components/Vimeo.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import site from '../../data/site.json';
+import testimonials from '../../data/testimonials.json';
+import { getProjects, categories } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const landings = await getCollection('landings');
+  return landings.map((l) => ({ params: { slug: l.id }, props: { landing: l } }));
+}
+const { landing } = Astro.props;
+const l = landing.data;
+const all = await getProjects();
+const examples = l.examples.map((id) => all.find((p) => p.id === id)).filter(Boolean);
+const poster = all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
+const quote = testimonials.items[0];
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Base title={l.seoTitle} description={l.lead} landing noindex>
+  <section class="wide">
+    <div class="panel lp-hero">
+      <div class="lp-hero-text">
+        <span class="eyebrow">{l.eyebrow}</span>
+        <h1 class="lp-title">{l.title}</h1>
+        <p class="hero-lead" style="max-width:560px">{l.lead}</p>
+        <ul class="lp-bullets">{l.bullets.map((b) => <li>{b}</li>)}</ul>
+        {l.vimeoId && <Vimeo id={l.vimeoId} thumb={poster} label="Exemple de réalisation" small />}
+      </div>
+      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark submit="Recevoir mon devis" />
+    </div>
+  </section>
+
+  <section class="wrap stack" style="gap:24px;padding-top:clamp(48px,6vw,88px)" aria-label="Clients">
+    <span class="eyebrow">{l.clientsLabel}</span>
+    <div class="logos">{l.clients.map((c) => <span>{c}</span>)}</div>
+  </section>
+
+  <section class="wrap section stack">
+    <h2 class="h2" style="max-width:900px">{l.deliverTitle}</h2>
+    <div class="cards">
+      {l.deliverables.map((d, i) => (
+        <div class="card"><span class="num">{pad(i + 1)}</span><h3 class="h3">{d.title}</h3><p class="mut">{d.text}</p></div>
+      ))}
+    </div>
+  </section>
+
+  {examples.length > 0 && (
+    <section class="wrap stack" style="gap:28px" aria-label="Exemples">
+      <h2 class="h2">{l.examplesTitle}</h2>
+      <div class="projects">
+        {examples.map((p) => (
+          <div class="project">
+            <Vimeo id={p.data.vimeoId} thumb={p.data.thumb} label={`${p.data.client}, ${p.data.title}`} ratio="" small />
+            <div class="project-meta"><span class="project-title">{p.data.client} · {p.data.title}</span><span class="mono mut2">{categories[p.data.category]}</span></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="wide section" aria-label="Témoignage">
+    <figure class="panel stack" style="gap:22px">
+      <blockquote class="quote-lg">« {quote.quote} »</blockquote>
+      <figcaption class="quote-by"><strong>{quote.name}</strong> · {quote.role}</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap section-b split">
+    <h2 class="h2 side">{l.faqTitle}</h2>
+    <div class="main"><Faq items={l.faq} /></div>
+  </section>
+
+  <Cta title={l.ctaTitle} accent href="#devis" label="Recevoir mon devis">
+    <a style="font-weight:600;font-size:19px;padding:12px 0" href={`tel:${site.phoneHref}`}>ou {site.phone}</a>
+  </Cta>
+</Base>

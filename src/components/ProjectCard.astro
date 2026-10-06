@@ -1,0 +1,14 @@
+---
+import { categories } from '../lib/site';
+const { project, large = false } = Astro.props;
+const d = project.data;
+---
+<a class:list={['project', { 'is-lg': large }]} href={`/realisations/${project.id}/`} data-cat={d.category}>
+  <div class:list={['media', large ? 'r-21-9' : '']}>
+    {d.thumb && <img src={d.thumb} alt="" loading="lazy" decoding="async" />}
+  </div>
+  <div class="project-meta">
+    <span class="project-title">{d.client} · {d.title}</span>
+    <span class="mono mut2">{categories[d.category]}</span>
+  </div>
+</a>

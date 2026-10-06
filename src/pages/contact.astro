@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import site from '../data/site.json';
+const rows = [
+  ['Email', site.email, `mailto:${site.email}`],
+  ['Téléphone', site.phone, `tel:${site.phoneHref}`],
+  ['WhatsApp', 'Écrire sur WhatsApp', site.whatsapp],
+  ['Appel de 20 min', 'Choisir un créneau', site.calendar],
+];
+---
+<Base title="Contact et devis · DTER Production, Bruxelles" description="Demandez un devis pour votre vidéo corporate, aftermovie, brand content ou shooting photo. Thomas vous répond en personne.">
+  <section class="wrap section split" style="gap:48px 64px;align-items:flex-start">
+    <div class="stack" style="flex:999 1 420px;min-width:0;gap:24px">
+      <span class="eyebrow">Contact</span>
+      <h1 class="display">Parlons de votre projet.</h1>
+      <p class="lead" style="max-width:520px">Décrivez votre besoin en quelques lignes. Thomas vous répond en personne, avec un devis clair et un délai.</p>
+      <div class="contact-rows">
+        {rows.map(([k, v, h]) => <a href={h}><span class="mono">{k}</span><strong>{v}</strong></a>)}
+        <a><span class="mono">Studio</span><strong>Bruxelles, Belgique</strong></a>
+      </div>
+    </div>
+    <div style="flex:1 1 420px;min-width:0"><QuoteForm name="contact" title="Demander un devis" full /></div>
+  </section>
+</Base>

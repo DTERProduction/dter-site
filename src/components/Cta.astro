@@ -1,0 +1,13 @@
+---
+import site from '../data/site.json';
+const { title, accent = false, href = site.calendar, label = 'Réserver un appel' } = Astro.props;
+---
+<section class="wide">
+  <div class:list={['panel', 'cta', { 'is-accent': accent }]}>
+    <h2 class="cta-title">{title}</h2>
+    <div class="row" style="align-items:center;gap:12px 24px">
+      <a class:list={['btn', accent ? 'btn-dark' : 'btn-accent']} href={href}>{label}</a>
+      <slot />
+    </div>
+  </div>
+</section>

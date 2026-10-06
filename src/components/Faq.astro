@@ -1,0 +1,16 @@
+---
+const { items = [] } = Astro.props;
+---
+<div class="faq">
+  {items.map((f: any, i: number) => (
+    <details open={i === 0}>
+      <summary>{f.q}</summary>
+      <p>{f.a}</p>
+    </details>
+  ))}
+</div>
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+})} />

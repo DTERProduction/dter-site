@@ -1,0 +1,12 @@
+---
+import site from '../data/site.json';
+const { landing = false } = Astro.props;
+---
+<footer class="wrap site-footer">
+  <span>© {site.legalName} · {landing ? 'Bruxelles' : `${site.baseline} · ${site.signature}`}</span>
+  <nav aria-label="Liens de pied de page">
+    {!landing && <a href={site.instagram} rel="noopener">Instagram</a>}
+    {!landing && <a href={site.whatsapp} rel="noopener">WhatsApp</a>}
+    <a href={site.legal}>Conditions générales</a>
+  </nav>
+</footer>

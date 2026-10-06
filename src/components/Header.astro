@@ -1,0 +1,25 @@
+---
+import site from '../data/site.json';
+const { landing = false } = Astro.props;
+const path = Astro.url.pathname;
+const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
+---
+<header class="site-header">
+  {landing
+    ? <span class="logo">{site.name}<span class="accent">®</span></span>
+    : <a class="logo" href="/" aria-label="DTER, accueil">{site.name}<span class="accent">®</span></a>}
+  {landing ? (
+    <div class="nav">
+      <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      <a class="btn btn-dark" href="#devis">Recevoir un devis</a>
+    </div>
+  ) : (
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/realisations/" aria-current={cur('/realisations/')}>Projets</a>
+      <a href="/#services" aria-current={cur('/services/')}>Services</a>
+      <a href="/#methode">Méthode</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn btn-dark" href="/contact/">Demander un devis</a>
+    </nav>
+  )}
+</header>

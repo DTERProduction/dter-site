@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Vimeo from '../../components/Vimeo.astro';
+import Cta from '../../components/Cta.astro';
+import { getProjects, categories } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((p, i) => ({ params: { slug: p.id }, props: { project: p, next: projects[(i + 1) % projects.length] } }));
+}
+const { project, next } = Astro.props;
+const d = project.data;
+const cat = categories[d.category];
+const facts = [['Client', d.client], ['Format', cat], ['Avec', d.partner], ['Année', d.year], ['Livré en', d.deliveredIn]].filter(([, v]) => v);
+const parts = [
+  ["L'objectif", d.objectiveTitle, d.objective],
+  ['Notre réponse', d.answerTitle, d.answer],
+  ['Le résultat', d.resultTitle, d.result],
+].filter(([, t, x]) => t || x);
+const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réalisé par DTER Production à Bruxelles.`;
+---
+<Base title={`${d.client} · ${d.title} · DTER Production`} description={desc} image={d.thumb}>
+  <section class="wrap stack" style="gap:24px;padding-block:clamp(28px,4vw,64px) 40px">
+    <a class="mono mut2" style="align-self:flex-start;padding:12px 0" href="/realisations/">← Toutes les réalisations</a>
+    <span class="eyebrow">{d.client} · {cat}</span>
+    <h1 class="display">{d.title}</h1>
+    {d.summary && <p class="lead" style="max-width:760px">{d.summary}</p>}
+  </section>
+  <section class="wide">
+    <Vimeo id={d.vimeoId} thumb={d.thumb} label={`${d.client}, ${d.title}`} ratio={d.vertical ? 'r-9-16' : 'r-16-9'} xl />
+  </section>
+  <section class="wrap" style="padding-top:32px" aria-label="Fiche du projet">
+    <div class="facts">{facts.map(([k, v]) => <div><span class="mono">{k}</span><strong>{v}</strong></div>)}</div>
+  </section>
+  {parts.length > 0 && (
+    <section class="wrap section">
+      <div class="case">
+        {parts.map(([label, title, text], i) => (
+          <div>
+            <span class="mono">00:0{i + 1} · {label}</span>
+            <div class="body">
+              {title && <h2 class="h2" style="font-size:clamp(26px,3vw,40px)">{title}</h2>}
+              {text && <p class="mut">{text}</p>}
+              {label === 'Le résultat' && d.stats.length > 0 && (
+                <div class="stats">{d.stats.map((s) => <div><strong>{s.value}</strong><span>{s.label}</span></div>)}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+  <section class="wrap section">
+    <a class="between" style="border-top:1px solid var(--ink);padding-top:28px;align-items:baseline" href={`/realisations/${next.id}/`}>
+      <span class="mono mut2">Projet suivant</span>
+      <span class="h-xl" style="font-size:clamp(32px,5.4vw,80px)">{next.data.client} · {next.data.title} →</span>
+    </a>
+  </section>
+  <Cta title="Un projet du même type ?" />
+</Base>

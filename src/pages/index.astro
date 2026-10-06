@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import site from '../data/site.json';
+import home from '../data/home.json';
+import clients from '../data/clients.json';
+import testimonials from '../data/testimonials.json';
+import { getProjects, getServices } from '../lib/site';
+
+const projects = await getProjects();
+const featured = projects.filter((p) => p.data.featured).slice(0, 3);
+const services = await getServices();
+const [mainQuote, ...quotes] = testimonials.items;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Base title={home.seoTitle} description={home.seoDescription} image={home.heroPoster}>
+  <section class="wide">
+    <div class="hero">
+      <div class="hero-bg" data-hero={home.heroVimeoId}>
+        {home.heroPoster && <img src={home.heroPoster} alt="" fetchpriority="high" />}
+      </div>
+      <div class="hero-top mono"><span class="dot">Vidéo · Photo · Post-production</span></div>
+      <div class="hero-bottom">
+        <div class="hero-text">
+          <h1 class="hero-h1">{home.h1}</h1>
+          <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
+          <p class="hero-lead">{home.heroLead}</p>
+        </div>
+        <a class="hero-card" href={site.calendar}>
+          <span class="avatar">TD</span>
+          <span><strong>Parler à Thomas</strong><small>Fondateur de DTER® · appel de 20 min</small></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section stack" aria-label="Clients" style="padding-bottom:0">
+    <div class="head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
+    <div class="logos">{clients.items.map((c) => <span>{c}</span>)}</div>
+  </section>
+
+  <section class="wrap section stack">
+    <div class="head"><span class="eyebrow">Pourquoi DTER</span><h2 class="h2">{home.whyTitle}</h2></div>
+    <div class="cards">
+      {home.promises.map((p, i) => (
+        <div class:list={['card', { 'is-dark': i === home.promises.length - 1 }]}>
+          <span class="num">{pad(i + 1)}</span>
+          <h3 class="h3">{p.title}</h3>
+          <p class="mut">{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="projets" class="wrap section-b stack">
+    <div class="between">
+      <h2 class="h-xl">{home.projectsTitle}<span class="accent">.</span></h2>
+      <a class="btn btn-dark" href="/realisations/">Tous les projets</a>
+    </div>
+    {featured[0] && <ProjectCard project={featured[0]} large />}
+    <div class="projects fit">{featured.slice(1).map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+
+  <section class="wide" aria-label="Témoignages">
+    <div class="panel stack" style="gap:48px">
+      <span class="eyebrow">Témoignages</span>
+      <figure class="stack" style="gap:22px">
+        <blockquote class="quote-lg">« {mainQuote.quote} »</blockquote>
+        <figcaption class="quote-by"><strong>{mainQuote.name}</strong> · {mainQuote.role}</figcaption>
+      </figure>
+      <div class="quotes">
+        {quotes.map((q) => (
+          <figure>
+            <blockquote>« {q.quote} »</blockquote>
+            <figcaption class="quote-by"><strong>{q.name}</strong> · {q.role}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="wrap section stack">
+    <div class="row" style="align-items:baseline;gap:12px 20px">
+      <h2 class="h-xl">Services</h2><span class="mono mut2">({pad(services.length)})</span>
+    </div>
+    <div class="rows">
+      {services.map((s, i) => (
+        <a href={`/services/${s.id}/`}>
+          <span class="idx">{i + 1}</span>
+          <h3 class="name">{s.data.name}</h3>
+          <span class="desc">
+            <span>{s.data.short}</span>
+            <span class="chips">{s.data.tags.map((t) => <span>{t}</span>)}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="methode" class="wrap section-b stack">
+    <div class="head"><span class="eyebrow">Méthode</span><h2 class="h2">{home.methodTitle}</h2></div>
+    <div class="steps">
+      {home.method.map((m, i) => (
+        <div>
+          <span class="mono">00:{pad(i + 1)} · {m.label}</span>
+          <span class="h3">{m.title}</span>
+          <span class="mut">{m.text}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="studio" class="wrap section-b split" style="align-items:center">
+    <div class="media r-4-5" style="flex:1 1 360px;min-width:0">
+      {home.studioImage && <img src={home.studioImage} alt="Thomas Dubois sur un tournage" loading="lazy" />}
+    </div>
+    <div class="stack" style="flex:999 1 420px;min-width:0;gap:22px">
+      <span class="eyebrow">Le studio</span>
+      <h2 class="h2">{home.studioTitle}</h2>
+      <p class="lead" style="max-width:620px">{home.studioText}</p>
+      <a class="link" style="align-self:flex-start" href="/contact/">Faire connaissance →</a>
+    </div>
+  </section>
+
+  <section id="faq" class="wrap section-b split">
+    <div class="side"><span class="eyebrow">FAQ</span><h2 class="h2">{home.faqTitle}</h2></div>
+    <div class="main"><Faq items={home.faq} /></div>
+  </section>
+
+  <Cta title={home.ctaTitle}>
+    <a class="link" style="font-weight:500" href={`mailto:${site.email}`}>{site.email}</a>
+  </Cta>
+
+  <script>
+    // Vidéo de fond du hero : chargée après l'affichage de la page, jamais si l'utilisateur limite les animations ou les données.
+    const bg = document.querySelector<HTMLElement>('[data-hero]');
+    const conn = (navigator as any).connection;
+    const ok = bg?.dataset.hero && !matchMedia('(prefers-reduced-motion: reduce)').matches && !conn?.saveData;
+    if (bg && ok) {
+      window.addEventListener('load', () => {
+        const f = document.createElement('iframe');
+        f.src = `https://player.vimeo.com/video/${bg.dataset.hero}?background=1&autoplay=1&muted=1&loop=1&dnt=1`;
+        f.allow = 'autoplay';
+        f.title = 'Showreel DTER';
+        f.setAttribute('aria-hidden', 'true');
+        f.tabIndex = -1;
+        bg.appendChild(f);
+      });
+    }
+  </script>
+</Base>

@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Cta from '../../components/Cta.astro';
+import { getProjects, categories } from '../../lib/site';
+const projects = await getProjects();
+const used = Object.keys(categories).filter((k) => projects.some((p) => p.data.category === k));
+---
+<Base title="Réalisations vidéo et photo · DTER Production, Bruxelles" description="Aftermovies, brand content, interviews et films corporate réalisés par DTER pour des marques belges et internationales.">
+  <section class="wrap section stack" style="gap:28px;padding-bottom:40px">
+    <span class="eyebrow">Réalisations</span>
+    <div class="row" style="align-items:baseline;gap:8px 20px">
+      <h1 class="display">Nos réalisations vidéo et photo</h1>
+      <span class="mono mut2" style="font-size:17px">(<span data-count>{projects.length}</span>)</span>
+    </div>
+    <p class="lead" style="max-width:620px">Aftermovies, brand content, interviews et films corporate, pour des marques belges et internationales. Chaque projet part d'un objectif.</p>
+    <div class="filters" role="group" aria-label="Filtrer par type de projet">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous</button>
+      {used.map((k) => <button class="filter" type="button" data-filter={k} aria-pressed="false">{categories[k]}</button>)}
+    </div>
+  </section>
+  <section class="wrap section-b" aria-label="Liste des projets">
+    <div class="projects">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+  <Cta title="Le prochain projet, c'est le vôtre ?" />
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const cards = document.querySelectorAll<HTMLElement>('.project[data-cat]');
+    const count = document.querySelector('[data-count]');
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      const f = b.dataset.filter;
+      let n = 0;
+      buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      cards.forEach((c) => { const show = f === 'all' || c.dataset.cat === f; c.hidden = !show; if (show) n++; });
+      if (count) count.textContent = String(n);
+    }));
+  </script>
+</Base>

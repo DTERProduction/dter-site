@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import Vimeo from '../../components/Vimeo.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import home from '../../data/home.json';
+import { getProjects, getServices } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((s) => ({ params: { slug: s.id }, props: { service: s } }));
+}
+const { service } = Astro.props;
+const s = service.data;
+const all = await getProjects();
+const related = all.filter((p) => s.categories.includes(p.data.category)).slice(0, 3);
+const poster = all.find((p) => p.data.vimeoId === s.vimeoId)?.data.thumb;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Base title={`${s.title} · DTER`} description={s.seoDescription} image={poster}>
+  <section class="wrap stack" style="gap:24px;padding-block:clamp(40px,6vw,96px) 40px">
+    <span class="mono"><a class="mut2" href="/#services" style="padding:12px 0">Services</a> / <span class="dot">{s.name}</span></span>
+    <h1 class="display" style="max-width:1100px">{s.title}</h1>
+    <div class="between">
+      <p class="lead" style="max-width:640px">{s.lead}</p>
+      <div class="row" style="gap:10px">
+        <a class="btn btn-dark" href="/contact/">Demander un devis</a>
+        <a class="btn btn-line" href="/realisations/">Voir des exemples</a>
+      </div>
+    </div>
+  </section>
+  {s.vimeoId && <section class="wide"><Vimeo id={s.vimeoId} thumb={poster} label={s.name} ratio="r-21-9" xl /></section>}
+
+  <section class="wrap section stack">
+    <div class="head"><span class="eyebrow">Pour quoi faire</span><h2 class="h2">{s.usesTitle}</h2></div>
+    <div class="cards">
+      {s.uses.map((u, i) => (
+        <div class:list={['card', { 'is-dark': i === s.uses.length - 1 }]}>
+          <span class="num">{pad(i + 1)}</span>
+          <h3 class="h3">{u.title}</h3>
+          <p class="mut">{u.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section-b split">
+    <div class="side"><span class="eyebrow">Ce qui est inclus</span><h2 class="h2">Un projet complet, un seul interlocuteur.</h2></div>
+    <ul class="main checks">{s.included.map((x) => <li>{x}</li>)}</ul>
+  </section>
+
+  <section class="wrap section-b stack">
+    <h2 class="h2">Du brief à la livraison, en quatre temps.</h2>
+    <div class="steps">
+      {home.method.map((m, i) => (
+        <div><span class="mono">00:{pad(i + 1)} · {m.label}</span><span class="h3">{m.title}</span><span class="mut">{m.text}</span></div>
+      ))}
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="wrap section-b stack" style="gap:28px">
+      <div class="between"><h2 class="h2">{s.projectsTitle}</h2><a class="link" href="/realisations/">Toutes les réalisations →</a></div>
+      <div class="projects">{related.map((p) => <ProjectCard project={p} />)}</div>
+    </section>
+  )}
+
+  <section class="wide">
+    <div class="panel price">
+      <div class="price-text">
+        <span class="eyebrow">Tarifs</span>
+        <h2 class="h2">{s.priceTitle}</h2>
+        <p class="mut" style="max-width:560px">Le prix dépend de la durée du tournage, du format et des déclinaisons. Chaque devis détaille les postes, sans frais cachés.</p>
+      </div>
+      <div class="price-box">
+        {s.priceFrom && <small>À partir de</small>}
+        {s.priceFrom && <strong>{s.priceFrom} <small style="font-weight:400">HTVA</small></strong>}
+        {s.priceNote && <small>{s.priceNote}</small>}
+        <a class="btn btn-accent" href="/contact/">Recevoir un devis précis</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section split">
+    <h2 class="h2 side">{s.faqTitle}</h2>
+    <div class="main"><Faq items={s.faq} /></div>
+  </section>
+
+  <Cta title="Parlons de votre objectif." accent />
+</Base>

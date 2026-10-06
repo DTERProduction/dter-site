@@ -1,0 +1,195 @@
+# Decap CMS, relié au dépôt GitHub du site.
+backend:
+  name: github
+  repo: DTERProduction/dter-site
+  branch: main
+# Permet de tester le CMS en local avec "npm run cms" dans un second terminal.
+local_backend: true
+locale: fr
+media_folder: public/images
+public_folder: /images
+slug: { encoding: ascii, clean_accents: true }
+
+faq_field: &faq
+  label: Questions fréquentes
+  name: faq
+  widget: list
+  summary: '{{fields.q}}'
+  fields:
+    - { label: Question, name: q, widget: string }
+    - { label: Réponse, name: a, widget: text }
+
+titled_fields: &titled
+  - { label: Titre, name: title, widget: string }
+  - { label: Texte, name: text, widget: text }
+
+collections:
+  - name: projects
+    label: Projets
+    label_singular: Projet
+    folder: src/content/projects
+    create: true
+    slug: '{{client}}-{{title}}'
+    summary: '{{client}} · {{title}}'
+    sortable_fields: [order, client]
+    fields:
+      - { label: Titre du projet, name: title, widget: string }
+      - { label: Client, name: client, widget: string }
+      - label: Catégorie
+        name: category
+        widget: select
+        options:
+          - { label: Aftermovie, value: aftermovie }
+          - { label: Brand content, value: brand-content }
+          - { label: Interviews, value: interview }
+          - { label: Corporate, value: corporate }
+          - { label: Réseaux sociaux, value: social }
+      - { label: Identifiant Vimeo, name: vimeoId, widget: string, hint: 'Les chiffres à la fin du lien Vimeo, par exemple 1181920235' }
+      - { label: Vignette (lien ou image), name: thumb, widget: string, required: false }
+      - { label: Vidéo verticale, name: vertical, widget: boolean, default: false }
+      - { label: Mis en avant sur l'accueil, name: featured, widget: boolean, default: false }
+      - { label: Ordre d'affichage, name: order, widget: number, default: 100, hint: 'Le plus petit apparaît en premier' }
+      - { label: Résumé en une phrase, name: summary, widget: string, required: false }
+      - { label: Année, name: year, widget: string, required: false }
+      - { label: En collaboration avec, name: partner, widget: string, required: false }
+      - { label: Délai de livraison, name: deliveredIn, widget: string, required: false }
+      - { label: 'Objectif : titre', name: objectiveTitle, widget: string, required: false }
+      - { label: 'Objectif : texte', name: objective, widget: text, required: false }
+      - { label: 'Notre réponse : titre', name: answerTitle, widget: string, required: false }
+      - { label: 'Notre réponse : texte', name: answer, widget: text, required: false }
+      - { label: 'Résultat : titre', name: resultTitle, widget: string, required: false }
+      - { label: 'Résultat : texte', name: result, widget: text, required: false }
+      - label: Chiffres clés
+        name: stats
+        widget: list
+        required: false
+        fields:
+          - { label: Chiffre, name: value, widget: string }
+          - { label: Légende, name: label, widget: string }
+      - { label: Brouillon (non publié), name: draft, widget: boolean, default: false }
+
+  - name: services
+    label: Pages service
+    label_singular: Page service
+    folder: src/content/services
+    extension: yml
+    create: true
+    slug: '{{name}}'
+    summary: '{{name}}'
+    fields:
+      - { label: Nom court, name: name, widget: string }
+      - { label: Ordre d'affichage, name: order, widget: number, default: 100 }
+      - { label: Titre de la page (Google), name: title, widget: string }
+      - { label: Description Google, name: seoDescription, widget: text }
+      - { label: Accroche, name: lead, widget: text }
+      - { label: Texte court (accueil), name: short, widget: text }
+      - { label: Étiquettes, name: tags, widget: list }
+      - { label: Identifiant Vimeo du film d'en-tête, name: vimeoId, widget: string, required: false }
+      - { label: Titre des usages, name: usesTitle, widget: string }
+      - { label: Usages, name: uses, widget: list, summary: '{{fields.title}}', fields: *titled }
+      - { label: Ce qui est inclus, name: included, widget: list }
+      - label: Catégories de projets à afficher
+        name: categories
+        widget: select
+        multiple: true
+        required: false
+        options: [aftermovie, brand-content, interview, corporate, social]
+      - { label: Titre des réalisations, name: projectsTitle, widget: string, required: false }
+      - { label: Titre du bloc tarif, name: priceTitle, widget: string }
+      - { label: Prix d'appel, name: priceFrom, widget: string, required: false, hint: 'Par exemple 2 500 €' }
+      - { label: Ce que le prix comprend, name: priceNote, widget: string, required: false }
+      - { label: Titre de la FAQ, name: faqTitle, widget: string }
+      - *faq
+
+  - name: landings
+    label: Landing pages Ads
+    label_singular: Landing page
+    folder: src/content/landings
+    extension: yml
+    create: true
+    summary: '{{title}}'
+    fields:
+      - { label: Titre Google, name: seoTitle, widget: string }
+      - { label: Sur-titre, name: eyebrow, widget: string }
+      - { label: Titre principal, name: title, widget: string }
+      - { label: Accroche, name: lead, widget: text }
+      - { label: Arguments, name: bullets, widget: list }
+      - { label: Identifiant Vimeo, name: vimeoId, widget: string, required: false }
+      - { label: Titre du formulaire, name: formTitle, widget: string }
+      - { label: Libellé du champ date, name: dateLabel, widget: string }
+      - { label: Libellé du champ message, name: messageLabel, widget: string }
+      - { label: Titre des clients, name: clientsLabel, widget: string }
+      - { label: Clients, name: clients, widget: list }
+      - { label: Titre des livrables, name: deliverTitle, widget: string }
+      - { label: Livrables, name: deliverables, widget: list, summary: '{{fields.title}}', fields: *titled }
+      - { label: Titre des exemples, name: examplesTitle, widget: string }
+      - { label: Projets en exemple, name: examples, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], multiple: true, required: false }
+      - { label: Titre de la FAQ, name: faqTitle, widget: string }
+      - *faq
+      - { label: Titre de l'appel final, name: ctaTitle, widget: string }
+
+  - name: settings
+    label: Réglages et accueil
+    files:
+      - name: site
+        label: Coordonnées
+        file: src/data/site.json
+        fields:
+          - { label: Nom, name: name, widget: string }
+          - { label: Nom légal, name: legalName, widget: string }
+          - { label: Signature, name: baseline, widget: string }
+          - { label: Tagline, name: signature, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Téléphone affiché, name: phone, widget: string }
+          - { label: Téléphone (format lien), name: phoneHref, widget: string }
+          - { label: Lien WhatsApp, name: whatsapp, widget: string }
+          - { label: Lien de prise de rendez-vous, name: calendar, widget: string }
+          - { label: Instagram, name: instagram, widget: string }
+          - { label: Conditions générales, name: legal, widget: string }
+      - name: home
+        label: Page d'accueil
+        file: src/data/home.json
+        fields:
+          - { label: Titre Google, name: seoTitle, widget: string }
+          - { label: Description Google, name: seoDescription, widget: text }
+          - { label: Titre principal (SEO), name: h1, widget: string }
+          - { label: Accroche (une ligne par élément), name: heroLines, widget: list }
+          - { label: Sous-accroche, name: heroLead, widget: text }
+          - { label: Identifiant Vimeo de la vidéo de fond, name: heroVimeoId, widget: string }
+          - { label: Image d'attente du hero, name: heroPoster, widget: string }
+          - { label: Titre des clients, name: clientsTitle, widget: string }
+          - { label: Titre "Pourquoi DTER", name: whyTitle, widget: string }
+          - { label: Promesses, name: promises, widget: list, summary: '{{fields.title}}', fields: *titled }
+          - { label: Titre des réalisations, name: projectsTitle, widget: string }
+          - { label: Titre de la méthode, name: methodTitle, widget: string }
+          - label: Étapes de la méthode
+            name: method
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { label: Étiquette, name: label, widget: string }
+              - { label: Titre, name: title, widget: string }
+              - { label: Texte, name: text, widget: text }
+          - { label: Titre du studio, name: studioTitle, widget: string }
+          - { label: Texte du studio, name: studioText, widget: text }
+          - { label: Photo du studio, name: studioImage, widget: image, required: false }
+          - { label: Titre de la FAQ, name: faqTitle, widget: string }
+          - *faq
+          - { label: Titre de l'appel final, name: ctaTitle, widget: string }
+      - name: clients
+        label: Clients
+        file: src/data/clients.json
+        fields:
+          - { label: Clients, name: items, widget: list }
+      - name: testimonials
+        label: Témoignages
+        file: src/data/testimonials.json
+        fields:
+          - label: Témoignages
+            name: items
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { label: Citation, name: quote, widget: text }
+              - { label: Nom, name: name, widget: string }
+              - { label: Fonction et société, name: role, widget: string }
