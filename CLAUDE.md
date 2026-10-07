@@ -68,6 +68,8 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 
 - Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.
 
+- Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.
+
 - Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
 - Projets : 24 fiches visibles d'après la liste de Thomas, 5 masquées en attente de leur vidéo sur Vimeo (Mastercard, Mondelez, PIONEERS, PwC Prophix, Nesquik). Fiches encore sans texte : PwC Future of Sales, Pfizer, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.

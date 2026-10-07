@@ -7,7 +7,7 @@ categories:
 vimeoId: "1233649337"
 thumb: "https://i.vimeocdn.com/video/2209376519-17685e002b0de2ccf3c3cd1668123d2769f40812aa7a9939e393f2af99f0d388-d_1280?region=us"
 vertical: false
-featured: true
+featured: false
 order: 40
 summary: "L'inauguration du Parkway, le nouveau parc le long de l'A12 à Bruxelles, en photo et en vidéo."
 year: "2026"
