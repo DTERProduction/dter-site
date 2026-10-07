@@ -42,7 +42,8 @@ Nous n'utilisons pas vos données pour de la prospection sans votre accord, et n
 
 Vos données sont accessibles à DTER Production et, dans la mesure nécessaire, à ses prestataires :
 
-- Netlify, qui héberge le site et reçoit les envois de formulaires ;
+- Cloudflare, qui héberge le site ;
+- Web3Forms, qui transmet par email les demandes envoyées via les formulaires ;
 - Google, pour la messagerie et la prise de rendez-vous ;
 - notre logiciel de comptabilité et notre comptable, pour la facturation ;
 - les collaborateurs indépendants qui interviennent sur votre projet.

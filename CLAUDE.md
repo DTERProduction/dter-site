@@ -5,11 +5,11 @@ Site vitrine de DTER Production SRL (Thomas Dubois, production vidéo et photo, 
 ## L'essentiel
 
 - **Dépôt** : `DTERProduction/dter-site`. Branche de travail : `travail`. Branche en ligne : `main`.
-- **Hébergement** : Netlify, déploiement automatique à chaque push sur `main` (réglages dans `netlify.toml`).
-- **Publier coûte des crédits Netlify.** Tout le travail se fait sur la branche `travail`, qui ne déclenche aucune mise en ligne. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier, en regroupant le plus de changements possible. Ne jamais pousser directement sur `main`.
+- **Hébergement** : Cloudflare (Workers, fichiers statiques), déploiement automatique à chaque push sur `main` (réglages dans `wrangler.jsonc`, redirections dans `public/_redirects`). Adresse technique : https://dter-site.dark-hall-2f48.workers.dev. Chaque push sur `travail` génère une prévisualisation. Netlify a été quitté en octobre 2026 (crédits de déploiement épuisés) ; `netlify.toml` reste tant que le domaine n'est pas basculé.
+- **Publier reste une décision de Thomas.** Tout le travail se fait sur la branche `travail`. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier, en regroupant le plus de changements possible. Ne jamais pousser directement sur `main`.
 - **Domaine** : https://dter.eu (domaine principal dans Netlify). L'ancien domaine thomasdubois.pro et l'adresse Netlify `cosmic-dodol-d7bf9f.netlify.app` redirigent vers dter.eu (règles dans `netlify.toml`).
 - **Email** : les adresses @dter.eu et @thomasdubois.pro arrivent dans la même boîte Google Workspace (dter.eu est un domaine alias).
-- **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Netlify Forms pour les formulaires.
+- **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Web3Forms pour l'envoi des formulaires par email (clé `formKey` dans `site.json`).
 
 ## Commandes
 
