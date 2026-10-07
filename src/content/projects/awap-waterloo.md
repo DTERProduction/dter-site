@@ -1,5 +1,5 @@
 ---
-title: "Domaine de la Bataille de Waterloo"
+title: "Journée du Patrimoine wallon"
 client: "AWaP"
 categories:
   - "social"
@@ -8,9 +8,9 @@ thumb: "https://i.vimeocdn.com/video/2209374198-74ad401c07eb1c12846ca27034350ea9
 vertical: true
 featured: false
 order: 120
-summary: "Deux vidéos verticales tournées un dimanche après-midi au Domaine de la Bataille de Waterloo, livrées le lendemain matin."
+summary: "Deux vidéos verticales tournées pendant la Journée du Patrimoine wallon au Domaine de la Bataille de Waterloo, livrées le lendemain matin."
 year: "2026"
-partner: ""
+partner: "The Friends"
 deliveredIn: "Le lendemain matin"
 objectiveTitle: ""
 objective: "Montrer l'ambiance, les bâtiments et les animations de l'après-midi, publier très vite sur les réseaux, et garder des images réutilisables pour promouvoir d'autres événements."

@@ -8,7 +8,7 @@ featured: false
 order: 250
 summary: "Le film récapitulatif de l'assemblée générale 2026 du projet européen PIONEERS, à la Port House d'Anvers."
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Résumer l'assemblée générale en suivant le storyboard et le script du client : la plénière, les rencontres, les visites de démonstration et les phrases fortes des interviews, dans le respect de la charte du projet et des mentions de financement européen."

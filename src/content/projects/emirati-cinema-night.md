@@ -1,5 +1,5 @@
 ---
-title: "Première édition à Bozar"
+title: "Bozar"
 client: "Emirati Cinema Night"
 categories:
   - "evenement"
@@ -10,7 +10,7 @@ featured: false
 order: 70
 summary: "La première édition de l'Emirati Cinema Night à Bozar, à Bruxelles."
 year: "2026"
-partner: ""
+partner: "Balance Event"
 deliveredIn: "5 jours"
 objectiveTitle: ""
 objective: "Raconter la soirée, de l'arrivée des invités au panel : le cinéma émirati, les trois cinéastes invités, l'exposition et le public. Le film devait être dynamique, élégant et cinématographique."

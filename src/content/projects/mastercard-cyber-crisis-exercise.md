@@ -8,7 +8,7 @@ featured: false
 order: 230
 summary: "L'aftermovie du Cyber Crisis Exercise de Mastercard, construit sur les prises de parole des intervenants."
 year: "2026"
-partner: ""
+partner: "d-side group"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Un aftermovie fidèle à la charte Mastercard, porté par de courtes prises de parole des intervenants, avec questions à l'écran, noms et fonctions, sous-titres et signature sonore de la marque."

@@ -1,5 +1,5 @@
 ---
-title: "European Running Championships"
+title: "Running Championships"
 client: "Golazo"
 categories:
   - "social"

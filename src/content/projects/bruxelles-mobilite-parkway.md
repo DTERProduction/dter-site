@@ -1,5 +1,5 @@
 ---
-title: "Inauguration du Parkway"
+title: "Parkway"
 client: "Bruxelles Mobilité"
 categories:
   - "evenement"
@@ -11,7 +11,7 @@ featured: true
 order: 40
 summary: "L'inauguration du Parkway, le nouveau parc le long de l'A12 à Bruxelles, en photo et en vidéo."
 year: "2026"
-partner: ""
+partner: "The Friends"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Couvrir l'inauguration du Parkway : moment presse, balades à vélo, yoga, animations pour enfants. Les premières photos devaient partir pendant l'événement pour le communiqué de presse, puis une vidéo complète et des capsules réutilisables."

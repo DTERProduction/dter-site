@@ -520,3 +520,13 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
 .more-videos figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
 /* Les rotations d'entrée des cartes ne doivent jamais créer de défilement horizontal. */
 html, body { overflow-x: clip; }
+
+/* ---------- Cartes projet : titre sur une seule ligne, catégories dessous ---------- */
+.project-meta { flex-direction: column; flex-wrap: nowrap; align-items: stretch; justify-content: flex-start; gap: 4px; min-width: 0; }
+.project-title { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 8px; }
+.project-meta .mono { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.project { min-width: 0; }
+.stack-meta { flex-wrap: nowrap; }
+.stack-meta strong { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stack-meta .mono { flex: none; }
+@media (max-width: 640px) { .stack-meta { flex-direction: column; gap: 2px; } }

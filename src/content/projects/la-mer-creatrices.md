@@ -1,5 +1,5 @@
 ---
-title: "Avec @daphisticated et @bibleoffashionjulie"
+title: "Créatrices à Knokke"
 client: "La Mer"
 categories:
   - "influence"
@@ -9,9 +9,9 @@ thumb: "https://i.vimeocdn.com/video/2073724424-be142de93991ff3d1e2188ea77e28c14
 vertical: true
 featured: false
 order: 170
-summary: "Deux vidéos verticales tournées à Knokke avec deux créatrices de contenu."
+summary: "Deux vidéos verticales tournées à Knokke avec @daphisticated et @bibleoffashionjulie."
 year: "2025"
-partner: ""
+partner: "Martin Pilette Production"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Une vidéo verticale de 45 secondes maximum par créatrice, dans un esprit voyage et luxe discret, avec le produit visible dès les premières secondes."

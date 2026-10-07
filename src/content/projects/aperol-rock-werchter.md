@@ -10,7 +10,7 @@ featured: false
 order: 60
 summary: "Aperol à Rock Werchter 2026, décliné en 16:9 et en formats réseaux sociaux."
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""

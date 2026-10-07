@@ -10,7 +10,7 @@ featured: false
 order: 140
 summary: "Quatre témoignages clients pour Eazyclick, pensés pour convaincre des prospects."
 year: "2025"
-partner: ""
+partner: "Caracal Agency"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Des témoignages utiles commercialement : une histoire qui émerge, une accroche humaine dès les premières secondes et un appel à l'action vers le site."

@@ -10,7 +10,7 @@ featured: true
 order: 30
 summary: ""
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""

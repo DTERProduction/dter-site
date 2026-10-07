@@ -11,7 +11,7 @@ featured: false
 order: 110
 summary: "L'aftermovie de la FuckUp Night organisée par Pulse Foundation."
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""

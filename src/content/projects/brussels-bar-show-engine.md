@@ -11,7 +11,7 @@ featured: false
 order: 190
 summary: "L'aftermovie vertical du stand Engine au Brussels Bar Show 2025, tourné sur les deux jours du salon."
 year: "2025"
-partner: ""
+partner: "Alice Bown Agency"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""

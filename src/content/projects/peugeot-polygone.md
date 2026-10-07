@@ -10,7 +10,7 @@ featured: true
 order: 20
 summary: "La présentation du concept Polygon à Bruxelles, devant la presse, les créateurs de contenu et les concessionnaires."
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Couvrir en vidéo la présentation belge du concept Polygon, avec une demande arrivée une semaine avant l'événement. Le film devait rester centré sur la voiture et son volant Hypersquare."

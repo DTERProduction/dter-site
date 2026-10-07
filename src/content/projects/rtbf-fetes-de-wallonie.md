@@ -10,7 +10,7 @@ featured: false
 order: 200
 summary: "Les Fêtes de Wallonie 2025 à Namur, en format vertical."
 year: "2025"
-partner: ""
+partner: "Badger Productions"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""

@@ -1,5 +1,5 @@
 ---
-title: "Génériques de livestream"
+title: "La Bomba"
 client: "Carolina Herrera"
 categories:
   - "evenement"
@@ -11,7 +11,7 @@ featured: false
 order: 50
 summary: "Les séquences d'ouverture et le défilé de rue tournés pour un livestream de la marque depuis le Théâtre de Namur."
 year: "2026"
-partner: ""
+partner: "Balance Event"
 deliveredIn: ""
 objectiveTitle: ""
 objective: "Donner un vrai générique à un livestream de la marque : une ouverture et une fin avec des danseurs, et une séquence de défilé tournée dans les rues de Namur, à intégrer au direct."

@@ -10,7 +10,7 @@ featured: false
 order: 160
 summary: "Deux jours de tournage à Knokke pour La Mer, autour de la routine de soin et de l'univers de la marque."
 year: "2025"
-partner: ""
+partner: "Martin Pilette Production"
 deliveredIn: ""
 objectiveTitle: ""
 objective: ""
