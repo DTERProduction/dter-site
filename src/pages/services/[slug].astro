@@ -17,9 +17,22 @@ const all = await getProjects();
 const related = all.filter((p) => s.categories.includes(p.data.category)).slice(0, 3);
 const poster = all.find((p) => p.data.vimeoId === s.vimeoId)?.data.thumb;
 const showGallery = service.id === 'photographie-corporate' && (await getPhotoSeries()).length > 0;
+const origin = new URL('/', Astro.site).href;
+const price = s.priceFrom?.replace(/[^0-9]/g, '');
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.title,
+  serviceType: s.name,
+  description: s.seoDescription,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  provider: { '@id': `${origin}#entreprise` },
+  areaServed: { '@type': 'City', name: 'Bruxelles' },
+  ...(price ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', minPrice: Number(price), priceCurrency: 'EUR', valueAddedTaxIncluded: false } } } : {}),
+};
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
-<Base title={`${s.title} · DTER`} description={s.seoDescription} image={poster}>
+<Base title={`${s.title} · DTER`} description={s.seoDescription} image={poster} jsonld={jsonld}>
   <section class="wrap stack" style="gap:24px;padding-block:clamp(40px,6vw,96px) 40px">
     <span class="mono"><a class="mut2" href="/#services" style="padding:12px 0">Services</a> / <span class="dot">{s.name}</span></span>
     <h1 class="display" style="max-width:1100px">{s.title}</h1>

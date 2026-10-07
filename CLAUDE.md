@@ -44,7 +44,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - **Ton** : direct, concret, sans jargon. Pas de tiret cadratin dans les textes.
 - **Un champ vide ne s'affiche pas** : ne jamais mettre de texte de remplissage ni de chiffre inventé.
 - **Positionnement** : « Pensé comme du marketing. Tourné comme du cinéma. » Cible : clients directs (responsables marketing et communication), pas les agences. Trois promesses : pensé pour performer, livré vite sans surprise, un seul interlocuteur.
-- **SEO** : chaque page service vise une recherche précise avec « Bruxelles » dans le titre. Les landings (`/lp/`) sont sans menu et exclues de l'indexation.
+- **SEO** : chaque page service vise une recherche précise avec « Bruxelles » dans le titre. Les landings (`/lp/`) sont sans menu et exclues de l'indexation. Données structurées : fiche entreprise sur toutes les pages (`Base.astro`), fiche service avec prix sur les pages service, FAQ. Le fichier `/llms.txt`, résumé du site pour les assistants IA, est généré depuis le contenu (`src/pages/llms.txt.ts`).
 - **Design** : fond clair `#f8f7f3`, blocs sombres `#141413` pour les moments forts, accent `#ff4a1c`, Inter et IBM Plex Mono, coins arrondis, boutons en pilule.
 - **Photo** : la vidéo reste le métier principal. La photo a sa galerie sur fond sombre (`/photo/`), un interrupteur Vidéo / Photo dans l'en-tête et sur la page réalisations, et une bande d'images sur l'accueil. Ces trois accès n'apparaissent que si au moins une série contient des photos. Les images sont optimisées à la construction du site, il faut donc les déposer en bonne qualité dans `src/assets/photos/`.
 - **Vidéos** : hébergées sur Vimeo, chargées au clic, avec `dnt=1`. Deux exceptions sur l'accueil : le fond du hero, chargé à l'ouverture, et la vidéo verticale de coulisses de la section studio, chargée en boucle muette quand elle arrive à l'écran.
@@ -64,6 +64,8 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Post-production : 900 €
 
 ## Reste à faire
+
+- Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
 - Remplacer les 12 vidéos d'exemple par les vidéos définitives, avec de vraies vignettes.
 - Compléter les fiches projet : objectif, réponse, résultat, chiffres.

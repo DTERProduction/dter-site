@@ -8,9 +8,28 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import mark from '../components/logo-mark.svg?raw';
 
-interface Props { title: string; description?: string; landing?: boolean; noindex?: boolean; image?: string; dark?: boolean; }
-const { title, description = site.baseline, landing = false, noindex = false, image, dark = false } = Astro.props;
+interface Props { title: string; description?: string; landing?: boolean; noindex?: boolean; image?: string; dark?: boolean; jsonld?: Record<string, unknown>; }
+const { title, description = site.baseline, landing = false, noindex = false, image, dark = false, jsonld } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const origin = new URL('/', Astro.site).href;
+// Carte d'identité de l'entreprise, lue par les moteurs de recherche et les assistants IA.
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${origin}#entreprise`,
+  name: 'DTER Production',
+  legalName: site.legalName,
+  description: `${site.baseline}. Vidéo corporate, aftermovie et événement, brand content, photographie corporate et post-production pour les équipes marketing et communication.`,
+  url: origin,
+  email: site.email,
+  telephone: site.phone,
+  vatID: 'BE1043250440',
+  founder: { '@type': 'Person', name: 'Thomas Dubois' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Zuidlaan 14', postalCode: '1560', addressLocality: 'Hoeilaart', addressCountry: 'BE' },
+  areaServed: [{ '@type': 'City', name: 'Bruxelles' }, { '@type': 'Country', name: 'Belgique' }],
+  knowsLanguage: ['fr'],
+  sameAs: [site.instagram, 'https://vimeo.com/user196867759'],
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -30,6 +49,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content={dark ? '#141413' : '#f8f7f3'} />
+    {!landing && <script type="application/ld+json" set:html={JSON.stringify(business)} />}
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
     <script is:inline>
       // Masque les éléments animés avant leur entrée. Filet de sécurité : tout réapparaît si le script d'animation ne démarre pas.
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
