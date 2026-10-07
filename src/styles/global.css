@@ -344,3 +344,6 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
 .logo-mark { display: inline-flex; width: 38px; }
 .logo-mark svg { width: 100%; height: auto; display: block; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .logo:hover .logo-mark svg { transform: rotate(-8deg) scale(1.06); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.logo-mark { width: 46px; }

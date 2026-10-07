@@ -7,8 +7,8 @@ const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
 ---
 <header class="site-header">
   {landing
-    ? <span class="logo"><span class="logo-mark" set:html={mark} /><span>{site.name}<span class="accent">®</span></span></span>
-    : <a class="logo" href="/" aria-label="DTER, accueil"><span class="logo-mark" set:html={mark} /><span>{site.name}<span class="accent">®</span></span></a>}
+    ? <span class="logo"><span class="logo-mark" set:html={mark} /><span class="sr-only">{site.name}</span></span>
+    : <a class="logo" href="/" aria-label="DTER, accueil"><span class="logo-mark" set:html={mark} /><span class="sr-only">{site.name}</span></a>}
   {landing ? (
     <div class="nav">
       <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
