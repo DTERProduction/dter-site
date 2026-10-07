@@ -26,4 +26,10 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2209375151-a3271028d2d64451462d9c7ecb3860a265ff13aa78cbdef682351498591bcf14-d_1280?region=us"
     vertical: false
 draft: false
+en:
+  summary: The opening sequences and street runway shot for a brand livestream from the Théâtre de Namur.
+  objective: 'Give a brand livestream a real title sequence: an opening and a closing with dancers, and a runway sequence shot in the streets of Namur, to be cut into the live broadcast.'
+  answer: 'A creative proposal chosen by the brand, then three sequences shot and edited to the house''s original music: opening titles, closing titles and a models sequence. They were delivered two days before the broadcast.'
+  videoTitles:
+  - Models sequence
 ---

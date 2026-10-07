@@ -43,3 +43,37 @@ faq:
   - q: "Vous déplacez-vous hors de Bruxelles ?"
     a: "Oui, dans toute la Belgique et en Europe."
 ctaTitle: "Parlons de votre objectif."
+# Version anglaise
+en:
+  seoTitle: Corporate video in Brussels · DTER
+  eyebrow: Corporate video · Interviews · Brussels
+  title: The corporate video that moves your goal forward.
+  lead: Corporate films, client testimonials and interviews for marketing and communications teams, in Brussels and across Belgium. One point of contact, a clear quote within 24 hours.
+  bullets:
+  - A marketing eye from the brief, not just a nice picture
+  - Delivery in one to three weeks, two rounds of revisions included
+  - Cutdowns for your social channels, website and presentations
+  formTitle: Get your quote within 24 hours
+  dateLabel: Preferred deadline
+  messageLabel: Your project in two lines
+  clientsLabel: They trusted us with their image
+  deliverTitle: Three formats, depending on what you want to achieve.
+  deliverables:
+  - title: The brand film
+    text: Who you are and why people choose you, in one to two minutes. For your website, sales presentations and recruitment.
+  - title: Testimonials and interviews
+    text: Your clients, experts or colleagues on camera. Interviews prepared and run like a conversation.
+  - title: Content for your social channels
+    text: Short formats from the same shoot, subtitled, ready for LinkedIn. One day of filming, several weeks of posts.
+  examplesTitle: Three goals, three films.
+  faqTitle: Before you ask for a quote.
+  faq:
+  - q: How much does a corporate video cost?
+    a: From €2,500 excl. VAT for one day of filming and one edited film, with its cutdowns. The quote details every item, with no hidden costs.
+  - q: When will we receive the film?
+    a: In one to three weeks depending on the project. The deadline is set in the quote, and two rounds of revisions are included.
+  - q: Our people aren't comfortable on camera. What do you do?
+    a: Almost nobody is. Interviews are prepared in advance and run like a conversation, with a small crew.
+  - q: Do you travel outside Brussels?
+    a: Yes, across Belgium and in Europe.
+  ctaTitle: Let's talk about your goal.

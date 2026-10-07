@@ -1,6 +1,9 @@
 ---
 import site from '../data/site.json';
-const { title, accent = false, href = site.calendarEmbed ? '/contact/#appel' : site.calendar, label = 'Réserver un appel' } = Astro.props;
+import { langOf, useT, link } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const { title, accent = false, href = site.calendarEmbed ? `${link(lang, '/contact/')}#appel` : site.calendar, label = t('cta.call') } = Astro.props;
 ---
 <section class="wide">
   <div class:list={['panel', 'cta', { 'is-accent': accent }]}>

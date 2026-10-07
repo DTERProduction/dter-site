@@ -91,6 +91,20 @@ collections:
           - { label: Chiffre, name: value, widget: string }
           - { label: Légende, name: label, widget: string }
       - { label: Brouillon (non publié), name: draft, widget: boolean, default: false }
+      - label: Version anglaise
+        name: en
+        widget: object
+        required: false
+        collapsed: true
+        hint: 'Seuls les champs remplis remplacent le français sur dter.eu/en/'
+        fields:
+          - { label: Titre, name: title, widget: string, required: false }
+          - { label: Résumé, name: summary, widget: string, required: false }
+          - { label: Délai de livraison, name: deliveredIn, widget: string, required: false }
+          - { label: Objectif, name: objective, widget: text, required: false }
+          - { label: Notre réponse, name: answer, widget: text, required: false }
+          - { label: Résultat, name: result, widget: text, required: false }
+          - { label: Titres des autres vidéos (dans le même ordre), name: videoTitles, widget: list, required: false }
 
   - name: services
     label: Pages service
@@ -124,6 +138,26 @@ collections:
       - { label: Ce que le prix comprend, name: priceNote, widget: string, required: false }
       - { label: Titre de la FAQ, name: faqTitle, widget: string }
       - *faq
+      - label: Version anglaise
+        name: en
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Nom court, name: name, widget: string, required: false }
+          - { label: Titre de la page, name: title, widget: string, required: false }
+          - { label: Description Google, name: seoDescription, widget: text, required: false }
+          - { label: Accroche, name: lead, widget: text, required: false }
+          - { label: Résumé pour l'accueil, name: short, widget: text, required: false }
+          - { label: Mots-clés, name: tags, widget: list, required: false }
+          - { label: Titre des usages, name: usesTitle, widget: string, required: false }
+          - { label: Usages, name: uses, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
+          - { label: Ce qui est inclus, name: included, widget: list, required: false }
+          - { label: Titre des réalisations, name: projectsTitle, widget: string, required: false }
+          - { label: Titre du bloc tarif, name: priceTitle, widget: string, required: false }
+          - { label: Ce que le prix comprend, name: priceNote, widget: string, required: false }
+          - { label: Titre de la FAQ, name: faqTitle, widget: string, required: false }
+          - { label: Questions fréquentes, name: faq, widget: list, required: false, summary: '{{fields.q}}', fields: [{ label: Question, name: q, widget: string }, { label: Réponse, name: a, widget: text }] }
 
   - name: landings
     label: Landing pages Ads
@@ -152,6 +186,27 @@ collections:
       - { label: Titre de la FAQ, name: faqTitle, widget: string }
       - *faq
       - { label: Titre de l'appel final, name: ctaTitle, widget: string }
+      - label: Version anglaise
+        name: en
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Titre Google, name: seoTitle, widget: string, required: false }
+          - { label: Sur-titre, name: eyebrow, widget: string, required: false }
+          - { label: Titre principal, name: title, widget: string, required: false }
+          - { label: Accroche, name: lead, widget: text, required: false }
+          - { label: Arguments, name: bullets, widget: list, required: false }
+          - { label: Titre du formulaire, name: formTitle, widget: string, required: false }
+          - { label: Libellé du champ date, name: dateLabel, widget: string, required: false }
+          - { label: Libellé du champ message, name: messageLabel, widget: string, required: false }
+          - { label: Titre des clients, name: clientsLabel, widget: string, required: false }
+          - { label: Titre des livrables, name: deliverTitle, widget: string, required: false }
+          - { label: Livrables, name: deliverables, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
+          - { label: Titre des exemples, name: examplesTitle, widget: string, required: false }
+          - { label: Titre de la FAQ, name: faqTitle, widget: string, required: false }
+          - { label: Questions fréquentes, name: faq, widget: list, required: false, summary: '{{fields.q}}', fields: [{ label: Question, name: q, widget: string }, { label: Réponse, name: a, widget: text }] }
+          - { label: Titre de l'appel final, name: ctaTitle, widget: string, required: false }
 
   - name: photos
     label: Séries photo
@@ -165,6 +220,7 @@ collections:
     public_folder: ../../assets/photos
     fields:
       - { label: Titre de la série, name: title, widget: string }
+      - { label: Titre en anglais, name: titleEn, widget: string, required: false }
       - { label: Client, name: client, widget: string, required: false }
       - label: Catégorie
         name: category
@@ -185,6 +241,7 @@ collections:
         fields:
           - { label: Photo, name: image, widget: image }
           - { label: Description (pour Google et les lecteurs d'écran), name: alt, widget: string, required: false }
+          - { label: Description en anglais, name: altEn, widget: string, required: false }
           - { label: Mise en avant sur l'accueil, name: featured, widget: boolean, default: false }
 
   - name: pages
@@ -209,6 +266,7 @@ collections:
           - { label: Nom, name: name, widget: string }
           - { label: Nom légal, name: legalName, widget: string }
           - { label: Signature, name: baseline, widget: string }
+          - { label: Signature en anglais, name: baselineEn, widget: string, required: false }
           - { label: Tagline, name: signature, widget: string }
           - { label: Email, name: email, widget: string }
           - { label: Téléphone affiché, name: phone, widget: string }
@@ -253,6 +311,29 @@ collections:
           - { label: Titre de la FAQ, name: faqTitle, widget: string }
           - *faq
           - { label: Titre de l'appel final, name: ctaTitle, widget: string }
+          - label: Version anglaise
+            name: en
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - { label: Titre Google, name: seoTitle, widget: string, required: false }
+              - { label: Description Google, name: seoDescription, widget: text, required: false }
+              - { label: Titre principal (SEO), name: h1, widget: string, required: false }
+              - { label: Accroche (une ligne par élément), name: heroLines, widget: list, required: false }
+              - { label: Sous-accroche, name: heroLead, widget: text, required: false }
+              - { label: Titre des clients, name: clientsTitle, widget: string, required: false }
+              - { label: Titre "Pourquoi DTER", name: whyTitle, widget: string, required: false }
+              - { label: Promesses, name: promises, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
+              - { label: Titre des réalisations, name: projectsTitle, widget: string, required: false }
+              - { label: Titre de la méthode, name: methodTitle, widget: string, required: false }
+              - { label: Étapes de la méthode, name: method, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Étiquette, name: label, widget: string }, { label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
+              - { label: Titre du studio, name: studioTitle, widget: string, required: false }
+              - { label: Texte du studio, name: studioText, widget: text, required: false }
+              - { label: Texte du bouton des coulisses, name: studioVideoLabel, widget: string, required: false }
+              - { label: Titre de la FAQ, name: faqTitle, widget: string, required: false }
+              - { label: Questions fréquentes, name: faq, widget: list, required: false, summary: '{{fields.q}}', fields: [{ label: Question, name: q, widget: string }, { label: Réponse, name: a, widget: text }] }
+              - { label: Titre de l'appel final, name: ctaTitle, widget: string, required: false }
       - name: clients
         label: Clients
         file: src/data/clients.json
@@ -276,3 +357,5 @@ collections:
               - { label: Citation, name: quote, widget: text }
               - { label: Nom, name: name, widget: string }
               - { label: Fonction et société, name: role, widget: string }
+              - { label: Citation en anglais, name: quoteEn, widget: text, required: false }
+              - { label: Fonction et société en anglais, name: roleEn, widget: string, required: false }

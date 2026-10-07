@@ -43,3 +43,45 @@ faq:
     a: "Une personne pour un format court, une équipe renforcée pour un grand événement ou plusieurs salles. C'est défini ensemble au brief."
   - q: "Vous déplacez-vous hors de Bruxelles ?"
     a: "Oui, dans toute la Belgique et en Europe."
+# Version anglaise
+en:
+  name: Aftermovie and events
+  title: Event aftermovie and video coverage in Brussels
+  seoDescription: Aftermovies, conference recordings and social clips, in Brussels and across Belgium. Delivery in one to three weeks. From €1,500 excl. VAT.
+  lead: Your event lasts one evening. Its film works all year. Conferences, launches, trade shows and corporate evenings, filmed and edited to go out in the days that follow.
+  short: Conferences, launches, evenings. An aftermovie and clips ready for your channels while the event is still fresh.
+  tags:
+  - Aftermovie
+  - Event coverage
+  - Social clips
+  - On-site interviews
+  usesTitle: Four ways to film an event.
+  uses:
+  - title: Aftermovie
+    text: The film that sums up the atmosphere, the highlights and the faces. To thank your guests and sell the next edition.
+  - title: Conference recording
+    text: Your talks filmed in full, with clean sound. For those who weren't there and for your content all year.
+  - title: Social clips
+    text: Short, vertical, subtitled formats from the same shoot. Ready for LinkedIn and Instagram.
+  - title: On-site interviews
+    text: Your speakers, clients and partners interviewed during the event, while the energy is there.
+  included:
+  - 'A preparation call: programme, moments not to miss, people to film'
+  - The shoot, with a crew sized for the event
+  - Editing, colour grading, sound mix, licensed music
+  - Two rounds of revisions, directly on the video
+  - 'Versions for each format: 16:9, vertical, square'
+  - 'Optional: photo coverage by the same crew'
+  projectsTitle: Aftermovies we've made.
+  priceTitle: How much does an aftermovie cost?
+  priceNote: Half a day of filming and one edited aftermovie.
+  faqTitle: Questions about event coverage.
+  faq:
+  - q: When will we receive the film?
+    a: In one to three weeks depending on the project. The deadline is set in the quote. Express delivery of clips within 24 or 48 hours is possible.
+  - q: Our event is coming up soon. Is it still possible?
+    a: Often, yes. Send us the date and you'll know straight away whether it's free.
+  - q: How many people come to film?
+    a: One person for a short format, a larger crew for a big event or several rooms. We decide together at the brief.
+  - q: Do you travel outside Brussels?
+    a: Yes, across Belgium and in Europe.

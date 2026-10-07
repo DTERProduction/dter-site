@@ -21,4 +21,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: Two days of filming in Knokke for La Mer, around the skincare routine and the brand's world.
 ---

@@ -45,3 +45,45 @@ faq:
     a: "Oui. Un rendez-vous de tournage régulier coûte moins cher par vidéo et garde une image cohérente."
   - q: "Faut-il prévoir des comédiens ?"
     a: "Pas forcément. Vos équipes et vos clients sont souvent les meilleurs visages de votre marque."
+# Version anglaise
+en:
+  name: Brand content
+  title: Brand content and social media video in Brussels
+  seoDescription: Launch films, social series and lifestyle content for brands, in Brussels. Batch shooting, vertical formats. From €2,400 excl. VAT.
+  lead: Content built for the platform where it will be seen. Regular brand videos, shot in one go and published over several weeks.
+  short: Social series, launch films, vertical formats. Content built for the platform where it will be seen.
+  tags:
+  - Launch film
+  - Social series
+  - Street interviews
+  - Lifestyle
+  usesTitle: Four brand content formats.
+  uses:
+  - title: Launch film
+    text: A new product, a new place, a new offer. A short film that creates desire, and its cutdowns.
+  - title: Social series
+    text: A recurring, recognisable format your audience looks forward to. Shot in batches to keep the pace.
+  - title: Street interviews and participatory formats
+    text: Real reactions, real people. The format that gets the most comments.
+  - title: Lifestyle content
+    text: 'Your brand in real life: your places, your customers, your world.'
+  included:
+  - 'A framing of the editorial line: topics, tone, publishing pace'
+  - Format writing and a batch shooting plan
+  - The shoot, designed for vertical from the start
+  - Editing, subtitles, graphics in your brand style
+  - Two rounds of revisions, directly on the video
+  - Files in the right format for each platform
+  projectsTitle: Brand content we've made.
+  priceTitle: How much does brand content cost?
+  priceNote: One day of filming and a batch of 4 pieces. A monthly plan spreads and lowers the cost.
+  faqTitle: Questions about brand content.
+  faq:
+  - q: How many videos can one shooting day produce?
+    a: At least four pieces, which can then be adapted for social media. The exact number depends on length and format.
+  - q: Do you also handle publishing?
+    a: No. We deliver videos ready to publish, in the right formats, and your team keeps control of posting.
+  - q: Can we work together every month?
+    a: Yes. A regular shooting day costs less per video and keeps a consistent look.
+  - q: Do we need actors?
+    a: Not necessarily. Your teams and your customers are often the best faces of your brand.

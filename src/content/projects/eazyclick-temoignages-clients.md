@@ -33,4 +33,10 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2075249028-9df62db17da5da709d868ff105f60127bd973e54642487300345e4c3d68141d3-d_1280?region=us"
     vertical: false
 draft: false
+en:
+  title: Client testimonials
+  summary: Four client testimonials for Eazyclick, built to convince prospects.
+  objective: 'Testimonials that are commercially useful: a story that comes through, a human hook in the first seconds and a call to action to the website.'
+  answer: 'Four testimonials filmed at Eazyclick''s clients, with full graphics: animated intro, on-screen questions, names and job titles, subtitles and a closing call to action. Each video is delivered as a web version and a master, with and without subtitles.'
+  result: Eazyclick commissioned a new series of testimonials in 2026.
 ---

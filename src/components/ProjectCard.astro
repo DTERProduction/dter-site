@@ -1,14 +1,16 @@
 ---
 import { catLabel } from '../lib/site';
+import { langOf, link, loc } from '../lib/i18n';
+const lang = langOf(Astro.url);
 const { project, large = false } = Astro.props;
-const d = project.data;
+const d = loc(project.data, lang);
 ---
-<a class:list={['project', { 'is-lg': large }]} href={`/realisations/${project.id}/`} data-cat={d.categories.join(' ')}>
+<a class:list={['project', { 'is-lg': large }]} href={link(lang, `/realisations/${project.id}/`)} data-cat={d.categories.join(' ')}>
   <div class:list={['media', large ? 'r-21-9' : '']}>
     {d.thumb && <img src={d.thumb} alt="" loading="lazy" decoding="async" />}
   </div>
   <div class="project-meta">
     <span class="project-title">{d.client} · {d.title}</span>
-    <span class="mono mut2">{catLabel(d.categories)}</span>
+    <span class="mono mut2">{catLabel(d.categories, lang)}</span>
   </div>
 </a>

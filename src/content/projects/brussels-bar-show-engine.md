@@ -22,4 +22,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The vertical aftermovie of the Engine stand at the Brussels Bar Show 2025, filmed over the two days of the show.
 ---

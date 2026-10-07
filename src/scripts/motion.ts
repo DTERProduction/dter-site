@@ -133,11 +133,11 @@ function init() {
 
   if (!finePointer) return;
 
-  // Curseur « Voir » sur les projets.
+  // Pastille de lecture : uniquement sur les quatre cartes de projets de l'accueil.
   const badge = document.createElement('div');
   badge.className = 'cursor-badge';
   // Un bouton de lecture entouré d'un texte qui tourne, comme une étiquette de bobine.
-  badge.innerHTML = `<span class="cursor-inner"><svg class="cursor-ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="cursor-ring-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text><textPath href="#cursor-ring-path" textLength="270">REGARDER · LECTURE · REGARDER · LECTURE ·</textPath></text></svg><span class="cursor-play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg></span></span>`;
+  badge.innerHTML = `<span class="cursor-inner"><svg class="cursor-ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="cursor-ring-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text><textPath href="#cursor-ring-path" textLength="270">${document.documentElement.lang === 'en' ? 'WATCH · PLAY · WATCH · PLAY · WATCH ·' : 'REGARDER · LECTURE · REGARDER · LECTURE ·'}</textPath></text></svg><span class="cursor-play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg></span></span>`;
   badge.setAttribute('aria-hidden', 'true');
   document.body.appendChild(badge);
   const bx = gsap.quickTo(badge, 'x', { duration: 0.35, ease: 'power3' });
@@ -149,7 +149,7 @@ function init() {
   const check = () => {
     queued = false;
     if (mx < 0 || document.documentElement.classList.contains('pt-leave')) return hideBadge();
-    const over = document.elementFromPoint(mx, my)?.closest('a.project, a.stack-card');
+    const over = document.elementFromPoint(mx, my)?.closest('a.stack-card');
     badge.classList.toggle('is-on', !!over);
   };
   const ask = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };

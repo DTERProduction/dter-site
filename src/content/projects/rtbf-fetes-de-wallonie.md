@@ -21,4 +21,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The Fêtes de Wallonie 2025 in Namur, in vertical format.
 ---

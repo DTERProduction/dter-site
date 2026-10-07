@@ -38,4 +38,9 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2075315549-751e427b3aed608187ecf5a90d04d0869ced7a59f96beff4ae79f5218ae36a0a-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  summary: A series of vertical clips shot at the Antwerp Marathon to promote the European Running Championships.
+  objective: 'Make the most of runners being in Antwerp to create short formats that make people want to run the European Championships: runners'' words, close-ups of the race and the event''s branding.'
+  answer: One day of filming and interviews along the course. Five clips, each built around a question put to runners, with an animated intro, animated subtitles and motion design in the event's colours.
+  result: Golazo then commissioned an additional video for the medal reveal.
 ---

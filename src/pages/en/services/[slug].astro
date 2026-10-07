@@ -1,0 +1,12 @@
+---
+import Page from '../../services/[slug].astro';
+import { getServices } from '../../../lib/site';
+import { serviceEn } from '../../../lib/i18n';
+
+// Les pages service ont leur propre adresse en anglais, pour viser les recherches anglophones.
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((s) => ({ params: { slug: serviceEn[s.id] || s.id }, props: { service: s } }));
+}
+---
+<Page {...Astro.props} />

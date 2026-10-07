@@ -1,55 +1,73 @@
 title: "Brand content"
+titleEn: "Brand content"
 category: "brand-content"
 order: 20
 photos:
   - image: ../../assets/photos/brand-content/brand-content-01.jpg
     alt: "Skateur à l'arrêt dans une rue piétonne, cadré aux jambes"
+    altEn: "Skateboarder standing in a pedestrian street, framed at the legs"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-02.jpg
     alt: "Piéton sur les pavés d'une rue commerçante, cadré aux jambes"
+    altEn: "Pedestrian on the cobbles of a shopping street, framed at the legs"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-03.jpg
     alt: "Cycliste à l'arrêt dans une rue piétonne, cadrée aux jambes"
+    altEn: "Cyclist stopped in a pedestrian street, framed at the legs"
     featured: true
   - image: ../../assets/photos/brand-content/brand-content-04.jpg
     alt: "Structure de scène en plein air avec un château au fond"
+    altEn: "Open-air stage structure with a castle in the background"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-05.jpg
     alt: "Scène couverte avec décor et canon, château en arrière-plan"
+    altEn: "Covered stage with set and cannon, castle in the background"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-06.jpg
     alt: "Gradins vides sous une grande structure métallique"
+    altEn: "Empty seating under a large metal structure"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-07.jpg
     alt: "Vue des gradins vers la scène et le château"
+    altEn: "View from the seating towards the stage and the castle"
     featured: true
   - image: ../../assets/photos/brand-content/brand-content-08.jpg
     alt: "Château en brique derrière une rampe de scène"
+    altEn: "Brick castle behind a stage ramp"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-09.jpg
     alt: "Cours collectif de fitness dans une salle claire"
+    altEn: "Group fitness class in a bright studio"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-10.jpg
     alt: "Mains agrippées à un anneau de gymnastique"
+    altEn: "Hands gripping a gymnastics ring"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-11.jpg
     alt: "Sportif à la corde, noir et blanc en filé"
+    altEn: "Athlete on the ropes, black and white with motion blur"
     featured: true
   - image: ../../assets/photos/brand-content/brand-content-12.jpg
     alt: "Deux coureurs en mouvement, noir et blanc"
+    altEn: "Two runners in motion, black and white"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-13.jpg
     alt: "Deux coureurs à l'entraînement le long d'une haie"
+    altEn: "Two runners training alongside a hedge"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-14.jpg
     alt: "Sportif sur un rameur, noir et blanc"
+    altEn: "Athlete on a rowing machine, black and white"
     featured: true
   - image: ../../assets/photos/brand-content/brand-content-15.jpg
     alt: "Sportif sur un rameur dans une salle sombre"
+    altEn: "Athlete on a rowing machine in a dark gym"
     featured: true
   - image: ../../assets/photos/brand-content/brand-content-16.jpg
     alt: "Coach guidant un étirement pendant un cours"
+    altEn: "Coach guiding a stretch during a class"
     featured: false
   - image: ../../assets/photos/brand-content/brand-content-17.jpg
     alt: "Cours de renforcement avec poids, vu de dos"
+    altEn: "Strength class with weights, seen from behind"
     featured: false

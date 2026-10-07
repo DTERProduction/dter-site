@@ -25,4 +25,10 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2209374853-7a784901d7c8f258300fe9f6644e9aae22e4ad8c74f10b576b62bf63e4733ddd-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  title: Walloon Heritage Day
+  summary: Two vertical videos shot during the Walloon Heritage Day at the Domaine de la Bataille de Waterloo, delivered the next morning.
+  objective: Show the atmosphere, the buildings and the afternoon's activities, publish on social media very quickly, and keep footage reusable to promote other events.
+  answer: Four hours of filming and photography on site. Both videos went out the next morning.
+  deliveredIn: The next morning
 ---

@@ -21,4 +21,8 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The wrap-up film of the 2026 General Assembly of the European project PIONEERS, at the Port House in Antwerp.
+  objective: 'Sum up the General Assembly following the client''s storyboard and script: the plenary, the networking, the demonstration visits and the strongest lines from the interviews, in line with the project''s guidelines and EU funding mentions.'
+  answer: One day of filming in Antwerp, from the plenary to the demonstration visits. A wrap-up film of just over two minutes, and the interviews adapted in vertical with subtitles.
 ---

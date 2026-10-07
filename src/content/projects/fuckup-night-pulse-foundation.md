@@ -22,4 +22,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The aftermovie of the FuckUp Night organised by Pulse Foundation.
 ---

@@ -22,4 +22,8 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The aftermovie of a day bringing together 60 creators and hairdressers around L'Oréal Professionnel, Kérastase and Redken.
+  objective: 'Cover a full day at The Standard hotel in Brussels, where influencers and professional hairdressers gathered around the three brands, given equal weight. The tone requested: fun, punchy, with a feeling of wishing you''d been there. The request arrived five days before the event.'
+  answer: Two camera operators on site, from the welcome to the rooftop dinner. An aftermovie of about one minute, delivered in 16:9 and 9:16, with interviews of the duos and cross subtitles in French and Dutch. The music is royalty-free, for risk-free use on every channel.
 ---

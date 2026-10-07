@@ -3,25 +3,33 @@ import Base from '../../layouts/Base.astro';
 import Vimeo from '../../components/Vimeo.astro';
 import Cta from '../../components/Cta.astro';
 import { getProjects, catLabel } from '../../lib/site';
+import { langOf, useT, link, loc } from '../../lib/i18n';
+
 
 export async function getStaticPaths() {
   const projects = await getProjects();
   return projects.map((p, i) => ({ params: { slug: p.id }, props: { project: p, next: projects[(i + 1) % projects.length] } }));
 }
 const { project, next } = Astro.props;
-const d = project.data;
-const cat = catLabel(d.categories);
-const facts = [['Client', d.client], ['Format', cat], ['Avec', d.partner], ['Année', d.year], ['Livré en', d.deliveredIn]].filter(([, v]) => v);
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+const d = loc(project.data, lang);
+const nextTitle = loc(next.data, lang).title;
+// Titres des autres vidéos dans la langue de la page.
+const videos = d.videos.map((v: any, i: number) => ({ ...v, title: (lang === 'en' && project.data.en?.videoTitles?.[i]) || v.title }));
+const cat = catLabel(d.categories, lang);
+const facts = [[t('project.client'), d.client], [t('project.format'), cat], [t('project.with'), d.partner], [t('project.year'), d.year], [t('project.delivered'), d.deliveredIn]].filter(([, v]) => v);
 const parts = [
-  ["L'objectif", d.objectiveTitle, d.objective],
-  ['Notre réponse', d.answerTitle, d.answer],
-  ['Le résultat', d.resultTitle, d.result],
-].filter(([, t, x]) => t || x);
-const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réalisé par DTER Production à Bruxelles.`;
+  [t('project.goal'), d.objectiveTitle, d.objective, false],
+  [t('project.answer'), d.answerTitle, d.answer, false],
+  [t('project.result'), d.resultTitle, d.result, true],
+].filter(([, ti, x]) => ti || x);
+const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} ${t('project.desc')}`;
 ---
 <Base title={`${d.client} · ${d.title} · DTER Production`} description={desc} image={d.thumb}>
   <section class="wrap stack" style="gap:24px;padding-block:clamp(28px,4vw,64px) 40px">
-    <a class="mono mut2" style="align-self:flex-start;padding:12px 0" href="/realisations/">← Toutes les réalisations</a>
+    <a class="mono mut2" style="align-self:flex-start;padding:12px 0" href={L('/realisations/')}>{t('project.back')}</a>
     <span class="eyebrow">{d.client} · {cat}</span>
     <h1 class="display">{d.title}</h1>
     {d.summary && <p class="lead" style="max-width:760px">{d.summary}</p>}
@@ -30,9 +38,9 @@ const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réali
     <Vimeo id={d.vimeoId} thumb={d.thumb} label={`${d.client}, ${d.title}`} ratio={d.vertical ? 'r-9-16' : 'r-16-9'} xl />
   </section>
   {d.videos.length > 0 && (
-    <section class="wrap" style="padding-top:32px" aria-label="Autres vidéos du projet">
-      <div class:list={['more-videos', { 'is-vertical': d.videos.every((v) => v.vertical) }]}>
-        {d.videos.map((v) => (
+    <section class="wrap" style="padding-top:32px" aria-label={t('project.more')}>
+      <div class:list={['more-videos', { 'is-vertical': videos.every((v: any) => v.vertical) }]}>
+        {videos.map((v: any) => (
           <figure>
             <Vimeo id={v.vimeoId} thumb={v.thumb} label={`${d.client}, ${v.title}`} ratio={v.vertical ? 'r-9-16' : 'r-16-9'} small />
             <figcaption class="mono mut2">{v.title}</figcaption>
@@ -41,19 +49,19 @@ const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réali
       </div>
     </section>
   )}
-  <section class="wrap" style="padding-top:32px" aria-label="Fiche du projet">
+  <section class="wrap" style="padding-top:32px" aria-label={t('project.sheet')}>
     <div class="facts">{facts.map(([k, v]) => <div><span class="mono">{k}</span><strong>{v}</strong></div>)}</div>
   </section>
   {parts.length > 0 && (
     <section class="wrap section">
       <div class="case">
-        {parts.map(([label, title, text], i) => (
+        {parts.map(([label, title, text, isResult], i) => (
           <div>
             <span class="mono">00:0{i + 1} · {label}</span>
             <div class="body">
               {title && <h2 class="h2" style="font-size:clamp(26px,3vw,40px)">{title}</h2>}
               {text && <p class="mut">{text}</p>}
-              {label === 'Le résultat' && d.stats.length > 0 && (
+              {isResult && d.stats.length > 0 && (
                 <div class="stats">{d.stats.map((s) => <div><strong>{s.value}</strong><span>{s.label}</span></div>)}</div>
               )}
             </div>
@@ -71,10 +79,10 @@ const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réali
     </section>
   )}
   <section class="wrap section">
-    <a class="between" style="border-top:1px solid var(--ink);padding-top:28px;align-items:baseline" href={`/realisations/${next.id}/`}>
-      <span class="mono mut2">Projet suivant</span>
-      <span class="h-xl" style="font-size:clamp(32px,5.4vw,80px)">{next.data.client} · {next.data.title} →</span>
+    <a class="between" style="border-top:1px solid var(--ink);padding-top:28px;align-items:baseline" href={L(`/realisations/${next.id}/`)}>
+      <span class="mono mut2">{t('project.next')}</span>
+      <span class="h-xl" style="font-size:clamp(32px,5.4vw,80px)">{next.data.client} · {nextTitle} →</span>
     </a>
   </section>
-  <Cta title="Un projet du même type ?" />
+  <Cta title={t('project.cta')} />
 </Base>

@@ -7,9 +7,17 @@ import site from '../data/site.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import mark from '../components/logo-mark.svg?raw';
+import { langOf, useT, link, loc, counterpart } from '../lib/i18n';
 
-interface Props { title: string; description?: string; landing?: boolean; noindex?: boolean; image?: string; dark?: boolean; jsonld?: Record<string, unknown>; }
-const { title, description = site.baseline, landing = false, noindex = false, image, dark = false, jsonld } = Astro.props;
+
+interface Props { title: string; description?: string; landing?: boolean; noindex?: boolean; image?: string; dark?: boolean; jsonld?: Record<string, unknown>; alt?: boolean; }
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+// alt : la page existe dans l'autre langue. Faux pour les pages légales, rédigées en français uniquement.
+const { title, description = lang === 'en' ? site.baselineEn : site.baseline, landing = false, noindex = false, image, dark = false, jsonld, alt = true } = Astro.props;
+const other = counterpart(Astro.url.pathname);
+const abs = (p: string) => new URL(p, Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const origin = new URL('/', Astro.site).href;
 // Carte d'identité de l'entreprise, lue par les moteurs de recherche et les assistants IA.
@@ -19,20 +27,20 @@ const business = {
   '@id': `${origin}#entreprise`,
   name: 'DTER Production',
   legalName: site.legalName,
-  description: `${site.baseline}. Vidéo corporate, aftermovie et événement, brand content, photographie corporate et post-production pour les équipes marketing et communication.`,
+  description: `${lang === 'en' ? site.baselineEn : site.baseline}. ${t('biz.desc')}`,
   url: origin,
   email: site.email,
   telephone: site.phone,
   vatID: 'BE1043250440',
   founder: { '@type': 'Person', name: 'Thomas Dubois' },
   address: { '@type': 'PostalAddress', streetAddress: 'Zuidlaan 14', postalCode: '1560', addressLocality: 'Hoeilaart', addressCountry: 'BE' },
-  areaServed: [{ '@type': 'City', name: 'Bruxelles' }, { '@type': 'Country', name: 'Belgique' }],
-  knowsLanguage: ['fr'],
+  areaServed: [{ '@type': 'City', name: lang === 'en' ? 'Brussels' : 'Bruxelles' }, { '@type': 'Country', name: lang === 'en' ? 'Belgium' : 'Belgique' }],
+  knowsLanguage: ['fr', 'en'],
   sameAs: [site.instagram, 'https://vimeo.com/user196867759'],
 };
 ---
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,6 +48,10 @@ const business = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && alt && <link rel="alternate" hreflang="fr" href={abs(other.fr)} />}
+    {!noindex && alt && <link rel="alternate" hreflang="en" href={abs(other.en)} />}
+    {!noindex && alt && <link rel="alternate" hreflang="x-default" href={abs(other.fr)} />}
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'fr_BE'} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -68,7 +80,7 @@ const business = {
         <span class="mono curtain-tc"><span class="accent">●</span> <span data-tc>00:00:00:00</span></span>
       </div>
     </div>
-    <div class="site-header-wrap"><Header landing={landing} /></div>
+    <div class="site-header-wrap"><Header landing={landing} alt={alt} /></div>
     <main><slot /></main>
     <Footer landing={landing} />
     <script>

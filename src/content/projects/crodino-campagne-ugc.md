@@ -22,4 +22,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  title: UGC campaign
 ---

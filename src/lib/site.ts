@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content';
+import { categoriesEn, type Lang } from './i18n';
 
 export const categories: Record<string, string> = {
   evenement: 'Événement',
@@ -8,7 +9,8 @@ export const categories: Record<string, string> = {
   social: 'Réseaux sociaux',
   influence: 'Influence',
 };
-export const catLabel = (list: string[]) => list.map((k) => categories[k]).join(' · ');
+export const catName = (k: string, lang: Lang = 'fr') => (lang === 'en' ? categoriesEn[k] : categories[k]) || photoCategories[k] || k;
+export const catLabel = (list: string[], lang: Lang = 'fr') => list.map((k) => catName(k, lang)).join(' · ');
 
 export async function getProjects() {
   const all = await getCollection('projects', ({ data }) => !data.draft && !!data.vimeoId);

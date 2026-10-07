@@ -4,7 +4,9 @@ import Vimeo from '../../components/Vimeo.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
-import home from '../../data/home.json';
+import homeData from '../../data/home.json';
+import { langOf, useT, link, loc } from '../../lib/i18n';
+
 import { getProjects, getServices, getPhotoSeries } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -12,7 +14,11 @@ export async function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.id }, props: { service: s } }));
 }
 const { service } = Astro.props;
-const s = service.data;
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+const s = loc(service.data, lang);
+const home = loc(homeData as any, lang) as typeof homeData;
 const all = await getProjects();
 const related = all.filter((p) => p.data.categories.some((c) => s.categories.includes(c))).slice(0, 3);
 const poster = all.find((p) => p.data.vimeoId === s.vimeoId)?.data.thumb;
@@ -27,29 +33,29 @@ const jsonld = {
   description: s.seoDescription,
   url: new URL(Astro.url.pathname, Astro.site).href,
   provider: { '@id': `${origin}#entreprise` },
-  areaServed: { '@type': 'City', name: 'Bruxelles' },
+  areaServed: { '@type': 'City', name: lang === 'en' ? 'Brussels' : 'Bruxelles' },
   ...(price ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', minPrice: Number(price), priceCurrency: 'EUR', valueAddedTaxIncluded: false } } } : {}),
 };
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={`${s.title} · DTER`} description={s.seoDescription} image={poster} jsonld={jsonld}>
   <section class="wrap stack" style="gap:24px;padding-block:clamp(40px,6vw,96px) 40px">
-    <span class="mono"><a class="mut2" href="/#services" style="padding:12px 0">Services</a> / <span class="dot">{s.name}</span></span>
+    <span class="mono"><a class="mut2" href={`${L('/')}#services`} style="padding:12px 0">{t('nav.services')}</a> / <span class="dot">{s.name}</span></span>
     <h1 class="display" style="max-width:1100px">{s.title}</h1>
     <div class="between">
       <p class="lead" style="max-width:640px">{s.lead}</p>
       <div class="row" style="gap:10px">
-        <a class="btn btn-dark" href="/contact/">Demander un devis</a>
-        <a class="btn btn-line" href={showGallery ? '/photo/' : '/realisations/'}>{showGallery ? 'Voir la galerie photo' : 'Voir des exemples'}</a>
+        <a class="btn btn-dark" href={L('/contact/')}>{t('nav.quote')}</a>
+        <a class="btn btn-line" href={L(showGallery ? '/photo/' : '/realisations/')}>{showGallery ? t('service.seeGallery') : t('service.seeExamples')}</a>
       </div>
     </div>
   </section>
   {s.vimeoId && <section class="wide"><Vimeo id={s.vimeoId} thumb={poster} label={s.name} ratio="r-21-9" xl /></section>}
 
   <section class="wrap section stack">
-    <div class="head"><span class="eyebrow">Pour quoi faire</span><h2 class="h2">{s.usesTitle}</h2></div>
+    <div class="head"><span class="eyebrow">{t('service.what')}</span><h2 class="h2">{s.usesTitle}</h2></div>
     <div class="cards">
-      {s.uses.map((u, i) => (
+      {s.uses.map((u: any, i: number) => (
         <div class:list={['card', { 'is-dark': i === s.uses.length - 1 }]}>
           <span class="num">{pad(i + 1)}</span>
           <h3 class="h3">{u.title}</h3>
@@ -60,12 +66,12 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </section>
 
   <section class="wrap section-b split">
-    <div class="side"><span class="eyebrow">Ce qui est inclus</span><h2 class="h2">Un projet complet, un seul interlocuteur.</h2></div>
-    <ul class="main checks">{s.included.map((x) => <li>{x}</li>)}</ul>
+    <div class="side"><span class="eyebrow">{t('service.included')}</span><h2 class="h2">{t('service.includedTitle')}</h2></div>
+    <ul class="main checks">{s.included.map((x: string) => <li>{x}</li>)}</ul>
   </section>
 
   <section class="wrap section-b stack">
-    <h2 class="h2">Du brief à la livraison, en quatre temps.</h2>
+    <h2 class="h2">{t('service.steps')}</h2>
     <div class="steps">
       {home.method.map((m, i) => (
         <div><span class="mono">00:{pad(i + 1)} · {m.label}</span><span class="h3">{m.title}</span><span class="mut">{m.text}</span></div>
@@ -75,7 +81,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
   {related.length > 0 && (
     <section class="wrap section-b stack" style="gap:28px">
-      <div class="between"><h2 class="h2">{s.projectsTitle}</h2><a class="link" href="/realisations/">Toutes les réalisations →</a></div>
+      <div class="between"><h2 class="h2">{s.projectsTitle}</h2><a class="link" href={L('/realisations/')}>{t('service.allWork')}</a></div>
       <div class="projects">{related.map((p) => <ProjectCard project={p} />)}</div>
     </section>
   )}
@@ -83,15 +89,15 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="wide">
     <div class="panel price">
       <div class="price-text">
-        <span class="eyebrow">Tarifs</span>
+        <span class="eyebrow">{t('service.pricing')}</span>
         <h2 class="h2">{s.priceTitle}</h2>
-        <p class="mut" style="max-width:560px">Le prix dépend de la durée du tournage, du format et des déclinaisons. Chaque devis détaille les postes, sans frais cachés.</p>
+        <p class="mut" style="max-width:560px">{t('service.priceText')}</p>
       </div>
       <div class="price-box">
-        {s.priceFrom && <small>À partir de</small>}
-        {s.priceFrom && <strong>{s.priceFrom} <small style="font-weight:400">HTVA</small></strong>}
+        {s.priceFrom && <small>{t('service.from')}</small>}
+        {s.priceFrom && <strong>{s.priceFrom} <small style="font-weight:400">{t('service.vat')}</small></strong>}
         {s.priceNote && <small>{s.priceNote}</small>}
-        <a class="btn btn-accent" href="/contact/">Recevoir un devis précis</a>
+        <a class="btn btn-accent" href={L('/contact/')}>{t('service.preciseQuote')}</a>
       </div>
     </div>
   </section>
@@ -101,5 +107,5 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="main"><Faq items={s.faq} /></div>
   </section>
 
-  <Cta title="Parlons de votre objectif." accent />
+  <Cta title={t('service.cta')} accent />
 </Base>

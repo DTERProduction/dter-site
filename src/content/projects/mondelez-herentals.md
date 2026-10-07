@@ -21,4 +21,9 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  title: Herentals plant
+  summary: A film about the production lines at the Herentals site, made for the staff party.
+  objective: 'A film for the staff party: an overview of the current lines and the new line about to start, edited with archive photos. Footage only, no interviews.'
+  answer: Half a day of filming in the plant, plus photos. A film of about one minute, delivered the day before the event.
 ---

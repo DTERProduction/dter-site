@@ -21,4 +21,9 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The first edition of the Emirati Cinema Night at Bozar, in Brussels.
+  objective: 'Tell the story of the evening, from the guests'' arrival to the panel: Emirati cinema, the three invited filmmakers, the exhibition and the audience. The film had to be dynamic, elegant and cinematic.'
+  answer: One evening of filming at Bozar and a film of the event, delivered five days later.
+  deliveredIn: 5 days
 ---

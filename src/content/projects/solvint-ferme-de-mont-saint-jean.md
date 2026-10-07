@@ -21,4 +21,8 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The aftermovie of a corporate event at the Ferme de Mont-Saint-Jean.
+  answer: One day of filming, with a shot of the managers in front of the Lion's Mound before the guests arrived. An aftermovie delivered in Full HD and 4K, plus photos of the team. The royalty-free music was chosen by the client from a shortlist.
+  deliveredIn: 8 days
 ---

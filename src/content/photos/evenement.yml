@@ -1,37 +1,49 @@
 title: "Événement"
+titleEn: "Events"
 category: "evenement"
 order: 10
 photos:
   - image: ../../assets/photos/evenement/evenement-03.jpg
     alt: "Invitée qui danse en riant sous des projecteurs orange"
+    altEn: "Guest laughing and dancing under orange spotlights"
     featured: true
   - image: ../../assets/photos/evenement/evenement-10.jpg
     alt: "Chanteur au micro sur scène, lumière bleue"
+    altEn: "Singer at the microphone on stage, in blue light"
     featured: true
   - image: ../../assets/photos/evenement/evenement-09.jpg
     alt: "Barman en chapeau haut de forme secouant un shaker"
+    altEn: "Bartender in a top hat shaking a cocktail"
     featured: true
   - image: ../../assets/photos/evenement/evenement-07.jpg
     alt: "Groupe d'invitées posant dans une salle aux lumières violettes"
+    altEn: "Group of guests posing in a room lit in purple"
     featured: false
   - image: ../../assets/photos/evenement/evenement-02.jpg
     alt: "Mains d'un DJ sur la table de mixage, en mouvement"
+    altEn: "Hands of a DJ on the mixing desk, in motion"
     featured: false
   - image: ../../assets/photos/evenement/evenement-04.jpg
     alt: "Groupe d'amies envoyant des baisers, lunettes roses"
+    altEn: "Group of friends blowing kisses, in pink glasses"
     featured: false
   - image: ../../assets/photos/evenement/evenement-08.jpg
     alt: "Service de boissons au-dessus de rangées de verres"
+    altEn: "Drinks being poured over rows of glasses"
     featured: false
   - image: ../../assets/photos/evenement/evenement-11.jpg
     alt: "Invitée prenant un selfie dans la salle"
+    altEn: "Guest taking a selfie in the venue"
     featured: false
   - image: ../../assets/photos/evenement/evenement-05.jpg
     alt: "Entrée de la salle avec tapis rouge et voiture habillée aux couleurs d'un sponsor"
+    altEn: "Venue entrance with red carpet and a sponsor-branded car"
     featured: false
   - image: ../../assets/photos/evenement/evenement-06.jpg
     alt: "Enseigne de la salle en contre-plongée sous un ciel bleu"
+    altEn: "Venue sign seen from below against a blue sky"
     featured: false
   - image: ../../assets/photos/evenement/evenement-01.jpg
     alt: "Canettes dans un bac de glace"
+    altEn: "Cans in a tub of ice"
     featured: false

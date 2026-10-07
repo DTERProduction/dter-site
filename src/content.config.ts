@@ -31,6 +31,8 @@ const projects = defineCollection({
     quoteFrom: z.string().optional(),
     videos: z.array(z.object({ title: z.string(), vimeoId: z.coerce.string(), thumb: z.string().optional(), vertical: z.boolean().default(false) })).default([]),
     draft: z.boolean().default(false),
+    // Version anglaise : seuls les champs remplis remplacent le français.
+    en: z.record(z.string(), z.any()).optional(),
   }),
 });
 
@@ -55,6 +57,7 @@ const services = defineCollection({
     priceNote: z.string().optional(),
     faqTitle: z.string(),
     faq,
+    en: z.record(z.string(), z.any()).optional(),
   }),
 });
 
@@ -80,6 +83,7 @@ const landings = defineCollection({
     faqTitle: z.string(),
     faq,
     ctaTitle: z.string(),
+    en: z.record(z.string(), z.any()).optional(),
   }),
 });
 
@@ -93,11 +97,12 @@ const photos = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      titleEn: z.string().optional(),
       client: z.string().optional(),
       category: z.string().optional(),
       order: z.number().default(100),
       photos: z
-        .array(z.object({ image: image(), alt: z.string().optional(), featured: z.boolean().default(false) }))
+        .array(z.object({ image: image(), alt: z.string().optional(), altEn: z.string().optional(), featured: z.boolean().default(false) }))
         .default([]),
     }),
 });

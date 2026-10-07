@@ -26,4 +26,7 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2075280962-7bac27720e4a0345c4c0dadd2074e92d7f0680016d2ff3334ce34ccc2925cbeb-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  videoTitles:
+  - Part 2
 ---

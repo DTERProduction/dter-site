@@ -43,3 +43,37 @@ faq:
   - q: "Vous déplacez-vous hors de Bruxelles ?"
     a: "Oui, dans toute la Belgique et en Europe."
 ctaTitle: "Votre date est-elle encore libre ?"
+# Version anglaise
+en:
+  seoTitle: Event aftermovie and video coverage in Brussels · DTER
+  eyebrow: Aftermovie · Event coverage · Brussels
+  title: Your event lasts one evening. Its aftermovie works all year.
+  lead: Video and photo coverage of conferences, launches and corporate evenings, in Brussels and across Belgium. One point of contact, a clear quote within 24 hours.
+  bullets:
+  - Aftermovie and vertical clips for your social channels
+  - Delivery in one to three weeks, two rounds of revisions included
+  - Video and photo by the same crew, on the same day
+  formTitle: Get your quote within 24 hours
+  dateLabel: Event date
+  messageLabel: Your event in two lines
+  clientsLabel: They trusted us with their event
+  deliverTitle: What you receive after your event.
+  deliverables:
+  - title: An aftermovie
+    text: The film that sums up the atmosphere, the highlights and the faces. To share internally, with your guests, and to sell the next edition.
+  - title: Clips for your social channels
+    text: Vertical and square formats, subtitled, ready for LinkedIn and Instagram. Planned during the shoot, not cropped afterwards.
+  - title: Photo coverage
+    text: Optional, by the same crew. Images consistent with the film, for your communications and your speakers.
+  examplesTitle: Three events, three films.
+  faqTitle: Before you ask for a quote.
+  faq:
+  - q: How much does an aftermovie cost?
+    a: From €1,500 excl. VAT for half a day of filming and one edited aftermovie. The quote details every item, with no hidden costs.
+  - q: When will we receive the film?
+    a: In one to three weeks depending on the project. The deadline is set in the quote, and two rounds of revisions are included.
+  - q: Our event is coming up soon. Is it still possible?
+    a: 'Often, yes. Enter the date in the form or call directly: you''ll know straight away whether it''s free.'
+  - q: Do you travel outside Brussels?
+    a: Yes, across Belgium and in Europe.
+  ctaTitle: Is your date still free?

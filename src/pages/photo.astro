@@ -2,19 +2,24 @@
 import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
-import { getPhotoSeries, photoCategories } from '../lib/site';
+import { getPhotoSeries, catName } from '../lib/site';
+import { langOf, useT, link, loc } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+
 
 const series = await getPhotoSeries();
 const total = series.reduce((n, s) => n + s.data.photos.length, 0);
 const cats = [...new Set(series.map((s) => s.data.category).filter(Boolean))] as string[];
-const label = (c?: string) => (c && photoCategories[c]) || c || '';
+const label = (c?: string) => (c ? catName(c, lang) : '');
 let index = 0;
 const items = await Promise.all(
   series.flatMap((s) =>
     s.data.photos.map(async (p) => ({
       image: p.image,
-      alt: p.alt || `${s.data.client ? s.data.client + ', ' : ''}${s.data.title}`,
-      caption: [s.data.client, s.data.title].filter(Boolean).join(' · '),
+      alt: (lang === 'en' && p.altEn) || p.alt || `${s.data.client ? s.data.client + ', ' : ''}${s.data.title}`,
+      caption: [s.data.client, (lang === 'en' && s.data.titleEn) || s.data.title].filter(Boolean).join(' · '),
       series: s.id,
       category: s.data.category || '',
       full: (await getImage({ src: p.image, width: Math.min(2200, p.image.width), format: 'webp', quality: 82 })).src,
@@ -23,45 +28,45 @@ const items = await Promise.all(
 );
 const cover = items[0] ? (await getImage({ src: items[0].image, width: 1200, format: 'jpg' })).src : undefined;
 ---
-<Base title="Photographie corporate et événementielle à Bruxelles · DTER" description="Portraits, reportages d'entreprise et photos d'événement réalisés par DTER Production, à Bruxelles et en Belgique." dark image={cover} noindex={total === 0}>
+<Base title={t('photo.seoTitle')} description={t('photo.seoDesc')} dark image={cover} noindex={total === 0}>
   <section class="wrap stack" style="gap:24px;padding-block:clamp(40px,6vw,96px) 40px">
     <span class="eyebrow">Photo</span>
     <div class="row" style="align-items:baseline;gap:8px 20px">
-      <h1 class="display">La photo, avec le même regard.</h1>
+      <h1 class="display">{t('photo.title')}</h1>
       {total > 0 && <span class="mono mut2" style="font-size:17px">(<span data-count>{total}</span>)</span>}
     </div>
-    <p class="lead" style="max-width:620px">Portraits, reportages d'entreprise et événements. Des images cohérentes avec vos films, souvent réalisées le même jour, par la même équipe.</p>
+    <p class="lead" style="max-width:620px">{t('photo.lead')}</p>
     {cats.length > 1 && (
-      <div class="filters" role="group" aria-label="Filtrer par type de photo">
-        <button class="filter" type="button" data-filter="all" aria-pressed="true">Toutes</button>
+      <div class="filters" role="group" aria-label={t('photo.filter')}>
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">{t('photo.all')}</button>
         {cats.map((c) => <button class="filter" type="button" data-filter={c} aria-pressed="false">{label(c)}</button>)}
       </div>
     )}
   </section>
 
   {total > 0 ? (
-    <section class="wrap section-b" aria-label="Galerie photo">
+    <section class="wrap section-b" aria-label={t('photo.gallery')}>
       <div class="masonry">
         {items.map((it) => (
-          <button class="photo-item" type="button" data-i={index++} data-full={it.full} data-caption={it.caption} data-cat={it.category} aria-label={`Agrandir la photo : ${it.alt}`}>
+          <button class="photo-item" type="button" data-i={index++} data-full={it.full} data-caption={it.caption} data-cat={it.category} aria-label={`${t('photo.zoom')} : ${it.alt}`}>
             <Image src={it.image} alt={it.alt} widths={[480, 800, 1200]} sizes="(min-width: 1100px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" />
           </button>
         ))}
       </div>
     </section>
   ) : (
-    <section class="wrap section-b"><p class="lead">La galerie arrive bientôt.</p></section>
+    <section class="wrap section-b"><p class="lead">{t('photo.soon')}</p></section>
   )}
 
-  <Cta title="Vidéo et photo, le même jour." accent href="/contact/" label="Demander un devis">
-    <a class="link" href="/services/photographie-corporate/">Tarifs et déroulé →</a>
+  <Cta title={t('photo.cta')} accent href={L('/contact/')} label={t('nav.quote')}>
+    <a class="link" href={L('/services/photographie-corporate/')}>{t('photo.pricing')}</a>
   </Cta>
 
-  <dialog class="lightbox" data-lenis-prevent aria-label="Photo agrandie">
-    <button class="lb-close" type="button" aria-label="Fermer">✕</button>
-    <button class="lb-prev" type="button" aria-label="Photo précédente">←</button>
+  <dialog class="lightbox" data-lenis-prevent aria-label={t('lb.label')}>
+    <button class="lb-close" type="button" aria-label={t('lb.close')}>✕</button>
+    <button class="lb-prev" type="button" aria-label={t('lb.prev')}>←</button>
     <img alt="" />
-    <button class="lb-next" type="button" aria-label="Photo suivante">→</button>
+    <button class="lb-next" type="button" aria-label={t('lb.next')}>→</button>
     <p class="mono lb-caption"></p>
   </dialog>
 

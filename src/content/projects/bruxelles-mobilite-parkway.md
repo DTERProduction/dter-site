@@ -22,4 +22,8 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The opening of the Parkway, the new park along the A12 in Brussels, in photo and video.
+  objective: 'Cover the opening of the Parkway: press moment, bike rides, yoga, children''s activities. The first photos had to go out during the event for the press release, followed by a full video and reusable short clips.'
+  answer: 'Two operators on site, one for photo and one for video. A full online photo gallery two days later, a video of the event and two 4:5 clips for Facebook, Instagram and LinkedIn: one on the bike route, the other on the activities.'
 ---

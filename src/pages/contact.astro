@@ -2,48 +2,53 @@
 import Base from '../layouts/Base.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import site from '../data/site.json';
+import { langOf, useT, link, loc } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+
 const rows = [
   ['Email', site.email, `mailto:${site.email}`],
-  ['Téléphone', site.phone, `tel:${site.phoneHref}`],
-  ['WhatsApp', 'Écrire sur WhatsApp', site.whatsapp],
-  ['Appel de 20 min', 'Choisir un créneau', site.calendarEmbed ? '#appel' : site.calendar],
+  [t('contact.phone'), site.phone, `tel:${site.phoneHref}`],
+  ['WhatsApp', t('contact.whatsapp'), site.whatsapp],
+  [t('contact.call'), t('home.slot'), site.calendarEmbed ? '#appel' : site.calendar],
 ];
 ---
-<Base title="Contact et devis · DTER Production, Bruxelles" description="Demandez un devis pour votre vidéo corporate, aftermovie, brand content ou shooting photo. Thomas vous répond en personne.">
+<Base title={t('contact.seoTitle')} description={t('contact.seoDesc')}>
   <section class="wrap section split" style="gap:48px 64px;align-items:flex-start">
     <div class="stack" style="flex:999 1 420px;min-width:0;gap:24px">
       <span class="eyebrow">Contact</span>
-      <h1 class="display">Parlons de votre projet.</h1>
-      <p class="lead" style="max-width:520px">Décrivez votre besoin en quelques lignes. Thomas vous répond en personne, avec un devis clair et un délai.</p>
+      <h1 class="display">{t('contact.title')}</h1>
+      <p class="lead" style="max-width:520px">{t('contact.lead')}</p>
       <div class="contact-rows">
         {rows.map(([k, v, h]) => <a href={h}><span class="mono">{k}</span><strong>{v}</strong></a>)}
-        <a><span class="mono">Studio</span><strong>Bruxelles, Belgique</strong></a>
+        <a><span class="mono">Studio</span><strong>{t('contact.place')}</strong></a>
       </div>
     </div>
-    <div style="flex:1 1 420px;min-width:0"><QuoteForm name="contact" title="Demander un devis" full /></div>
+    <div style="flex:1 1 420px;min-width:0"><QuoteForm name="contact" title={t('contact.formTitle')} full /></div>
   </section>
 
   {site.calendarEmbed && (
     <section class="wide" id="appel">
       <div class="panel booking">
         <div class="booking-side">
-          <span class="eyebrow">Appel découverte</span>
-          <h2 class="booking-title">20 minutes pour cadrer votre projet.</h2>
+          <span class="eyebrow">{t('book.eyebrow')}</span>
+          <h2 class="booking-title">{t('book.title')}</h2>
           <ul class="booking-points">
-            <li><span class="mono">01</span>Vous choisissez un créneau, la confirmation arrive par email.</li>
-            <li><span class="mono">02</span>On parle objectif, public, délai et budget.</li>
-            <li><span class="mono">03</span>Vous recevez un devis clair dans la foulée.</li>
+            <li><span class="mono">01</span>{t('book.p1')}</li>
+            <li><span class="mono">02</span>{t('book.p2')}</li>
+            <li><span class="mono">03</span>{t('book.p3')}</li>
           </ul>
-          <p class="booking-note">Gratuit et sans engagement. En visio ou par téléphone.</p>
+          <p class="booking-note">{t('book.note')}</p>
         </div>
-        <div class="booking-frame" data-booking={site.calendarEmbed}>
-          <div class="booking-bar mono"><i></i><i></i><i></i><span>Agenda de Thomas</span></div>
+        <div class="booking-frame" data-booking={site.calendarEmbed} data-title={t('book.frame')}>
+          <div class="booking-bar mono"><i></i><i></i><i></i><span>{t('book.agenda')}</span></div>
           <div class="booking-body">
             <div class="booking-grid" aria-hidden="true">{Array.from({ length: 28 }).map((_, i) => <i style={`--i:${i}`}></i>)}</div>
             <div class="booking-cta">
-              <button class="btn btn-accent" type="button" data-booking-open>Afficher les créneaux</button>
-              <a class="booking-alt" href={site.calendar} target="_blank" rel="noopener">Ouvrir dans un nouvel onglet</a>
-              <small>Le calendrier est fourni par Google et se charge à votre demande.</small>
+              <button class="btn btn-accent" type="button" data-booking-open>{t('book.show')}</button>
+              <a class="booking-alt" href={site.calendar} target="_blank" rel="noopener">{t('book.newTab')}</a>
+              <small>{t('book.google')}</small>
             </div>
           </div>
         </div>
@@ -58,7 +63,7 @@ const rows = [
       const body = frame.querySelector('.booking-body')!;
       const f = document.createElement('iframe');
       f.src = frame.dataset.booking!;
-      f.title = 'Choisir un créneau pour un appel avec Thomas';
+      f.title = frame.dataset.title || '';
       f.loading = 'lazy';
       frame.classList.add('is-loading');
       f.addEventListener('load', () => { frame.classList.remove('is-loading'); frame.classList.add('is-open'); });

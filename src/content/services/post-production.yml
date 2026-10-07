@@ -41,3 +41,45 @@ faq:
     a: "Tous, quelle que soit la caméra. S'il y a des images, il y a un film à faire."
   - q: "Quel délai pour un montage ?"
     a: "Une à deux semaines pour un format court."
+# Version anglaise
+en:
+  name: Post-production
+  title: 'Video post-production in Brussels: editing, colour grading, motion design'
+  seoDescription: Editing, colour grading, sound mix and motion design in Brussels, for your footage or ours. One to two weeks for a short format. From €900 excl. VAT.
+  lead: This is where the film is made. You have the footage, we turn it into a film. Editing, colour, sound and graphics, for footage shot by us or by others.
+  short: Editing, colour grading, sound mix, motion design, subtitling. Also for footage shot by others.
+  tags:
+  - Editing
+  - Colour grading
+  - Sound mix
+  - Motion design
+  - Sound design
+  usesTitle: Four post-production needs.
+  uses:
+  - title: Editing your footage
+    text: You filmed in-house or with another crew. We shape the story and deliver a finished film.
+  - title: Cutdowns and subtitling
+    text: An existing film, adapted into short, vertical, subtitled or translated formats.
+  - title: Colour grading and sound mix
+    text: Picture and sound brought up to professional broadcast level.
+  - title: Motion design
+    text: Titles, animated infographics, graphics in your brand style. To explain what footage alone can't show.
+  included:
+  - A conversation about the film's goal and audience
+  - Logging the footage and a proposed structure
+  - Editing, colour grading, sound mix, sound design
+  - Motion design and subtitles as needed
+  - Two rounds of revisions, directly on the video
+  - Exports in each platform's format
+  priceTitle: How much does video editing cost?
+  priceNote: Editing one short format. Fixed-price quote per project.
+  faqTitle: Questions about post-production.
+  faq:
+  - q: Do you work with footage you didn't shoot?
+    a: Yes. Send us your footage and we'll tell you what can be done with it.
+  - q: How do we send you the files?
+    a: 'However you prefer: straight to our servers, through a file transfer tool, or in person over a coffee.'
+  - q: Which file formats do you accept?
+    a: All of them, whatever the camera. If there's footage, there's a film to make.
+  - q: How long does an edit take?
+    a: One to two weeks for a short format.

@@ -1,8 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { getPhotoSeries } from '../lib/site';
+import { langOf, useT, link } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
 const series = await getPhotoSeries();
-const all = series.flatMap((s) => s.data.photos.map((p) => ({ ...p, alt: p.alt || s.data.title })));
+const all = series.flatMap((s) => s.data.photos.map((p) => ({ ...p, alt: (lang === 'en' && p.altEn) || p.alt || s.data.title })));
 const featured = all.filter((p) => p.featured);
 const photos = (featured.length >= 4 ? featured : all).slice(0, 10);
 ---
@@ -11,14 +14,14 @@ const photos = (featured.length >= 4 ? featured : all).slice(0, 10);
     <div class="wrap between">
       <div class="stack" style="gap:16px">
         <span class="eyebrow">Photo</span>
-        <h2 class="h2">Et quand il faut des images fixes, on les fait aussi.</h2>
+        <h2 class="h2">{t('band.title')}</h2>
       </div>
-      <a class="btn btn-line" href="/photo/">Voir la photo</a>
+      <a class="btn btn-line" href={link(lang, '/photo/')}>{t('band.cta')}</a>
     </div>
     <div class="photo-band-view">
       <div class="photo-band-track" data-band>
         {photos.map((p) => (
-          <a href="/photo/" tabindex="-1" aria-hidden="true">
+          <a href={link(lang, '/photo/')} tabindex="-1" aria-hidden="true">
             <Image src={p.image} alt={p.alt} height={640} widths={[480, 900]} sizes="(min-width: 900px) 34vw, 70vw" loading="lazy" />
           </a>
         ))}

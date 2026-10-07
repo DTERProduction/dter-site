@@ -41,7 +41,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 
 ## Règles du site
 
-- **Langue** : français uniquement pour l'instant. Pas de version anglaise.
+- **Langue** : français à la racine, anglais sous `/en/`. Tout passe par `src/lib/i18n.ts` (textes d'interface, correspondance des adresses, `loc()` qui fusionne le bloc `en` d'un contenu). Les pages de `src/pages/en/` réutilisent les pages françaises. Un champ anglais vide retombe sur le français. Tout texte ajouté en français doit recevoir sa traduction (`en`, `titleEn`, `altEn`, `quoteEn`). CGV et confidentialité restent en français uniquement.
 - **Ton** : direct, concret, sans jargon. Pas de tiret cadratin dans les textes.
 - **Un champ vide ne s'affiche pas** : ne jamais mettre de texte de remplissage ni de chiffre inventé.
 - **Positionnement** : « Pensé comme du marketing. Tourné comme du cinéma. » Cible : clients directs (responsables marketing et communication), pas les agences. Trois promesses : pensé pour performer, livré vite sans surprise, un seul interlocuteur.

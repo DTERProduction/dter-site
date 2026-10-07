@@ -26,4 +26,11 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2054774778-15b1037515a0f448fd99f2ad095fcacc9c4163fd68001f9304884a64b047ccd0-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  title: Creators in Knokke
+  summary: Two vertical videos shot in Knokke with @daphisticated and @bibleoffashionjulie.
+  objective: One vertical video of 45 seconds maximum per creator, in a travel and quiet-luxury spirit, with the product visible in the first seconds.
+  answer: 'A shoot in natural light, following a precise shot list: the arrival, the skincare routine in front of the mirror, the product in close-up, a moment outdoors.'
+  videoTitles:
+  - With @bibleoffashionjulie
 ---

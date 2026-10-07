@@ -25,4 +25,9 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2144399048-40d7d82352b9c9efcf589fff27bfe26f3c14134a1440be195e23edbc26065abb-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  title: Launch teaser
+  summary: The opening teaser for La Forge in Charleroi, with its photos and short formats for social media.
+  objective: 'Announce the arrival of La Forge in Charleroi and fill the founding members'' waiting list. The message: move beyond basic fitness and forge yourself, body, mind and community.'
+  answer: A pre-production file, then a shoot with a partner photographer. A teaser delivered in vertical and horizontal, six short formats for social media and a gallery of retouched photos.
 ---

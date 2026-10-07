@@ -3,27 +3,32 @@ import Base from '../../layouts/Base.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import Cta from '../../components/Cta.astro';
 import ModeSwitch from '../../components/ModeSwitch.astro';
-import { getProjects, categories } from '../../lib/site';
+import { getProjects, categories, catName } from '../../lib/site';
+import { langOf, useT, link, loc } from '../../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+
 const projects = await getProjects();
 const used = Object.keys(categories).filter((k) => projects.some((p) => p.data.categories.includes(k as never)));
 ---
-<Base title="Réalisations vidéo et photo · DTER Production, Bruxelles" description="Aftermovies, brand content, interviews et films corporate réalisés par DTER pour des marques belges et internationales.">
+<Base title={t('work.seoTitle')} description={t('work.seoDesc')}>
   <section class="wrap section stack" style="gap:28px;padding-bottom:40px">
-    <div class="row" style="align-items:center;gap:12px 20px"><span class="eyebrow">Réalisations</span><ModeSwitch videoHref="/realisations/" /></div>
+    <div class="row" style="align-items:center;gap:12px 20px"><span class="eyebrow">{t('work.eyebrow')}</span><ModeSwitch videoHref="/realisations/" /></div>
     <div class="row" style="align-items:baseline;gap:8px 20px">
-      <h1 class="display">Nos réalisations vidéo et photo</h1>
+      <h1 class="display">{t('work.title')}</h1>
       <span class="mono mut2" style="font-size:17px">(<span data-count>{projects.length}</span>)</span>
     </div>
-    <p class="lead" style="max-width:620px">Événements, brand content, films corporate, témoignages et formats réseaux sociaux, pour des marques belges et internationales. Chaque projet part d'un objectif.</p>
-    <div class="filters" role="group" aria-label="Filtrer par type de projet">
-      <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous</button>
-      {used.map((k) => <button class="filter" type="button" data-filter={k} aria-pressed="false">{categories[k]}</button>)}
+    <p class="lead" style="max-width:620px">{t('work.lead')}</p>
+    <div class="filters" role="group" aria-label={t('work.filter')}>
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">{t('work.all')}</button>
+      {used.map((k) => <button class="filter" type="button" data-filter={k} aria-pressed="false">{catName(k, lang)}</button>)}
     </div>
   </section>
-  <section class="wrap section-b" aria-label="Liste des projets">
+  <section class="wrap section-b" aria-label={t('work.list')}>
     <div class="projects">{projects.map((p) => <ProjectCard project={p} />)}</div>
   </section>
-  <Cta title="Le prochain projet, c'est le vôtre ?" />
+  <Cta title={t('work.cta')} />
   <script>
     const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
     const cards = document.querySelectorAll<HTMLElement>('.project[data-cat]');

@@ -1,7 +1,23 @@
 {
   "items": [
-    { "quote": "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes.", "name": "Audrey Gilson", "role": "Marketing Manager, BabylissPro" },
-    { "quote": "Les films sont exactement dans le ton. Le montage, les transitions… j'aime. Beau travail.", "name": "Bartel Lambeau", "role": "Communication Manager, Golazo" },
-    { "quote": "Je suis très impressionnée par la vidéo. Un beau montage, j'adore.", "name": "Tatevik Mkrtoumian", "role": "Fondatrice, Ballet Workout" }
+    {
+      "quote": "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes.",
+      "name": "Audrey Gilson",
+      "role": "Marketing Manager, BabylissPro",
+      "quoteEn": "From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations."
+    },
+    {
+      "quote": "Les films sont exactement dans le ton. Le montage, les transitions… j'aime. Beau travail.",
+      "name": "Bartel Lambeau",
+      "role": "Communication Manager, Golazo",
+      "quoteEn": "The movies are spot on! The editing, the transitions… I like! Nice work."
+    },
+    {
+      "quote": "Je suis très impressionnée par la vidéo. Un beau montage, j'adore.",
+      "name": "Tatevik Mkrtoumian",
+      "role": "Fondatrice, Ballet Workout",
+      "quoteEn": "I'm very impressed with the video. Beautiful editing, I love it.",
+      "roleEn": "Founder, Ballet Workout"
+    }
   ]
 }

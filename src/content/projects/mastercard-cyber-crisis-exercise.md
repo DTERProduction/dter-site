@@ -21,4 +21,8 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: The aftermovie of Mastercard's Cyber Crisis Exercise, built on the speakers' contributions.
+  objective: An aftermovie true to the Mastercard brand guidelines, carried by short contributions from the speakers, with on-screen questions, names and job titles, subtitles and the brand's sonic signature.
+  answer: One day of filming and interviews with the speakers. Before editing, the client received the transcript and a selection of excerpts to approve the message. First version delivered six days after the event.
 ---

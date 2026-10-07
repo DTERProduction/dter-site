@@ -1,11 +1,12 @@
 ---
 interface Props { id?: string; thumb?: string; label: string; ratio?: string; xl?: boolean; small?: boolean; }
 const { id, thumb, label, ratio = 'r-16-9', xl = false, small = false } = Astro.props;
+const play = Astro.url.pathname.startsWith('/en/') ? 'Play video' : 'Lire la vidéo';
 ---
 <div class:list={['media', ratio, { 'is-xl': xl }]}>
   {thumb && <img src={thumb} alt="" loading="lazy" decoding="async" />}
   {id && (
-    <button class:list={['play', { 'is-sm': small }]} type="button" data-vimeo={id} aria-label={`Lire la vidéo : ${label}`}>
+    <button class:list={['play', { 'is-sm': small }]} type="button" data-vimeo={id} aria-label={`${play} : ${label}`}>
       <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>
     </button>
   )}

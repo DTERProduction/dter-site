@@ -44,3 +44,45 @@ faq:
     a: "Oui, à Bruxelles, dans toute la Belgique et en Europe."
   - q: "Peut-on décliner le film pour LinkedIn ?"
     a: "Oui. Les formats verticaux et carrés sont prévus dès le tournage, avec sous-titres."
+# Version anglaise
+en:
+  name: Corporate video
+  title: Corporate video production in Brussels
+  seoDescription: Brand films, client testimonials and expert interviews in Brussels. One point of contact, delivery in one to three weeks. From €2,500 excl. VAT.
+  lead: Brand films, client testimonials and interviews for marketing and communications teams. Built for a specific goal, delivered in one to three weeks.
+  short: Corporate films, client testimonials and expert interviews. Videos that tell your brand's story and work for it.
+  tags:
+  - Brand film
+  - Client testimonial
+  - Employer branding
+  - Interview
+  usesTitle: Four uses for corporate video.
+  uses:
+  - title: Brand film
+    text: Who you are and why people choose you. For your website, sales presentations and trade shows.
+  - title: Client testimonial
+    text: Your clients explain what you changed for them. The most credible proof in a sales cycle.
+  - title: Employer branding
+    text: Your teams, your jobs, your daily life. To recruit people who fit.
+  - title: Expert interview
+    text: Your leaders and specialists on camera, on the topics where you lead.
+  included:
+  - A scoping call on your goal and your audience
+  - 'The writing: angle, running order, interview questions'
+  - The shoot, with a crew sized for the project
+  - Editing, colour grading, sound mix, subtitles
+  - Two rounds of revisions, directly on the video
+  - 'Versions for each format: 16:9, vertical, square'
+  projectsTitle: Corporate videos we've made.
+  priceTitle: How much does a corporate video cost?
+  priceNote: One day of filming and one edited film, with its cutdowns.
+  faqTitle: Questions about corporate video.
+  faq:
+  - q: How long does a production take?
+    a: Usually one to three weeks, from preparation to delivery. The deadline is set in the quote.
+  - q: Our people aren't comfortable on camera. What do you do?
+    a: Almost nobody is. Interviews are prepared in advance and run like a conversation, with a small crew.
+  - q: Can you film at our offices?
+    a: Yes, in Brussels, across Belgium and in Europe.
+  - q: Can the film be adapted for LinkedIn?
+    a: Yes. Vertical and square formats are planned from the shoot, with subtitles.

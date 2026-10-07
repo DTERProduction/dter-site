@@ -417,6 +417,10 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
   .site-header::after { content: ''; flex-basis: 100%; order: 3; }
   .nav a:not(.btn) { order: 4; padding: 6px 0 10px; margin-right: 14px; font-size: 15px; font-weight: 500; }
   .nav a:not(.btn)::after { bottom: 6px; }
+  .lang-switch { order: 5; margin-left: auto; }
+  .nav .lang-switch a { margin-right: 0; padding: 6px 4px 10px; font-size: 13px; }
+  .nav .lang-switch a + a { margin-left: 8px; }
+  .nav .lang-switch a::after { display: none; }
 }
 
 /* ---------- Rideau de chargement et de changement de page ---------- */
@@ -551,8 +555,8 @@ html, body { overflow-x: clip; }
 .cursor-ring text { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.08em; fill: var(--dark); }
 .cursor-play { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--dark); color: var(--accent); padding-left: 3px; transition: scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .cursor-badge.is-on .cursor-play { animation: cursor-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both; }
-.cursor-badge.is-press .cursor-inner { scale: 0.82; }
-.cursor-badge.is-press .cursor-play { scale: 1.25; }
+.cursor-badge.is-on.is-press .cursor-inner { scale: 0.82; }
+.cursor-badge.is-on.is-press .cursor-play { scale: 1.25; }
 @keyframes cursor-spin { to { rotate: 360deg; } }
 @keyframes cursor-pop { from { scale: 0.4; } to { scale: 1; } }
 
@@ -576,3 +580,12 @@ html, body { overflow-x: clip; }
   .hero-card:hover .hero-card-arrow { background: var(--accent); color: var(--dark); }
 }
 @media (prefers-reduced-motion: reduce) { .cursor-ring, .avatar-dot::after { animation: none; } }
+
+/* ---------- Sélecteur de langue ---------- */
+.lang-switch { display: inline-flex; align-items: center; gap: 2px; font-size: 13px; }
+.lang-switch a { padding: 10px 6px; color: var(--mut2); }
+.nav .lang-switch a::after { display: none; }
+.lang-switch a[aria-current] { color: var(--ink); font-weight: 500; }
+.lang-switch a + a { position: relative; margin-left: 8px; }
+.lang-switch a + a::before { content: '/'; position: absolute; left: -7px; color: var(--mut2); font-weight: 400; }
+.theme-dark .lang-switch a[aria-current] { color: var(--on-dark); }

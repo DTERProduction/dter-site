@@ -74,5 +74,78 @@
       "a": "Chaque projet comprend deux tours de retours. Vous laissez vos commentaires directement sur la vidéo, avec un outil simple."
     }
   ],
-  "ctaTitle": "Lancez votre projet avec DTER"
+  "ctaTitle": "Lancez votre projet avec DTER",
+  "en": {
+    "seoTitle": "DTER Production · Video and photo production in Brussels",
+    "seoDescription": "Video and photo production studio in Brussels: corporate films, event aftermovies, brand content and post-production. One point of contact, delivery in one to three weeks.",
+    "h1": "Video and photo production for brands, in Brussels",
+    "heroLines": [
+      "Built like marketing.",
+      "Shot like cinema."
+    ],
+    "heroLead": "One point of contact from brief to master, and films delivered in one to three weeks.",
+    "clientsTitle": "Demanding teams trust us with their stories.",
+    "whyTitle": "A film is only useful if it serves your goal.",
+    "promises": [
+      {
+        "title": "Built to perform",
+        "text": "Marketing came before the camera. Every project starts from what you want to achieve, then is planned on set for the formats where it will be seen."
+      },
+      {
+        "title": "Delivered fast, no surprises",
+        "text": "One to three weeks from preparation to delivery. Deadline stated in the quote, transparent pricing, two rounds of revisions included."
+      },
+      {
+        "title": "One point of contact",
+        "text": "Thomas follows your project from brief to master. Around him, a crew built for the job: second camera operator, drone pilot, motion designer."
+      }
+    ],
+    "projectsTitle": "Recent work",
+    "methodTitle": "How a video production with DTER works.",
+    "method": [
+      {
+        "label": "Brief",
+        "title": "Understand",
+        "text": "A call to pin down your goal and your audience. You receive a clear quote, with a deadline."
+      },
+      {
+        "label": "Preparation",
+        "title": "Write",
+        "text": "Angle, running order, location scouting, schedule. Everything is settled before the first shot."
+      },
+      {
+        "label": "Shoot",
+        "title": "Film",
+        "text": "A light crew that puts your people at ease. In Belgium and across Europe."
+      },
+      {
+        "label": "Delivery",
+        "title": "Deliver",
+        "text": "You comment directly on the video. Two rounds of feedback, then files ready to publish."
+      }
+    ],
+    "studioTitle": "A production studio in Brussels, born from marketing.",
+    "studioText": "DTER is a video and photo production studio based in Brussels, founded by Thomas Dubois. After several years in marketing, he turned his creative instinct into a full-time craft: the rigour of a strategist, the eye of a director.",
+    "studioVideoLabel": "Go behind the scenes",
+    "faqTitle": "Your questions, our answers.",
+    "faq": [
+      {
+        "q": "How long does it take to produce a corporate video?",
+        "a": "Usually one to three weeks, from preparation to delivery. We adapt to your schedule whenever possible."
+      },
+      {
+        "q": "Where are you based? Do you travel?",
+        "a": "In Brussels, with shoots across Belgium and Europe."
+      },
+      {
+        "q": "Who works on my project?",
+        "a": "Thomas is your point of contact from concept to delivery. Depending on the project, he brings in the right people: second camera operator, drone pilot, motion designer."
+      },
+      {
+        "q": "What if I want changes?",
+        "a": "Every project includes two rounds of revisions. You leave your comments directly on the video, with a simple tool."
+      }
+    ],
+    "ctaTitle": "Start your project with DTER"
+  }
 }

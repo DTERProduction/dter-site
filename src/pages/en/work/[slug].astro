@@ -1,0 +1,10 @@
+---
+import Page from '../../realisations/[slug].astro';
+import { getProjects } from '../../../lib/site';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((p, i) => ({ params: { slug: p.id }, props: { project: p, next: projects[(i + 1) % projects.length] } }));
+}
+---
+<Page {...Astro.props} />

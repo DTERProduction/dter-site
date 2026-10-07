@@ -6,11 +6,17 @@ import Faq from '../components/Faq.astro';
 import PhotoBand from '../components/PhotoBand.astro';
 import { Image, getImage } from 'astro:assets';
 import site from '../data/site.json';
-import home from '../data/home.json';
+import homeData from '../data/home.json';
+import { langOf, useT, link, loc } from '../lib/i18n';
+
 import clients from '../data/clients.json';
 import testimonials from '../data/testimonials.json';
 import { getProjects, getServices, getPhotoSeries, categories, catLabel } from '../lib/site';
 
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+const home = loc(homeData as any, lang) as typeof homeData;
 const projects = await getProjects();
 const featured = projects.filter((p) => p.data.featured).slice(0, 4);
 const thumbOf = (vimeoId?: string) => projects.find((p) => p.data.vimeoId === vimeoId)?.data.thumb;
@@ -30,7 +36,7 @@ const preview = (id: string, vimeoId?: string) => {
 const withLogo = clients.items.filter((c) => c.logo);
 const shownClients = withLogo.length >= 6 ? withLogo : clients.items;
 const services = await getServices();
-const [mainQuote, ...quotes] = testimonials.items;
+const [mainQuote, ...quotes] = testimonials.items.map((q: any) => (lang === 'en' ? { ...q, quote: q.quoteEn || q.quote, role: q.roleEn || q.role } : q));
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={home.seoTitle} description={home.seoDescription} image={home.heroPoster}>
@@ -38,7 +44,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <p class="wordmark" aria-hidden="true"><span>DTER</span><span>Production</span></p>
     <div class="intro-meta mono">
       <h1 class="dot">{home.h1}</h1>
-      <span class="mut2">Défiler ↓</span>
+      <span class="mut2">{t('home.scroll')}</span>
     </div>
   </section>
 
@@ -49,16 +55,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </div>
       <div class="hero-over">
         <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
-        <a class="hero-card" href={site.calendarEmbed ? '/contact/#appel' : site.calendar}>
+        <a class="hero-card" href={site.calendarEmbed ? `${L('/contact/')}#appel` : site.calendar}>
           <span class="avatar"><Image src={portrait} alt="Thomas Dubois" width={144} height={144} loading="eager" /><i class="avatar-dot" aria-hidden="true"></i></span>
-          <span class="hero-card-text"><strong class="swap"><span>Parler à Thomas</span><span aria-hidden="true">Choisir un créneau</span></strong><small>Fondateur de DTER · appel de 20 min</small></span>
+          <span class="hero-card-text"><strong class="swap"><span>{t('home.talk')}</span><span aria-hidden="true">{t('home.slot')}</span></strong><small>{t('home.founder')}</small></span>
         </a>
       </div>
     </div>
   </section>
 
   <section class="section stack" aria-label="Clients" style="padding-bottom:0">
-    <div class="wrap head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
+    <div class="wrap head"><span class="eyebrow">{t('home.brands')}</span><h2 class="h2">{home.clientsTitle}</h2></div>
     <div class="marquee">
       <div class="marquee-track">
         {[...shownClients, ...shownClients].map((c, i) => (
@@ -71,7 +77,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </section>
 
   <section class="wrap section stack">
-    <div class="head"><span class="eyebrow">Pourquoi DTER</span><h2 class="h2">{home.whyTitle}</h2></div>
+    <div class="head"><span class="eyebrow">{t('home.why')}</span><h2 class="h2">{home.whyTitle}</h2></div>
     <div class="cards">
       {home.promises.map((p, i) => (
         <div class:list={['card', { 'is-dark': i === home.promises.length - 1 }]}>
@@ -86,13 +92,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section id="projets" class="wrap section-b stack">
     <div class="between">
       <h2 class="h-xl">{home.projectsTitle}<span class="accent">.</span></h2>
-      <a class="btn btn-dark" href="/realisations/">Tous les projets</a>
+      <a class="btn btn-dark" href={L('/realisations/')}>{t('home.allProjects')}</a>
     </div>
     <div class="stack-cards">
       {featured.map((p, i) => (
-        <a class="stack-card" style={`--i:${i}`} href={`/realisations/${p.id}/`}>
+        <a class="stack-card" style={`--i:${i}`} href={L(`/realisations/${p.id}/`)}>
           <div class="stack-inner">
-            <div class="stack-meta"><strong>{p.data.client} · {p.data.title}</strong><span class="mono mut2">{catLabel(p.data.categories)}</span></div>
+            <div class="stack-meta"><strong>{p.data.client} · {loc(p.data, lang).title}</strong><span class="mono mut2">{catLabel(p.data.categories, lang)}</span></div>
             <div class="media">{p.data.thumb && <img src={p.data.thumb} alt="" loading="lazy" decoding="async" />}</div>
           </div>
         </a>
@@ -102,9 +108,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
   <PhotoBand />
 
-  <section class="wide" aria-label="Témoignages">
+  <section class="wide" aria-label={t('home.testimonials')}>
     <div class="panel stack" style="gap:48px">
-      <span class="eyebrow">Témoignages</span>
+      <span class="eyebrow">{t('home.testimonials')}</span>
       <figure class="stack" style="gap:22px">
         <blockquote class="quote-lg">« {mainQuote.quote} »</blockquote>
         <figcaption class="quote-by"><strong>{mainQuote.name}</strong> · {mainQuote.role}</figcaption>
@@ -125,21 +131,21 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <h2 class="h-xl">Services</h2><span class="mono mut2">({pad(services.length)})</span>
     </div>
     <div class="rows">
-      {services.map((s, i) => (
-        <a href={`/services/${s.id}/`} data-kind={preview(s.id, s.data.vimeoId)?.kind} data-images={JSON.stringify(preview(s.id, s.data.vimeoId)?.images || [])}>
+      {services.map((sv, i) => { const s = { id: sv.id, data: loc(sv.data, lang) }; return (
+        <a href={L(`/services/${s.id}/`)} data-kind={preview(s.id, s.data.vimeoId)?.kind} data-images={JSON.stringify(preview(s.id, s.data.vimeoId)?.images || [])}>
           <span class="idx">{i + 1}</span>
           <h3 class="name">{s.data.name}</h3>
           <span class="desc">
             <span>{s.data.short}</span>
-            <span class="chips">{s.data.tags.map((t) => <span>{t}</span>)}</span>
+            <span class="chips">{s.data.tags.map((tag: string) => <span>{tag}</span>)}</span>
           </span>
         </a>
-      ))}
+      ); })}
     </div>
   </section>
 
   <section id="methode" class="wrap section-b stack">
-    <div class="head"><span class="eyebrow">Méthode</span><h2 class="h2">{home.methodTitle}</h2></div>
+    <div class="head"><span class="eyebrow">{t('home.method')}</span><h2 class="h2">{home.methodTitle}</h2></div>
     <div class="steps">
       {home.method.map((m, i) => (
         <div>
@@ -155,9 +161,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="reel-col">
       {home.studioVimeoId ? (
         <div class="reel" data-reel={home.studioVimeoId}>
-          {home.studioPoster && <img src={home.studioPoster} alt="Coulisses d'un tournage DTER" loading="lazy" decoding="async" />}
+          {home.studioPoster && <img src={home.studioPoster} alt={t('home.bts')} loading="lazy" decoding="async" />}
           <div class="reel-frame"></div>
-          <button class="reel-btn" type="button" aria-label={`${home.studioVideoLabel}, avec le son`}>
+          <button class="reel-btn" type="button" aria-label={`${home.studioVideoLabel}, ${t('home.withSound')}`}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>
             <span>{home.studioVideoLabel}</span>
           </button>
@@ -169,10 +175,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
       )}
     </div>
     <div class="stack" style="flex:999 1 420px;min-width:0;gap:22px">
-      <span class="eyebrow">Le studio</span>
+      <span class="eyebrow">{t('home.studio')}</span>
       <h2 class="h2">{home.studioTitle}</h2>
       <p class="lead" style="max-width:620px">{home.studioText}</p>
-      <a class="link" style="align-self:flex-start" href="/contact/">Faire connaissance →</a>
+      <a class="link" style="align-self:flex-start" href={L('/contact/')}>{t('home.meet')}</a>
     </div>
   </section>
 
@@ -183,10 +189,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
   <section class="wide">
     <div class="panel cta" data-trail={JSON.stringify(trail)}>
-      <span class="mono trail-hint">Bougez la souris</span>
+      <span class="mono trail-hint">{t('home.move')}</span>
       <h2 class="cta-title" style="font-size:clamp(44px,7.4vw,120px);flex-basis:100%">{home.ctaTitle}</h2>
       <div class="row" style="align-items:center;gap:12px 28px">
-        <a class="btn btn-accent" href={site.calendarEmbed ? '/contact/#appel' : site.calendar}>Réserver un appel</a>
+        <a class="btn btn-accent" href={site.calendarEmbed ? `${L('/contact/')}#appel` : site.calendar}>{t('cta.call')}</a>
         <a class="link" style="font-weight:500" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
     </div>

@@ -10,7 +10,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
 ---
-<Base title={`${d.title} · DTER Production`} description={d.description}>
+<Base title={`${d.title} · DTER Production`} description={d.description} alt={false}>
   <section class="wrap section stack" style="gap:24px">
     <span class="eyebrow">Mentions légales</span>
     <h1 class="display">{d.title}</h1>

@@ -1,10 +1,13 @@
 ---
 interface Props { name: string; title: string; dateLabel?: string; messageLabel?: string; full?: boolean; onDark?: boolean; submit?: string; }
 import site from '../data/site.json';
-const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre projet en quelques lignes', full = false, onDark = false, submit = 'Envoyer ma demande' } = Astro.props;
+import { langOf, useT, link } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const { name, title, dateLabel = t('form.deadline'), messageLabel = t('form.message'), full = false, onDark = false, submit = t('form.send') } = Astro.props;
 // Avec une clé Web3Forms, la demande part par email. Sans clé, on garde les formulaires Netlify.
 const key = (site as { formKey?: string }).formKey;
-const thanks = `/merci/?demande=${name}`;
+const thanks = `${link(lang, '/merci/')}?demande=${name}`;
 ---
 <form id="devis" class:list={['form', { 'on-dark': onDark }]} name={name} method="POST" action={key ? 'https://api.web3forms.com/submit' : thanks} data-netlify={key ? undefined : 'true'} netlify-honeypot={key ? undefined : 'site-web'} aria-label={title}>
   {key ? (
@@ -12,11 +15,12 @@ const thanks = `/merci/?demande=${name}`;
       <input type="hidden" name="access_key" value={key} />
       <input type="hidden" name="redirect" value={new URL(thanks, Astro.site).href} />
       <input type="hidden" name="from_name" value="Site DTER" />
-      <input type="hidden" name="subject" value={`Demande de devis · ${name}`} data-subject />
+      <input type="hidden" name="subject" value={`${t('form.subject')} · ${name}${lang === 'en' ? ' · EN' : ''}`} data-subject />
       <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off" />
     </>
   ) : <input type="hidden" name="form-name" value={name} />}
   <input type="hidden" name="formulaire" value={name} />
+  <input type="hidden" name="langue" value={lang === 'en' ? 'anglais' : 'français'} />
   <input type="hidden" name="page" value={Astro.url.pathname} />
   <input type="hidden" name="source" data-utm="utm_source" />
   <input type="hidden" name="support" data-utm="utm_medium" />
@@ -27,31 +31,31 @@ const thanks = `/merci/?demande=${name}`;
   <input type="hidden" name="clic-meta" data-utm="fbclid" />
   <p hidden><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off" /></label></p>
   <span class="form-title">{title}</span>
-  {onDark && <small>Gratuit et sans engagement.</small>}
+  {onDark && <small>{t('form.free')}</small>}
   <div class="fields">
-    <label class="field">Nom et prénom<input type="text" name="nom" autocomplete="name" required /></label>
-    <label class="field">Société<input type="text" name="societe" autocomplete="organization" /></label>
+    <label class="field">{t('form.name')}<input type="text" name="nom" autocomplete="name" required /></label>
+    <label class="field">{t('form.company')}<input type="text" name="societe" autocomplete="organization" /></label>
   </div>
   <div class="fields">
-    <label class="field">Email professionnel<input type="email" name="email" autocomplete="email" required /></label>
-    {full && <label class="field">Téléphone<input type="tel" name="telephone" autocomplete="tel" /></label>}
+    <label class="field">{t('form.email')}<input type="email" name="email" autocomplete="email" required /></label>
+    {full && <label class="field">{t('form.phone')}<input type="tel" name="telephone" autocomplete="tel" /></label>}
   </div>
   {full && (
-    <label class="field">Type de projet
+    <label class="field">{t('form.type')}
       <select name="type">
-        <option>Vidéo corporate</option>
-        <option>Aftermovie, événement</option>
-        <option>Brand content, réseaux sociaux</option>
-        <option>Photographie</option>
-        <option>Post-production seule</option>
-        <option>Autre</option>
+        <option>{t('form.t1')}</option>
+        <option>{t('form.t2')}</option>
+        <option>{t('form.t3')}</option>
+        <option>{t('form.t4')}</option>
+        <option>{t('form.t5')}</option>
+        <option>{t('form.t6')}</option>
       </select>
     </label>
   )}
   <label class="field">{dateLabel}<input type="date" name="date" /></label>
   <label class="field">{messageLabel}<textarea name="message" rows={full ? 4 : 3}></textarea></label>
   <button class:list={['btn', onDark ? 'btn-accent' : 'btn-dark']} type="submit">{submit}</button>
-  <small>{onDark ? 'Réponse de Thomas, fondateur de DTER, en personne. ' : ''}Vos données servent uniquement à vous répondre. <a href="/politique-de-confidentialite/" style="text-decoration:underline">Politique de confidentialité</a></small>
+  <small>{onDark ? t('form.personal') : ''}{t('form.data')} <a href="/politique-de-confidentialite/" hreflang="fr" style="text-decoration:underline">{t('form.policy')}</a></small>
 </form>
 
 <script>

@@ -40,3 +40,44 @@ faq:
     a: "Oui. C'est même le plus efficace : une seule équipe, une seule mobilisation de vos collaborateurs, une image cohérente."
   - q: "Pouvez-vous photographier toute une équipe en une journée ?"
     a: "Oui, avec un planning par créneaux communiqué à l'avance."
+# Version anglaise
+en:
+  name: Corporate photography
+  title: 'Corporate photographer in Brussels: portraits, reportage, events'
+  seoDescription: Team portraits, corporate reportage and event photography in Brussels. Delivery in five working days. From €750 excl. VAT.
+  lead: Light, composition, emotion. Images that look like your company, consistent with your films and usable everywhere.
+  short: Portraits, corporate reportage and event photography. Images consistent with your films, shot the same day if needed.
+  tags:
+  - Portraits
+  - Reportage
+  - Events
+  - Social media
+  usesTitle: Four uses for corporate photography.
+  uses:
+  - title: Team portraits
+    text: Consistent portraits for your website, LinkedIn and materials. At your offices or in a studio.
+  - title: Corporate reportage
+    text: Your work, your places, your teams in action. An image bank of your own, far from stock photos.
+  - title: Event photography
+    text: The highlights, the speakers, the atmosphere. Delivered quickly for your communications.
+  - title: Social content
+    text: Sets of images designed for your posts over the coming weeks.
+  included:
+  - A brief on how the images will be used and the style expected
+  - The shoot, with lighting if needed
+  - Selection and retouching of the chosen images
+  - An online gallery to choose and download
+  - Files in high resolution and web format
+  - Usage rights for your communications
+  priceTitle: How much does a corporate shoot cost?
+  priceNote: Half a day of shooting and 100 retouched images.
+  faqTitle: Questions about corporate photography.
+  faq:
+  - q: How many images do we receive?
+    a: As many as your project needs. As a guide, half a day gives around 100 retouched images.
+  - q: How fast?
+    a: Five working days. For urgent projects, express delivery in under 24 hours is possible, at an express rate.
+  - q: Can we combine photo and video on the same day?
+    a: 'Yes. It''s actually the most efficient: one crew, one disruption for your people, one consistent look.'
+  - q: Can you photograph a whole team in one day?
+    a: Yes, with a time-slot schedule shared in advance.

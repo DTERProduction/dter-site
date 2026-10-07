@@ -21,4 +21,6 @@ result: ""
 stats: []
 videos: []
 draft: false
+en:
+  summary: Aperol at Rock Werchter 2026, delivered in 16:9 and in social formats.
 ---

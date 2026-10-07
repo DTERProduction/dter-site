@@ -30,4 +30,9 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2075292067-e4cde110a159fc7483cf838e5460294ef50d188aca99f95eff48e38be91136ab-d_1280?region=us"
     vertical: true
 draft: false
+en:
+  title: Decathlon and Bpost
+  videoTitles:
+  - Bpost
+  - 3 facts about BXL
 ---

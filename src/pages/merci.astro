@@ -1,11 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
+import { langOf, useT, link, loc } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+
 ---
-<Base title="Merci · DTER Production" noindex>
+<Base title={t('thanks.seoTitle')} noindex>
   <section class="wrap section stack" style="gap:24px;min-height:50vh">
-    <span class="eyebrow">Demande envoyée</span>
-    <h1 class="display">Merci, c'est bien reçu.</h1>
-    <p class="lead" style="max-width:560px">Thomas revient vers vous rapidement avec un devis clair et un délai.</p>
-    <a class="btn btn-dark" style="align-self:flex-start" href="/realisations/">Voir nos réalisations</a>
+    <span class="eyebrow">{t('thanks.eyebrow')}</span>
+    <h1 class="display">{t('thanks.title')}</h1>
+    <p class="lead" style="max-width:560px">{t('thanks.lead')}</p>
+    <a class="btn btn-dark" style="align-self:flex-start" href={L('/realisations/')}>{t('thanks.cta')}</a>
   </section>
 </Base>

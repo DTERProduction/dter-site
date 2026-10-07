@@ -7,21 +7,27 @@ import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import site from '../../data/site.json';
 import testimonials from '../../data/testimonials.json';
-import { getProjects, categories, catLabel } from '../../lib/site';
+import { getProjects, catLabel } from '../../lib/site';
+import { langOf, useT, link, loc } from '../../lib/i18n';
+
 
 export async function getStaticPaths() {
   const landings = await getCollection('landings');
   return landings.map((l) => ({ params: { slug: l.id }, props: { landing: l } }));
 }
 const { landing } = Astro.props;
-const l = landing.data;
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+const l = loc(landing.data, lang);
 const all = await getProjects();
 const examples = l.examples.map((id) => all.find((p) => p.id === id)).filter(Boolean);
 // Vidéo d'en-tête : le projet choisi s'il est en ligne, sinon la vidéo de secours.
 const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : undefined;
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
-const quote = testimonials.items[0];
+const q0: any = testimonials.items[0];
+const quote = lang === 'en' ? { ...q0, quote: q0.quoteEn || q0.quote, role: q0.roleEn || q0.role } : q0;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
@@ -32,9 +38,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <h1 class="lp-title">{l.title}</h1>
         <p class="hero-lead" style="max-width:560px">{l.lead}</p>
         <ul class="lp-bullets">{l.bullets.map((b) => <li>{b}</li>)}</ul>
-        {heroId && <Vimeo id={heroId} thumb={poster} label="Exemple de réalisation" small />}
+        {heroId && <Vimeo id={heroId} thumb={poster} label={t('lp.example')} small />}
       </div>
-      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark submit="Recevoir mon devis" />
+      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark submit={t('form.getMine')} />
     </div>
   </section>
 
@@ -53,20 +59,20 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </section>
 
   {examples.length > 0 && (
-    <section class="wrap stack" style="gap:28px" aria-label="Exemples">
+    <section class="wrap stack" style="gap:28px" aria-label={lang === 'en' ? 'Examples' : 'Exemples'}>
       <h2 class="h2">{l.examplesTitle}</h2>
       <div class="projects">
         {examples.map((p) => (
           <div class="project">
             <Vimeo id={p.data.vimeoId} thumb={p.data.thumb} label={`${p.data.client}, ${p.data.title}`} ratio="" small />
-            <div class="project-meta"><span class="project-title">{p.data.client} · {p.data.title}</span><span class="mono mut2">{catLabel(p.data.categories)}</span></div>
+            <div class="project-meta"><span class="project-title">{p.data.client} · {loc(p.data, lang).title}</span><span class="mono mut2">{catLabel(p.data.categories, lang)}</span></div>
           </div>
         ))}
       </div>
     </section>
   )}
 
-  <section class="wide section" aria-label="Témoignage">
+  <section class="wide section" aria-label={lang === 'en' ? 'Testimonial' : 'Témoignage'}>
     <figure class="panel stack" style="gap:22px">
       <blockquote class="quote-lg">« {quote.quote} »</blockquote>
       <figcaption class="quote-by"><strong>{quote.name}</strong> · {quote.role}</figcaption>
@@ -78,7 +84,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="main"><Faq items={l.faq} /></div>
   </section>
 
-  <Cta title={l.ctaTitle} accent href="#devis" label="Recevoir mon devis">
-    <a style="font-weight:600;font-size:19px;padding:12px 0" href={`tel:${site.phoneHref}`}>ou {site.phone}</a>
+  <Cta title={l.ctaTitle} accent href="#devis" label={t('form.getMine')}>
+    <a style="font-weight:600;font-size:19px;padding:12px 0" href={`tel:${site.phoneHref}`}>{t('lp.or')} {site.phone}</a>
   </Cta>
 </Base>

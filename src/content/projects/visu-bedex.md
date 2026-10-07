@@ -25,4 +25,10 @@ videos:
     thumb: "https://i.vimeocdn.com/video/2144403072-38d00be2499caf741a42a78f559edf3771e8e4e51b55172ea562fb2267bb6e3f-d_1280?region=us"
     vertical: false
 draft: false
+en:
+  summary: VISU at the BEDEX trade show at Brussels Expo, in video and photo.
+  objective: 'Support the rebrand of VISU, a family business founded 35 years ago: gain visibility and show the team, the workshop and the know-how.'
+  answer: 'A corporate photo session, then coverage of the BEDEX show: several videos, including a client testimonial, and a photo gallery, with the new visual identity built into the edit.'
+  videoTitles:
+  - Client testimonial
 ---
