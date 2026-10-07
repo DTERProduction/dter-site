@@ -412,3 +412,12 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
 /* Filet de sécurité : si le script ne démarre pas, le rideau disparaît seul. */
 .pt-enter .curtain { animation: curtain-fail 0.01s linear 4.5s forwards; }
 @keyframes curtain-fail { to { visibility: hidden; } }
+
+/* Coulisses (vidéo verticale de la section studio) */
+.reel-col { flex: 1 1 320px; min-width: 0; display: flex; justify-content: center; }
+.reel { position: relative; aspect-ratio: 9 / 16; height: min(78vh, 720px); max-width: 100%; border-radius: 28px; overflow: hidden; background: var(--media); box-shadow: 0 30px 80px -30px rgba(17, 17, 16, 0.45); transform-origin: 50% 80%; will-change: transform; }
+.reel > img, .reel-frame, .reel-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.reel-frame { pointer-events: none; }
+.reel-frame.is-live { pointer-events: auto; }
+.reel-btn { position: absolute; left: 50%; bottom: 18px; translate: -50% 0; display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; border: 0; border-radius: 999px; background: var(--on-dark); color: var(--dark); font-weight: 600; font-size: 15px; white-space: nowrap; cursor: pointer; transition: scale 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease; }
+.reel-btn:hover { scale: 1.05; background: var(--accent); }

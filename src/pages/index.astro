@@ -132,8 +132,21 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </section>
 
   <section id="studio" class="wrap section-b split" style="align-items:center">
-    <div class="media r-4-5" style="flex:1 1 360px;min-width:0">
-      {home.studioImage && <img src={home.studioImage} alt="Thomas Dubois sur un tournage" loading="lazy" />}
+    <div class="reel-col">
+      {home.studioVimeoId ? (
+        <div class="reel" data-reel={home.studioVimeoId}>
+          {home.studioPoster && <img src={home.studioPoster} alt="Coulisses d'un tournage DTER" loading="lazy" decoding="async" />}
+          <div class="reel-frame"></div>
+          <button class="reel-btn" type="button" aria-label={`${home.studioVideoLabel}, avec le son`}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>
+            <span>{home.studioVideoLabel}</span>
+          </button>
+        </div>
+      ) : (
+        <div class="media r-4-5">
+          {home.studioImage && <img src={home.studioImage} alt="Thomas Dubois sur un tournage" loading="lazy" />}
+        </div>
+      )}
     </div>
     <div class="stack" style="flex:999 1 420px;min-width:0;gap:22px">
       <span class="eyebrow">Le studio</span>
@@ -160,6 +173,36 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </section>
 
   <script>
+    // Coulisses : la boucle muette démarre quand la section arrive à l'écran, le bouton relance la vidéo avec le son.
+    const reel = document.querySelector<HTMLElement>('[data-reel]');
+    if (reel) {
+      const frame = reel.querySelector<HTMLElement>('.reel-frame')!;
+      const btn = reel.querySelector<HTMLButtonElement>('.reel-btn')!;
+      const id = reel.dataset.reel;
+      const quiet = matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator as any).connection?.saveData;
+      const mount = (src: string, title: string, interactive: boolean) => {
+        const f = document.createElement('iframe');
+        f.src = src;
+        f.allow = 'autoplay; fullscreen; picture-in-picture';
+        f.title = title;
+        if (!interactive) { f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1; }
+        frame.classList.toggle('is-live', interactive);
+        frame.replaceChildren(f);
+      };
+      if (!quiet) {
+        const io = new IntersectionObserver((entries) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          io.disconnect();
+          if (!frame.classList.contains('is-live')) mount(`https://player.vimeo.com/video/${id}?background=1&autoplay=1&muted=1&loop=1&dnt=1`, 'Coulisses DTER', false);
+        }, { rootMargin: '200px' });
+        io.observe(reel);
+      }
+      btn.addEventListener('click', () => {
+        mount(`https://player.vimeo.com/video/${id}?autoplay=1&loop=1&dnt=1&title=0&byline=0&portrait=0`, 'Coulisses DTER, avec le son', true);
+        btn.hidden = true;
+      });
+    }
+
     // Vidéo de fond du hero : chargée après l'affichage de la page, jamais si l'utilisateur limite les animations ou les données.
     const bg = document.querySelector<HTMLElement>('.hero-window[data-hero]');
     const conn = (navigator as any).connection;

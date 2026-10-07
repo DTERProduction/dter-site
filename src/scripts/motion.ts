@@ -106,6 +106,14 @@ function init() {
     });
   });
 
+  // Coulisses : le cadre vertical se redresse en entrant, comme un téléphone qu'on relève.
+  $$('.reel').forEach((reel) => {
+    gsap.fromTo(reel, { rotate: -7, y: 90, scale: 0.9 }, {
+      rotate: 0, y: 0, scale: 1, ease: 'none',
+      scrollTrigger: { trigger: reel, start: 'top 100%', end: 'top 35%', scrub: 0.6 },
+    });
+  });
+
   // Méthode : la ligne de progression se remplit.
   $$('.steps').forEach((steps) => {
     gsap.fromTo(steps, { '--line': 0 }, { '--line': 1, ease: 'none', scrollTrigger: { trigger: steps, start: 'top 80%', end: 'bottom 55%', scrub: true } });

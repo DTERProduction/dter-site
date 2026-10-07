@@ -53,7 +53,7 @@ Certains de ces prestataires sont établis hors de l'Union européenne, notammen
 
 Ce site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience.
 
-Les vidéos sont hébergées par Vimeo. La vidéo d'arrière-plan de la page d'accueil est chargée depuis Vimeo à l'ouverture de la page, les autres vidéos uniquement lorsque vous cliquez pour les lire. Elles sont intégrées avec l'option qui demande à Vimeo de ne pas suivre votre navigation. Vimeo reçoit néanmoins des données techniques, dont votre adresse IP.
+Les vidéos sont hébergées par Vimeo. Sur la page d'accueil, la vidéo d'arrière-plan est chargée depuis Vimeo à l'ouverture de la page, et la vidéo de coulisses lorsqu'elle arrive à l'écran. Les autres vidéos sont chargées uniquement lorsque vous cliquez pour les lire. Elles sont intégrées avec l'option qui demande à Vimeo de ne pas suivre votre navigation. Vimeo reçoit néanmoins des données techniques, dont votre adresse IP.
 
 Les liens vers Instagram, WhatsApp et la prise de rendez-vous mènent à des services tiers, soumis à leur propre politique de confidentialité.
 

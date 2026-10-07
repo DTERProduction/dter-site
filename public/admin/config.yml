@@ -219,6 +219,9 @@ collections:
           - { label: Titre du studio, name: studioTitle, widget: string }
           - { label: Texte du studio, name: studioText, widget: text }
           - { label: Photo du studio, name: studioImage, widget: image, required: false }
+          - { label: Identifiant Vimeo de la vidéo de coulisses (verticale), name: studioVimeoId, widget: string, required: false }
+          - { label: Image d'attente des coulisses, name: studioPoster, widget: string, required: false }
+          - { label: Texte du bouton des coulisses, name: studioVideoLabel, widget: string, required: false }
           - { label: Titre de la FAQ, name: faqTitle, widget: string }
           - *faq
           - { label: Titre de l'appel final, name: ctaTitle, widget: string }
