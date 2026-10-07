@@ -30,5 +30,5 @@ const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre 
   <label class="field">{dateLabel}<input type="date" name="date" /></label>
   <label class="field">{messageLabel}<textarea name="message" rows={full ? 4 : 3}></textarea></label>
   <button class:list={['btn', onDark ? 'btn-accent' : 'btn-dark']} type="submit">{submit}</button>
-  <small>{onDark ? 'Réponse de Thomas, fondateur de DTER®, en personne.' : 'Vos données servent uniquement à vous répondre.'}</small>
+  <small>{onDark ? 'Réponse de Thomas, fondateur de DTER®, en personne. ' : ''}Vos données servent uniquement à vous répondre. <a href="/politique-de-confidentialite/" style="text-decoration:underline">Politique de confidentialité</a></small>
 </form>

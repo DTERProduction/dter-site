@@ -132,7 +132,7 @@ collections:
     label: Pages de texte
     label_singular: Page de texte
     folder: src/content/pages
-    create: false
+    create: true
     summary: '{{title}}'
     fields:
       - { label: Titre, name: title, widget: string }
@@ -158,6 +158,7 @@ collections:
           - { label: Lien de prise de rendez-vous, name: calendar, widget: string }
           - { label: Instagram, name: instagram, widget: string }
           - { label: Conditions générales, name: legal, widget: string }
+          - { label: Politique de confidentialité, name: privacy, widget: string }
       - name: home
         label: Page d'accueil
         file: src/data/home.json

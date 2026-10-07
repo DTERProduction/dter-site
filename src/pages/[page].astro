@@ -1,9 +1,14 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-const page = await getEntry('pages', 'conditions-generales');
-const { Content } = await render(page!);
-const d = page!.data;
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((p) => ({ params: { page: p.id }, props: { entry: p } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
 ---
 <Base title={`${d.title} · DTER Production`} description={d.description}>
   <section class="wrap section stack" style="gap:24px">
