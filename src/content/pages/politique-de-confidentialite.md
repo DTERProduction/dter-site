@@ -8,7 +8,7 @@ updated: "7 octobre 2026"
 
 Le responsable du traitement est DTER Production SRL, Zuidlaan 14, 1560 Hoeilaart, Belgique, numéro d'entreprise 1043.250.440.
 
-Pour toute question sur vos données, écrivez à hello@thomasdubois.pro.
+Pour toute question sur vos données, écrivez à hello@dter.eu.
 
 ## 2. Quelles données nous collectons
 
@@ -61,7 +61,7 @@ Les liens vers Instagram, WhatsApp et la prise de rendez-vous mènent à des ser
 
 ## 7. Vos droits
 
-Vous pouvez à tout moment demander l'accès à vos données, leur rectification, leur effacement, la limitation de leur traitement, leur portabilité, ou vous opposer à leur traitement. Il suffit d'écrire à hello@thomasdubois.pro. Nous répondons dans un délai d'un mois.
+Vous pouvez à tout moment demander l'accès à vos données, leur rectification, leur effacement, la limitation de leur traitement, leur portabilité, ou vous opposer à leur traitement. Il suffit d'écrire à hello@dter.eu. Nous répondons dans un délai d'un mois.
 
 Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de l'Autorité de protection des données, Rue de la Presse 35, 1000 Bruxelles, www.autoriteprotectiondonnees.be.
 

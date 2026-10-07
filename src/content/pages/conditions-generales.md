@@ -10,7 +10,7 @@ Les présentes conditions générales de vente régissent les relations entre DT
 
 ## 2. Définitions
 
-« DTER Production » désigne la société à responsabilité limitée (SRL) DTER Production, dont le siège est établi Zuidlaan 14, 1560 Hoeilaart, Belgique, inscrite à la Banque-Carrefour des Entreprises sous le numéro 1043.250.440, TVA BE 1043.250.440, joignable à l'adresse hello@thomasdubois.pro.
+« DTER Production » désigne la société à responsabilité limitée (SRL) DTER Production, dont le siège est établi Zuidlaan 14, 1560 Hoeilaart, Belgique, inscrite à la Banque-Carrefour des Entreprises sous le numéro 1043.250.440, TVA BE 1043.250.440, joignable à l'adresse hello@dter.eu.
 
 « Client » désigne toute personne physique majeure ou toute personne morale faisant appel aux services de DTER Production.
 
@@ -18,7 +18,7 @@ La personne ou la société qui signe le devis garantit le paiement de la factur
 
 ## 3. Acceptation
 
-Les conditions générales de vente sont communiquées au client avec le devis et peuvent être consultées à tout moment à l'adresse https://thomasdubois.pro/conditions-generales/.
+Les conditions générales de vente sont communiquées au client avec le devis et peuvent être consultées à tout moment à l'adresse https://dter.eu/conditions-generales/.
 
 La signature du devis, ou toute confirmation écrite de la commande, vaut acceptation des présentes conditions générales de vente.
 
@@ -90,7 +90,7 @@ Les fichiers du projet sont conservés pendant 2 mois après la livraison. Pass�
 
 ## 13. Données personnelles
 
-DTER Production traite les données personnelles de ses clients et contacts uniquement pour répondre à leurs demandes, exécuter les commandes et respecter ses obligations légales, conformément au Règlement général sur la protection des données (RGPD). Toute personne concernée peut demander l'accès à ses données, leur rectification ou leur suppression à l'adresse hello@thomasdubois.pro.
+DTER Production traite les données personnelles de ses clients et contacts uniquement pour répondre à leurs demandes, exécuter les commandes et respecter ses obligations légales, conformément au Règlement général sur la protection des données (RGPD). Toute personne concernée peut demander l'accès à ses données, leur rectification ou leur suppression à l'adresse hello@dter.eu.
 
 ## 14. Clients consommateurs
 

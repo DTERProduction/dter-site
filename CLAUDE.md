@@ -72,5 +72,4 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Connecter le CMS à GitHub (authentification Decap).
 - Tester les formulaires et activer les notifications par email dans Netlify.
 - Brancher thomasdubois.pro sur Netlify comme second domaine (pour que ses redirections vers dter.eu fonctionnent), puis arrêter Webflow.
-- Passer l'email affiché sur le site à hello@dter.eu quand Thomas le décide (`src/data/site.json`, CGV, politique de confidentialité).
 - Les conditions générales et la politique de confidentialité n'ont pas été relues par un juriste.
