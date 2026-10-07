@@ -47,6 +47,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - **Design** : fond clair `#f8f7f3`, blocs sombres `#141413` pour les moments forts, accent `#ff4a1c`, Inter et IBM Plex Mono, coins arrondis, boutons en pilule.
 - **Photo** : la vidéo reste le métier principal. La photo a sa galerie sur fond sombre (`/photo/`), un interrupteur Vidéo / Photo dans l'en-tête et sur la page réalisations, et une bande d'images sur l'accueil. Ces trois accès n'apparaissent que si au moins une série contient des photos. Les images sont optimisées à la construction du site, il faut donc les déposer en bonne qualité dans `src/assets/photos/`.
 - **Vidéos** : hébergées sur Vimeo, chargées au clic (sauf le fond du hero), avec `dnt=1`.
+- **Rideau** : au chargement et à chaque changement de page, deux volets sombres se ferment et s'ouvrent comme une coupe au montage, avec le logo. À la première visite, un compteur de timecode tourne environ une seconde. Tout est dans `motion.ts` (fonctions `openCurtain` et `closeCurtainThen`) et la section « Rideau » de `global.css`.
 - **Animations** : toutes désactivées si l'utilisateur a demandé moins d'animations. Les éléments animés sont listés à deux endroits qui doivent rester identiques : le sélecteur `blocks` dans `motion.ts` et la règle `.js-motion` dans `global.css`.
 - **Vie privée** : aucun cookie publicitaire ni mesure d'audience. Si un pixel ou un outil de statistiques est ajouté, mettre à jour la politique de confidentialité et ajouter un bandeau de consentement.
 
@@ -63,7 +64,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Remplacer les 12 vidéos d'exemple par les vidéos définitives, avec de vraies vignettes.
 - Compléter les fiches projet : objectif, réponse, résultat, chiffres.
 - Ajouter les logos clients et la photo du studio.
-- Remplir les séries photo (six séries vides créées d'après la galerie Pic-Time de Thomas).
+- Photo : 26 images en ligne dans cinq séries. Les séries « Conférence internationale » et « Réception officielle » ont un titre provisoire, à remplacer par le vrai nom du projet.
 - Connecter le CMS à GitHub (authentification Decap).
 - Tester les formulaires et activer les notifications par email dans Netlify.
 - Basculer le domaine, rediriger les anciennes adresses Webflow (`/work/...` vers `/realisations/...`), puis arrêter Webflow.

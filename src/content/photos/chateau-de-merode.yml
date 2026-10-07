@@ -1,5 +1,17 @@
 title: "Château de Mérode"
 client: ""
-category: ""
-order: 20
-photos: []
+category: "event"
+order: 30
+photos:
+  - image: ../../assets/photos/chateau-de-merode/chateau-de-merode-01.jpg
+    alt: "Château de Mérode vu depuis une scène en bois"
+    featured: true
+  - image: ../../assets/photos/chateau-de-merode/chateau-de-merode-02.jpg
+    alt: "Gradins vides sous une grande structure couverte"
+    featured: true
+  - image: ../../assets/photos/chateau-de-merode/chateau-de-merode-03.jpg
+    alt: "Scène en plein air face au château, vue depuis les gradins"
+    featured: false
+  - image: ../../assets/photos/chateau-de-merode/chateau-de-merode-04.jpg
+    alt: "Structure métallique de la scène avec le château au loin"
+    featured: false

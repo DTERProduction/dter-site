@@ -1,0 +1,14 @@
+title: "Conférence internationale"
+client: ""
+category: "business"
+order: 40
+photos:
+  - image: ../../assets/photos/conference-internationale/conference-internationale-01.jpg
+    alt: "Intervenant au micro pendant une conférence"
+    featured: false
+  - image: ../../assets/photos/conference-internationale/conference-internationale-02.jpg
+    alt: "Table ronde devant un écran de présentation"
+    featured: false
+  - image: ../../assets/photos/conference-internationale/conference-internationale-03.jpg
+    alt: "Participants autour d'une table de réunion"
+    featured: false

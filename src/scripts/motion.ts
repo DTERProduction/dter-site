@@ -168,13 +168,83 @@ function init() {
   }
 }
 
-if (reduced) {
-  root.classList.remove('js-motion');
-} else {
+// Rideau : deux volets noirs, comme une coupe au montage. Compteur de timecode à la première visite.
+const curtainTop = document.querySelector<HTMLElement>('.curtain-bar.is-top');
+const curtainBottom = document.querySelector<HTMLElement>('.curtain-bar.is-bottom');
+const curtainMid = document.querySelector<HTMLElement>('.curtain-mid');
+const tcEl = document.querySelector<HTMLElement>('[data-tc]');
+const hasCurtain = !!(curtainTop && curtainBottom && curtainMid);
+const tc = (frames: number) => {
+  const f = Math.floor(frames);
+  const two = (n: number) => String(n).padStart(2, '0');
+  return `00:00:${two(Math.floor(f / 25))}:${two(f % 25)}`;
+};
+
+function start() {
   try {
     init();
   } catch (e) {
     root.classList.remove('js-motion');
     console.error(e);
   }
+}
+
+function openCurtain() {
+  if (!hasCurtain) { root.classList.remove('pt-enter'); start(); return; }
+  let first = false;
+  try { first = !sessionStorage.getItem('dter-vu'); sessionStorage.setItem('dter-vu', '1'); } catch {}
+  const tl = gsap.timeline({
+    onComplete: () => {
+      root.classList.remove('pt-enter');
+      gsap.set([curtainTop, curtainBottom, curtainMid], { clearProps: 'all' });
+    },
+  });
+  if (first && tcEl) {
+    const o = { f: 0 };
+    tl.to(o, { f: 32, duration: 1.1, ease: 'power1.in', onUpdate: () => { tcEl.textContent = tc(o.f); } });
+  } else {
+    gsap.set('.curtain-tc', { display: 'none' });
+    tl.to({}, { duration: 0.12 });
+  }
+  tl.call(start)
+    .to(curtainMid, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' })
+    .to(curtainTop, { yPercent: -101, duration: 0.9, ease: 'expo.inOut' }, '<0.05')
+    .to(curtainBottom, { yPercent: 101, duration: 0.9, ease: 'expo.inOut' }, '<');
+}
+
+function closeCurtainThen(go: () => void) {
+  if (!hasCurtain) { go(); return; }
+  root.classList.add('pt-leave');
+  gsap.set('.curtain-tc', { display: 'none' });
+  gsap.timeline({ onComplete: go })
+    .fromTo(curtainTop, { yPercent: -101 }, { yPercent: 0, duration: 0.55, ease: 'expo.inOut' })
+    .fromTo(curtainBottom, { yPercent: 101 }, { yPercent: 0, duration: 0.55, ease: 'expo.inOut' }, '<')
+    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }, '-=0.25');
+}
+
+if (reduced) {
+  root.classList.remove('js-motion', 'pt-enter');
+} else {
+  openCurtain();
+
+  // Changement de page : le rideau se ferme avant de partir.
+  document.addEventListener('click', (e) => {
+    const a = (e.target as Element).closest?.('a');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if ((a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname.startsWith('/admin')) return;
+    if (url.pathname === location.pathname) return; // ancre ou même page : pas de rideau
+    e.preventDefault();
+    closeCurtainThen(() => { location.href = url.href; });
+  });
+
+  // Retour arrière du navigateur : la page revient sans rideau fermé.
+  window.addEventListener('pageshow', (e) => {
+    if (!e.persisted) return;
+    root.classList.remove('pt-leave', 'pt-enter');
+    gsap.set([curtainTop, curtainBottom, curtainMid], { clearProps: 'all' });
+  });
 }

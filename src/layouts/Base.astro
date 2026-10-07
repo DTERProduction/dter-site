@@ -6,6 +6,7 @@ import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import mark from '../components/logo-mark.svg?raw';
 
 interface Props { title: string; description?: string; landing?: boolean; noindex?: boolean; image?: string; dark?: boolean; }
 const { title, description = site.baseline, landing = false, noindex = false, image, dark = false } = Astro.props;
@@ -32,12 +33,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       // Masque les éléments animés avant leur entrée. Filet de sécurité : tout réapparaît si le script d'animation ne démarre pas.
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.documentElement.classList.add('js-motion');
+        document.documentElement.classList.add('js-motion', 'pt-enter');
         setTimeout(function () { if (!window.__motion) document.documentElement.classList.remove('js-motion'); }, 4000);
       }
     </script>
   </head>
   <body class={dark ? 'theme-dark' : undefined}>
+    <div class="curtain" aria-hidden="true">
+      <span class="curtain-bar is-top"></span>
+      <span class="curtain-bar is-bottom"></span>
+      <div class="curtain-mid">
+        <span class="logo-mark" set:html={mark} />
+        <span class="mono curtain-tc"><span class="accent">●</span> <span data-tc>00:00:00:00</span></span>
+      </div>
+    </div>
     <div class="site-header-wrap"><Header landing={landing} /></div>
     <main><slot /></main>
     <Footer landing={landing} />

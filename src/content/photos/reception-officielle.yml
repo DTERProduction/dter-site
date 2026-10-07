@@ -1,0 +1,14 @@
+title: "Réception officielle"
+client: ""
+category: "business"
+order: 50
+photos:
+  - image: ../../assets/photos/reception-officielle/reception-officielle-01.jpg
+    alt: "Invités en conversation lors d'une réception"
+    featured: true
+  - image: ../../assets/photos/reception-officielle/reception-officielle-02.jpg
+    alt: "Deux invités échangeant un verre à la main"
+    featured: false
+  - image: ../../assets/photos/reception-officielle/reception-officielle-03.jpg
+    alt: "Discours applaudi devant des drapeaux"
+    featured: false
