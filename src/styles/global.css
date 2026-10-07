@@ -539,5 +539,6 @@ html, body { overflow-x: clip; }
 
 /* ---------- Clients : logo officiel s'il est fourni, sinon le nom ---------- */
 .marquee-item.has-logo { display: grid; place-items: center; padding-block: clamp(28px, 3.6vw, 52px); }
-.marquee-item.has-logo img { max-width: 70%; height: clamp(28px, 3.2vw, 44px); width: auto; object-fit: contain; filter: grayscale(1) contrast(1.1); opacity: 0.85; transition: filter 0.3s ease, opacity 0.3s ease; }
+.marquee-item.has-logo { min-height: clamp(110px, 12vw, 168px); padding-block: 0; }
+.marquee-item.has-logo img { max-width: 58%; max-height: clamp(44px, 5vw, 72px); width: auto; height: auto; object-fit: contain; filter: grayscale(1) contrast(1.1); opacity: 0.85; transition: filter 0.3s ease, opacity 0.3s ease; }
 .marquee-item.has-logo:hover img { filter: none; opacity: 1; }

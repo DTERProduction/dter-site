@@ -2,27 +2,35 @@
   "items": [
     {
       "name": "L'Oréal",
-      "logo": ""
+      "logo": "/images/clients/loreal.png"
     },
     {
       "name": "Peugeot",
-      "logo": ""
+      "logo": "/images/clients/peugeot.png"
     },
     {
       "name": "PwC",
-      "logo": ""
+      "logo": "/images/clients/pwc.png"
     },
     {
       "name": "Pfizer",
-      "logo": ""
+      "logo": "/images/clients/pfizer.png"
     },
     {
       "name": "Mastercard",
-      "logo": ""
+      "logo": "/images/clients/mastercard.png"
     },
     {
       "name": "Aperol",
-      "logo": ""
+      "logo": "/images/clients/aperol.png"
+    },
+    {
+      "name": "Cohabs",
+      "logo": "/images/clients/cohabs.png"
+    },
+    {
+      "name": "Golazo",
+      "logo": "/images/clients/golazo.png"
     },
     {
       "name": "Carolina Herrera",
@@ -41,15 +49,7 @@
       "logo": ""
     },
     {
-      "name": "Cohabs",
-      "logo": ""
-    },
-    {
       "name": "RTBF",
-      "logo": ""
-    },
-    {
-      "name": "Golazo",
       "logo": ""
     },
     {
