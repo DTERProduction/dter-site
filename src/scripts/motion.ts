@@ -61,6 +61,14 @@ function init() {
     onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.inOut', stagger: 0.05, overwrite: true }),
   });
 
+  // Filtre des réalisations : les cartes restantes remontent dans la page sans passer par leur point de déclenchement.
+  // On les affiche donc directement, sinon elles restent invisibles tant qu'on n'a pas défilé jusqu'en bas.
+  window.addEventListener('dter:filter', () => {
+    const shown = $$('.project[data-cat]').filter((c) => !c.hidden);
+    gsap.fromTo(shown, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.03, overwrite: true });
+    ScrollTrigger.refresh();
+  });
+
   // Cartes (promesses, usages) : elles se lèvent une à une en pivotant depuis le bas.
   $$('.cards').forEach((group) => {
     const cards = $$('.card', group);

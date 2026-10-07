@@ -39,6 +39,8 @@ const used = Object.keys(categories).filter((k) => projects.some((p) => p.data.c
       buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       cards.forEach((c) => { const show = f === 'all' || (c.dataset.cat || '').split(' ').includes(f!); c.hidden = !show; if (show) n++; });
       if (count) count.textContent = String(n);
+      // Les cartes changent de place : on prévient les animations pour qu'elles affichent tout de suite celles qui restent.
+      window.dispatchEvent(new CustomEvent('dter:filter'));
     }));
   </script>
 </Base>
