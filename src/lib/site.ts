@@ -21,6 +21,9 @@ export async function getServices() {
 }
 
 export const photoCategories: Record<string, string> = {
+  evenement: 'Événement',
+  'brand-content': 'Brand content',
+  corporate: 'Corporate',
   business: 'Entreprise',
   event: 'Événement',
   sport: 'Sport',

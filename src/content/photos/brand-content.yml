@@ -1,0 +1,55 @@
+title: "Brand content"
+category: "brand-content"
+order: 20
+photos:
+  - image: ../../assets/photos/brand-content/brand-content-01.jpg
+    alt: "Skateur à l'arrêt dans une rue piétonne, cadré aux jambes"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-02.jpg
+    alt: "Piéton sur les pavés d'une rue commerçante, cadré aux jambes"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-03.jpg
+    alt: "Cycliste à l'arrêt dans une rue piétonne, cadrée aux jambes"
+    featured: true
+  - image: ../../assets/photos/brand-content/brand-content-04.jpg
+    alt: "Structure de scène en plein air avec un château au fond"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-05.jpg
+    alt: "Scène couverte avec décor et canon, château en arrière-plan"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-06.jpg
+    alt: "Gradins vides sous une grande structure métallique"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-07.jpg
+    alt: "Vue des gradins vers la scène et le château"
+    featured: true
+  - image: ../../assets/photos/brand-content/brand-content-08.jpg
+    alt: "Château en brique derrière une rampe de scène"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-09.jpg
+    alt: "Cours collectif de fitness dans une salle claire"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-10.jpg
+    alt: "Mains agrippées à un anneau de gymnastique"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-11.jpg
+    alt: "Sportif à la corde, noir et blanc en filé"
+    featured: true
+  - image: ../../assets/photos/brand-content/brand-content-12.jpg
+    alt: "Deux coureurs en mouvement, noir et blanc"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-13.jpg
+    alt: "Deux coureurs à l'entraînement le long d'une haie"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-14.jpg
+    alt: "Sportif sur un rameur, noir et blanc"
+    featured: true
+  - image: ../../assets/photos/brand-content/brand-content-15.jpg
+    alt: "Sportif sur un rameur dans une salle sombre"
+    featured: true
+  - image: ../../assets/photos/brand-content/brand-content-16.jpg
+    alt: "Coach guidant un étirement pendant un cours"
+    featured: false
+  - image: ../../assets/photos/brand-content/brand-content-17.jpg
+    alt: "Cours de renforcement avec poids, vu de dos"
+    featured: false

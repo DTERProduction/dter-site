@@ -1,0 +1,25 @@
+title: "Corporate"
+category: "corporate"
+order: 30
+photos:
+  - image: ../../assets/photos/corporate/corporate-01.jpg
+    alt: "Orateur au pupitre et officiel applaudissant devant des drapeaux"
+    featured: false
+  - image: ../../assets/photos/corporate/corporate-02.jpg
+    alt: "Échange souriant entre invités lors d'une réception"
+    featured: true
+  - image: ../../assets/photos/corporate/corporate-03.jpg
+    alt: "Conversation entre deux invités, verre à la main"
+    featured: false
+  - image: ../../assets/photos/corporate/corporate-04.jpg
+    alt: "Façade d'une résidence officielle vue depuis la rue"
+    featured: false
+  - image: ../../assets/photos/corporate/corporate-05.jpg
+    alt: "Table ronde d'une conférence internationale devant des drapeaux européens"
+    featured: false
+  - image: ../../assets/photos/corporate/corporate-06.jpg
+    alt: "Intervenant au micro pendant une conférence"
+    featured: true
+  - image: ../../assets/photos/corporate/corporate-07.jpg
+    alt: "Participants en discussion autour de la table de conférence"
+    featured: false

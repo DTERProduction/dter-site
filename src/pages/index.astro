@@ -1,9 +1,10 @@
 ---
+import portrait from '../assets/thomas-dubois.jpg';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Faq from '../components/Faq.astro';
 import PhotoBand from '../components/PhotoBand.astro';
-import { getImage } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import clients from '../data/clients.json';
@@ -46,7 +47,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <div class="hero-over">
         <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
         <a class="hero-card" href={site.calendarEmbed ? '/contact/#appel' : site.calendar}>
-          <span class="avatar">TD</span>
+          <Image class="avatar" src={portrait} alt="Thomas Dubois" width={96} height={96} loading="eager" />
           <span><strong>Parler à Thomas</strong><small>Fondateur de DTER · appel de 20 min</small></span>
           <span class="hero-card-arrow" aria-hidden="true">→</span>
         </a>

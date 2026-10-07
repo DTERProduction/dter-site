@@ -161,10 +161,11 @@ collections:
         widget: select
         required: false
         options:
-          - { label: Entreprise, value: business }
-          - { label: Événement, value: event }
-          - { label: Sport, value: sport }
+          - { label: Événement, value: evenement }
+          - { label: Brand content, value: brand-content }
+          - { label: Corporate, value: corporate }
           - { label: Portrait, value: portrait }
+          - { label: Sport, value: sport }
           - { label: Mode, value: mode }
       - { label: Ordre d'affichage, name: order, widget: number, default: 100 }
       - label: Photos
