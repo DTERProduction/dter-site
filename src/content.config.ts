@@ -84,4 +84,18 @@ const pages = defineCollection({
   schema: z.object({ title: z.string(), description: z.string().optional(), updated: z.string().optional() }),
 });
 
-export const collections = { projects, services, landings, pages };
+const photos = defineCollection({
+  loader: glob({ pattern: '**/*.yml', base: './src/content/photos' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      client: z.string().optional(),
+      category: z.string().optional(),
+      order: z.number().default(100),
+      photos: z
+        .array(z.object({ image: image(), alt: z.string().optional(), featured: z.boolean().default(false) }))
+        .default([]),
+    }),
+});
+
+export const collections = { projects, services, landings, pages, photos };

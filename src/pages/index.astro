@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Faq from '../components/Faq.astro';
+import PhotoBand from '../components/PhotoBand.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import clients from '../data/clients.json';
@@ -78,6 +79,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
       ))}
     </div>
   </section>
+
+  <PhotoBand />
 
   <section class="wide" aria-label="Témoignages">
     <div class="panel stack" style="gap:48px">

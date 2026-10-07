@@ -5,7 +5,7 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import home from '../../data/home.json';
-import { getProjects, getServices } from '../../lib/site';
+import { getProjects, getServices, getPhotoSeries } from '../../lib/site';
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -16,6 +16,7 @@ const s = service.data;
 const all = await getProjects();
 const related = all.filter((p) => s.categories.includes(p.data.category)).slice(0, 3);
 const poster = all.find((p) => p.data.vimeoId === s.vimeoId)?.data.thumb;
+const showGallery = service.id === 'photographie-corporate' && (await getPhotoSeries()).length > 0;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={`${s.title} · DTER`} description={s.seoDescription} image={poster}>
@@ -26,7 +27,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <p class="lead" style="max-width:640px">{s.lead}</p>
       <div class="row" style="gap:10px">
         <a class="btn btn-dark" href="/contact/">Demander un devis</a>
-        <a class="btn btn-line" href="/realisations/">Voir des exemples</a>
+        <a class="btn btn-line" href={showGallery ? '/photo/' : '/realisations/'}>{showGallery ? 'Voir la galerie photo' : 'Voir des exemples'}</a>
       </div>
     </div>
   </section>

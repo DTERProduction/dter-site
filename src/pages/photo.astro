@@ -1,0 +1,103 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { getPhotoSeries, photoCategories } from '../lib/site';
+
+const series = await getPhotoSeries();
+const total = series.reduce((n, s) => n + s.data.photos.length, 0);
+const cats = [...new Set(series.map((s) => s.data.category).filter(Boolean))] as string[];
+const label = (c?: string) => (c && photoCategories[c]) || c || '';
+let index = 0;
+const items = await Promise.all(
+  series.flatMap((s) =>
+    s.data.photos.map(async (p) => ({
+      image: p.image,
+      alt: p.alt || `${s.data.client ? s.data.client + ', ' : ''}${s.data.title}`,
+      caption: [s.data.client, s.data.title].filter(Boolean).join(' · '),
+      series: s.id,
+      category: s.data.category || '',
+      full: (await getImage({ src: p.image, width: Math.min(2200, p.image.width), format: 'webp', quality: 82 })).src,
+    }))
+  )
+);
+const cover = items[0] ? (await getImage({ src: items[0].image, width: 1200, format: 'jpg' })).src : undefined;
+---
+<Base title="Photographie corporate et événementielle à Bruxelles · DTER" description="Portraits, reportages d'entreprise et photos d'événement réalisés par DTER Production, à Bruxelles et en Belgique." dark image={cover} noindex={total === 0}>
+  <section class="wrap stack" style="gap:24px;padding-block:clamp(40px,6vw,96px) 40px">
+    <span class="eyebrow">Photo</span>
+    <div class="row" style="align-items:baseline;gap:8px 20px">
+      <h1 class="display">La photo, avec le même regard.</h1>
+      {total > 0 && <span class="mono mut2" style="font-size:17px">(<span data-count>{total}</span>)</span>}
+    </div>
+    <p class="lead" style="max-width:620px">Portraits, reportages d'entreprise et événements. Des images cohérentes avec vos films, souvent réalisées le même jour, par la même équipe.</p>
+    {cats.length > 1 && (
+      <div class="filters" role="group" aria-label="Filtrer par type de photo">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">Toutes</button>
+        {cats.map((c) => <button class="filter" type="button" data-filter={c} aria-pressed="false">{label(c)}</button>)}
+      </div>
+    )}
+  </section>
+
+  {total > 0 ? (
+    <section class="wrap section-b" aria-label="Galerie photo">
+      <div class="masonry">
+        {items.map((it) => (
+          <button class="photo-item" type="button" data-i={index++} data-full={it.full} data-caption={it.caption} data-cat={it.category} aria-label={`Agrandir la photo : ${it.alt}`}>
+            <Image src={it.image} alt={it.alt} widths={[480, 800, 1200]} sizes="(min-width: 1100px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" />
+          </button>
+        ))}
+      </div>
+    </section>
+  ) : (
+    <section class="wrap section-b"><p class="lead">La galerie arrive bientôt.</p></section>
+  )}
+
+  <Cta title="Vidéo et photo, le même jour." accent href="/contact/" label="Demander un devis">
+    <a class="link" href="/services/photographie-corporate/">Tarifs et déroulé →</a>
+  </Cta>
+
+  <dialog class="lightbox" data-lenis-prevent aria-label="Photo agrandie">
+    <button class="lb-close" type="button" aria-label="Fermer">✕</button>
+    <button class="lb-prev" type="button" aria-label="Photo précédente">←</button>
+    <img alt="" />
+    <button class="lb-next" type="button" aria-label="Photo suivante">→</button>
+    <p class="mono lb-caption"></p>
+  </dialog>
+
+  <script>
+    const items = Array.from(document.querySelectorAll<HTMLButtonElement>('.photo-item'));
+    const box = document.querySelector<HTMLDialogElement>('.lightbox');
+    if (box && items.length) {
+      const img = box.querySelector('img')!;
+      const cap = box.querySelector('.lb-caption')!;
+      let cur = 0;
+      const visible = () => items.filter((b) => !b.hidden);
+      const show = (i: number) => {
+        const list = visible();
+        cur = (i + list.length) % list.length;
+        const b = list[cur];
+        img.src = b.dataset.full || '';
+        img.alt = b.querySelector('img')?.alt || '';
+        cap.textContent = `${b.dataset.caption || ''}  ·  ${cur + 1} / ${list.length}`;
+      };
+      items.forEach((b) => b.addEventListener('click', () => { show(visible().indexOf(b)); box.showModal(); }));
+      box.querySelector('.lb-close')!.addEventListener('click', () => box.close());
+      box.querySelector('.lb-prev')!.addEventListener('click', () => show(cur - 1));
+      box.querySelector('.lb-next')!.addEventListener('click', () => show(cur + 1));
+      box.addEventListener('click', (e) => { if (e.target === box) box.close(); });
+      box.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+      let x0 = 0;
+      box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+
+      const count = document.querySelector('[data-count]');
+      const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+      filters.forEach((f) => f.addEventListener('click', () => {
+        filters.forEach((x) => x.setAttribute('aria-pressed', String(x === f)));
+        items.forEach((b) => { b.hidden = !(f.dataset.filter === 'all' || b.dataset.cat === f.dataset.filter); });
+        if (count) count.textContent = String(visible().length);
+      }));
+    }
+  </script>
+</Base>

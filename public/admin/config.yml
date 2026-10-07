@@ -128,6 +128,39 @@ collections:
       - *faq
       - { label: Titre de l'appel final, name: ctaTitle, widget: string }
 
+  - name: photos
+    label: Séries photo
+    label_singular: Série photo
+    folder: src/content/photos
+    extension: yml
+    create: true
+    slug: '{{title}}'
+    summary: '{{client}} {{title}}'
+    media_folder: /src/assets/photos
+    public_folder: ../../assets/photos
+    fields:
+      - { label: Titre de la série, name: title, widget: string }
+      - { label: Client, name: client, widget: string, required: false }
+      - label: Catégorie
+        name: category
+        widget: select
+        required: false
+        options:
+          - { label: Entreprise, value: business }
+          - { label: Événement, value: event }
+          - { label: Sport, value: sport }
+          - { label: Portrait, value: portrait }
+          - { label: Mode, value: mode }
+      - { label: Ordre d'affichage, name: order, widget: number, default: 100 }
+      - label: Photos
+        name: photos
+        widget: list
+        summary: '{{fields.alt}}'
+        fields:
+          - { label: Photo, name: image, widget: image }
+          - { label: Description (pour Google et les lecteurs d'écran), name: alt, widget: string, required: false }
+          - { label: Mise en avant sur l'accueil, name: featured, widget: boolean, default: false }
+
   - name: pages
     label: Pages de texte
     label_singular: Page de texte

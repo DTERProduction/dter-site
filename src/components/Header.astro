@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import mark from './logo-mark.svg?raw';
+import ModeSwitch from './ModeSwitch.astro';
 const { landing = false } = Astro.props;
 const path = Astro.url.pathname;
 const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
@@ -8,7 +9,7 @@ const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
 <header class="site-header">
   {landing
     ? <span class="logo"><span class="logo-mark" set:html={mark} /><span class="sr-only">{site.name}</span></span>
-    : <a class="logo" href="/" aria-label="DTER, accueil"><span class="logo-mark" set:html={mark} /><span class="sr-only">{site.name}</span></a>}
+    : <div class="brand"><a class="logo" href="/" aria-label="DTER, accueil"><span class="logo-mark" set:html={mark} /><span class="sr-only">{site.name}</span></a><ModeSwitch /></div>}
   {landing ? (
     <div class="nav">
       <a href={`tel:${site.phoneHref}`}>{site.phone}</a>

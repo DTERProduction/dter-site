@@ -2,13 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import Cta from '../../components/Cta.astro';
+import ModeSwitch from '../../components/ModeSwitch.astro';
 import { getProjects, categories } from '../../lib/site';
 const projects = await getProjects();
 const used = Object.keys(categories).filter((k) => projects.some((p) => p.data.category === k));
 ---
 <Base title="Réalisations vidéo et photo · DTER Production, Bruxelles" description="Aftermovies, brand content, interviews et films corporate réalisés par DTER pour des marques belges et internationales.">
   <section class="wrap section stack" style="gap:28px;padding-bottom:40px">
-    <span class="eyebrow">Réalisations</span>
+    <div class="row" style="align-items:center;gap:12px 20px"><span class="eyebrow">Réalisations</span><ModeSwitch videoHref="/realisations/" /></div>
     <div class="row" style="align-items:baseline;gap:8px 20px">
       <h1 class="display">Nos réalisations vidéo et photo</h1>
       <span class="mono mut2" style="font-size:17px">(<span data-count>{projects.length}</span>)</span>

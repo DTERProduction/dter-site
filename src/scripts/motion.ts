@@ -53,7 +53,7 @@ function init() {
   });
 
   // Blocs : montée douce, décalée entre voisins.
-  const blocks = '.card, .project:not(.stack-card), .rows > *, .steps > *, .faq details, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li';
+  const blocks = '.card, .project:not(.stack-card), .rows > *, .steps > *, .faq details, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
   gsap.set(blocks, { visibility: 'visible', opacity: 0, y: 36 });
   ScrollTrigger.batch(blocks, {
     start: 'top 92%',
@@ -93,6 +93,16 @@ function init() {
       filter: 'brightness(0.6)',
       ease: 'none',
       scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 15%', scrub: true },
+    });
+  });
+
+  // Bande photo : glisse à l'horizontale pendant le défilement.
+  $$('[data-band]').forEach((track) => {
+    const view = track.parentElement!;
+    gsap.fromTo(track, { x: () => view.clientWidth * 0.12 }, {
+      x: () => -(track.scrollWidth - view.clientWidth * 0.88),
+      ease: 'none',
+      scrollTrigger: { trigger: view, start: 'top bottom', end: 'bottom top', scrub: 0.5, invalidateOnRefresh: true },
     });
   });
 

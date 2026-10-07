@@ -27,6 +27,7 @@ npm run cms      # CMS en local, avec npm run dev dans un autre terminal
 | Pages service | `src/content/services/*.yml` |
 | Landing pages Ads | `src/content/landings/*.yml` |
 | Pages de texte (CGV, confidentialité) | `src/content/pages/*.md` |
+| Séries photo (une série par fichier) | `src/content/photos/*.yml`, images dans `src/assets/photos/` |
 | Accueil, coordonnées, clients, témoignages | `src/data/*.json` |
 | Schéma du contenu | `src/content.config.ts` |
 | Pages | `src/pages/` |
@@ -44,6 +45,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - **Positionnement** : « Pensé comme du marketing. Tourné comme du cinéma. » Cible : clients directs (responsables marketing et communication), pas les agences. Trois promesses : pensé pour performer, livré vite sans surprise, un seul interlocuteur.
 - **SEO** : chaque page service vise une recherche précise avec « Bruxelles » dans le titre. Les landings (`/lp/`) sont sans menu et exclues de l'indexation.
 - **Design** : fond clair `#f8f7f3`, blocs sombres `#141413` pour les moments forts, accent `#ff4a1c`, Inter et IBM Plex Mono, coins arrondis, boutons en pilule.
+- **Photo** : la vidéo reste le métier principal. La photo a sa galerie sur fond sombre (`/photo/`), un interrupteur Vidéo / Photo dans l'en-tête et sur la page réalisations, et une bande d'images sur l'accueil. Ces trois accès n'apparaissent que si au moins une série contient des photos. Les images sont optimisées à la construction du site, il faut donc les déposer en bonne qualité dans `src/assets/photos/`.
 - **Vidéos** : hébergées sur Vimeo, chargées au clic (sauf le fond du hero), avec `dnt=1`.
 - **Animations** : toutes désactivées si l'utilisateur a demandé moins d'animations. Les éléments animés sont listés à deux endroits qui doivent rester identiques : le sélecteur `blocks` dans `motion.ts` et la règle `.js-motion` dans `global.css`.
 - **Vie privée** : aucun cookie publicitaire ni mesure d'audience. Si un pixel ou un outil de statistiques est ajouté, mettre à jour la politique de confidentialité et ajouter un bandeau de consentement.
@@ -61,6 +63,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Remplacer les 12 vidéos d'exemple par les vidéos définitives, avec de vraies vignettes.
 - Compléter les fiches projet : objectif, réponse, résultat, chiffres.
 - Ajouter les logos clients et la photo du studio.
+- Remplir les séries photo (six séries vides créées d'après la galerie Pic-Time de Thomas).
 - Connecter le CMS à GitHub (authentification Decap).
 - Tester les formulaires et activer les notifications par email dans Netlify.
 - Basculer le domaine, rediriger les anciennes adresses Webflow (`/work/...` vers `/realisations/...`), puis arrêter Webflow.
