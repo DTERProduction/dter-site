@@ -26,6 +26,9 @@ const preview = (id: string, vimeoId?: string) => {
   const t = thumbOf(vimeoId);
   return t ? { kind: 'video', images: [t] } : null;
 };
+// Bandeau clients : dès que six clients ont un logo, on n'affiche que ceux-là. Les autres restent dans la liste, prêts à recevoir le leur.
+const withLogo = clients.items.filter((c) => c.logo);
+const shownClients = withLogo.length >= 6 ? withLogo : clients.items;
 const services = await getServices();
 const [mainQuote, ...quotes] = testimonials.items;
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -59,8 +62,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="wrap head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
     <div class="marquee">
       <div class="marquee-track">
-        {[...clients.items, ...clients.items].map((c, i) => (
-          <span class:list={['marquee-item', { 'has-logo': c.logo }]} aria-hidden={i >= clients.items.length ? 'true' : undefined}>
+        {[...shownClients, ...shownClients].map((c, i) => (
+          <span class:list={['marquee-item', { 'has-logo': c.logo }]} aria-hidden={i >= shownClients.length ? 'true' : undefined}>
             {c.logo ? <img src={c.logo} alt={c.name} loading="lazy" decoding="async" /> : c.name}
           </span>
         ))}
