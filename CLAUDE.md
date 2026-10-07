@@ -7,8 +7,8 @@ Site vitrine de DTER Production SRL (Thomas Dubois, production vidéo et photo, 
 - **Dépôt** : `DTERProduction/dter-site`. Branche de travail : `travail`. Branche en ligne : `main`.
 - **Hébergement** : Netlify, déploiement automatique à chaque push sur `main` (réglages dans `netlify.toml`).
 - **Publier coûte des crédits Netlify.** Tout le travail se fait sur la branche `travail`, qui ne déclenche aucune mise en ligne. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier, en regroupant le plus de changements possible. Ne jamais pousser directement sur `main`.
-- **Adresse provisoire** : https://cosmic-dodol-d7bf9f.netlify.app
-- **Domaine final** : thomasdubois.pro (encore sur Webflow, bascule à faire).
+- **Domaine** : https://dter.eu (domaine principal dans Netlify). L'ancien domaine thomasdubois.pro et l'adresse Netlify `cosmic-dodol-d7bf9f.netlify.app` redirigent vers dter.eu (règles dans `netlify.toml`).
+- **Email** : les adresses @dter.eu et @thomasdubois.pro arrivent dans la même boîte Google Workspace (dter.eu est un domaine alias).
 - **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Netlify Forms pour les formulaires.
 
 ## Commandes
@@ -70,5 +70,6 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Photo : 26 images en ligne dans cinq séries. Les séries « Conférence internationale » et « Réception officielle » ont un titre provisoire, à remplacer par le vrai nom du projet.
 - Connecter le CMS à GitHub (authentification Decap).
 - Tester les formulaires et activer les notifications par email dans Netlify.
-- Basculer le domaine, rediriger les anciennes adresses Webflow (`/work/...` vers `/realisations/...`), puis arrêter Webflow.
+- Brancher thomasdubois.pro sur Netlify comme second domaine (pour que ses redirections vers dter.eu fonctionnent), puis arrêter Webflow.
+- Passer l'email affiché sur le site à hello@dter.eu quand Thomas le décide (`src/data/site.json`, CGV, politique de confidentialité).
 - Les conditions générales et la politique de confidentialité n'ont pas été relues par un juriste.

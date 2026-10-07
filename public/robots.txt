@@ -3,4 +3,4 @@ Allow: /
 Disallow: /lp/
 Disallow: /admin/
 
-Sitemap: https://thomasdubois.pro/sitemap-index.xml
+Sitemap: https://dter.eu/sitemap-index.xml
