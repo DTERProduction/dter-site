@@ -203,6 +203,7 @@ collections:
           - { label: Téléphone affiché, name: phone, widget: string }
           - { label: Téléphone (format lien), name: phoneHref, widget: string }
           - { label: Lien WhatsApp, name: whatsapp, widget: string }
+          - { label: Clé Web3Forms (envoi des formulaires par email), name: formKey, widget: string, required: false }
           - { label: Lien de prise de rendez-vous, name: calendar, widget: string }
           - { label: Calendrier intégré à la page contact (adresse du iframe Google), name: calendarEmbed, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }

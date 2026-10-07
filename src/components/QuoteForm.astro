@@ -1,9 +1,22 @@
 ---
 interface Props { name: string; title: string; dateLabel?: string; messageLabel?: string; full?: boolean; onDark?: boolean; submit?: string; }
+import site from '../data/site.json';
 const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre projet en quelques lignes', full = false, onDark = false, submit = 'Envoyer ma demande' } = Astro.props;
+// Avec une clé Web3Forms, la demande part par email. Sans clé, on garde les formulaires Netlify.
+const key = (site as { formKey?: string }).formKey;
+const thanks = `/merci/?demande=${name}`;
 ---
-<form id="devis" class:list={['form', { 'on-dark': onDark }]} name={name} method="POST" action={`/merci/?demande=${name}`} data-netlify="true" netlify-honeypot="site-web" aria-label={title}>
-  <input type="hidden" name="form-name" value={name} />
+<form id="devis" class:list={['form', { 'on-dark': onDark }]} name={name} method="POST" action={key ? 'https://api.web3forms.com/submit' : thanks} data-netlify={key ? undefined : 'true'} netlify-honeypot={key ? undefined : 'site-web'} aria-label={title}>
+  {key ? (
+    <>
+      <input type="hidden" name="access_key" value={key} />
+      <input type="hidden" name="redirect" value={new URL(thanks, Astro.site).href} />
+      <input type="hidden" name="from_name" value="Site DTER" />
+      <input type="hidden" name="subject" value={`Demande de devis · ${name}`} data-subject />
+      <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off" />
+    </>
+  ) : <input type="hidden" name="form-name" value={name} />}
+  <input type="hidden" name="formulaire" value={name} />
   <input type="hidden" name="page" value={Astro.url.pathname} />
   <input type="hidden" name="source" data-utm="utm_source" />
   <input type="hidden" name="support" data-utm="utm_medium" />
@@ -45,4 +58,7 @@ const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre 
   // Provenance de la visite : lue dans l'adresse de la page, sans cookie, et jointe à la demande.
   const params = new URLSearchParams(location.search);
   document.querySelectorAll<HTMLInputElement>('input[data-utm]').forEach((i) => { i.value = params.get(i.dataset.utm || '') || ''; });
+  // L'objet du mail indique la provenance, pour trier les demandes d'un coup d'œil.
+  const src = [params.get('utm_source'), params.get('utm_campaign')].filter(Boolean).join(' / ');
+  if (src) document.querySelectorAll<HTMLInputElement>('input[data-subject]').forEach((i) => { i.value += ` · ${src}`; });
 </script>
