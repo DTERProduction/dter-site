@@ -1,0 +1,65 @@
+---
+// Menu plein écran pour le tactile. Il n'existe que sous 720 px de large ; au-dessus, le menu de l'en-tête suffit.
+import site from '../data/site.json';
+import { langOf, useT, link, counterpart } from '../lib/i18n';
+const { alt = true } = Astro.props;
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const L = (p: string) => link(lang, p);
+const other = counterpart(Astro.url.pathname);
+const path = other.fr;
+const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
+const photoMode = path.startsWith('/photo/') || path.startsWith('/services/photographie-corporate/');
+const toFr = alt ? other.fr : lang === 'fr' ? Astro.url.pathname : '/';
+const toEn = alt ? other.en : '/en/';
+const links = photoMode
+  ? [
+      { href: L('/photo/'), label: t('nav.gallery'), cur: cur('/photo/') },
+      { href: L('/services/photographie-corporate/'), label: t('nav.pricing'), cur: cur('/services/photographie-corporate/') },
+      { href: L('/contact/'), label: t('nav.contact'), cur: cur('/contact/') },
+    ]
+  : [
+      { href: L('/realisations/'), label: t('nav.projects'), cur: cur('/realisations/') },
+      { href: `${L('/')}#services`, label: t('nav.services'), cur: cur('/services/') },
+      { href: `${L('/')}#methode`, label: t('nav.method') },
+      { href: `${L('/')}#faq`, label: t('nav.faq') },
+      { href: L('/contact/'), label: t('nav.contact'), cur: cur('/contact/') },
+    ];
+---
+<div class="menu-mobile" id="menu-mobile" inert data-lenis-prevent>
+  <nav class="menu-links" aria-label={photoMode ? t('nav.photo') : t('nav.main')}>
+    {links.map((l, i) => (
+      <a href={l.href} aria-current={l.cur} style={`--i:${i}`}><span class="mono">0{i + 1}</span>{l.label}</a>
+    ))}
+  </nav>
+  <div class="menu-foot">
+    <a class="btn btn-accent" href={L('/contact/')}>{t('nav.quote')}</a>
+    <a class="btn btn-line" href={`${L('/contact/')}#appel`}>{t('cta.call')}</a>
+    <div class="menu-meta mono">
+      <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      <span class="lang-switch" role="group" aria-label={t('nav.lang')}>
+        <a href={toFr} hreflang="fr" lang="fr" aria-current={lang === 'fr' ? 'true' : undefined}>FR</a>
+        <a href={toEn} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </span>
+    </div>
+  </div>
+</div>
+<script>
+  const root = document.documentElement;
+  const btn = document.querySelector<HTMLButtonElement>('.burger');
+  const panel = document.getElementById('menu-mobile');
+  if (btn && panel) {
+    const set = (open: boolean) => {
+      root.classList.toggle('menu-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', (open ? btn.dataset.close : btn.dataset.open) || 'Menu');
+      panel.toggleAttribute('inert', !open);
+    };
+    btn.addEventListener('click', () => set(!root.classList.contains('menu-open')));
+    // Un lien du menu ferme toujours le panneau, y compris quand il mène à une section de la page en cours.
+    panel.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && root.classList.contains('menu-open')) { set(false); btn.focus(); } });
+    window.matchMedia('(min-width: 721px)').addEventListener('change', (m) => { if (m.matches) set(false); });
+    window.addEventListener('pageshow', () => set(false));
+  }
+</script>

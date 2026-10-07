@@ -54,7 +54,7 @@ export function loc<T extends Record<string, any>>(data: T, lang: Lang): T {
 const ui = {
   fr: {
     'nav.main': 'Navigation principale', 'nav.photo': 'Navigation photo', 'nav.projects': 'Projets', 'nav.services': 'Services', 'nav.method': 'Méthode', 'nav.faq': 'FAQ',
-    'nav.quote': 'Demander un devis', 'nav.getQuote': 'Recevoir un devis', 'nav.gallery': 'Galerie', 'nav.pricing': 'Tarifs et déroulé', 'nav.home': 'DTER, accueil', 'nav.lang': 'Langue',
+    'nav.quote': 'Demander un devis', 'nav.getQuote': 'Recevoir un devis', 'nav.gallery': 'Galerie', 'nav.pricing': 'Tarifs et déroulé', 'nav.home': 'DTER, accueil', 'nav.lang': 'Langue', 'nav.menu': 'Menu', 'nav.close': 'Fermer', 'nav.contact': 'Contact',
     'switch.label': 'Vidéo ou photo', 'switch.video': 'Vidéo', 'switch.photo': 'Photo',
     'footer.links': 'Liens de pied de page', 'footer.terms': 'Conditions générales', 'footer.privacy': 'Confidentialité', 'footer.city': 'Bruxelles',
     'cta.call': 'Réserver un appel',
@@ -96,7 +96,7 @@ const ui = {
   },
   en: {
     'nav.main': 'Main navigation', 'nav.photo': 'Photo navigation', 'nav.projects': 'Work', 'nav.services': 'Services', 'nav.method': 'Process', 'nav.faq': 'FAQ',
-    'nav.quote': 'Request a quote', 'nav.getQuote': 'Get a quote', 'nav.gallery': 'Gallery', 'nav.pricing': 'Pricing and process', 'nav.home': 'DTER, home', 'nav.lang': 'Language',
+    'nav.quote': 'Request a quote', 'nav.getQuote': 'Get a quote', 'nav.gallery': 'Gallery', 'nav.pricing': 'Pricing and process', 'nav.home': 'DTER, home', 'nav.lang': 'Language', 'nav.menu': 'Menu', 'nav.close': 'Close', 'nav.contact': 'Contact',
     'switch.label': 'Video or photo', 'switch.video': 'Video', 'switch.photo': 'Photo',
     'footer.links': 'Footer links', 'footer.terms': 'Terms (in French)', 'footer.privacy': 'Privacy (in French)', 'footer.city': 'Brussels',
     'cta.call': 'Book a call',

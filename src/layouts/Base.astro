@@ -5,6 +5,7 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
 import mark from '../components/logo-mark.svg?raw';
 import { langOf, useT, link, loc, counterpart } from '../lib/i18n';
@@ -81,6 +82,7 @@ const business = {
       </div>
     </div>
     <div class="site-header-wrap"><Header landing={landing} alt={alt} /></div>
+    {!landing && <MobileMenu alt={alt} />}
     <main><slot /></main>
     <Footer landing={landing} />
     <script>

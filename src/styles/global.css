@@ -410,18 +410,40 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
 .photo-band-track a { flex: 0 0 auto; height: clamp(260px, 46vh, 520px); border-radius: 16px; overflow: hidden; background: var(--card); }
 .photo-band-track a:hover { opacity: 1; }
 .photo-band-track img { height: 100%; width: auto; display: block; }
+/* Menu mobile : un bouton à deux traits ouvre un panneau plein écran, plus simple à viser au doigt qu'une rangée de liens. */
+.burger, .menu-mobile { display: none; }
 @media (max-width: 720px) {
-  .site-header { flex-wrap: wrap; gap: 4px 12px; justify-content: flex-start; }
-  .nav { display: contents; }
-  .nav .btn { order: 2; margin-left: auto; }
-  .site-header::after { content: ''; flex-basis: 100%; order: 3; }
-  .nav a:not(.btn) { order: 4; padding: 6px 0 10px; margin-right: 14px; font-size: 15px; font-weight: 500; }
-  .nav a:not(.btn)::after { bottom: 6px; }
-  .lang-switch { order: 5; margin-left: auto; }
-  .nav .lang-switch a { margin-right: 0; padding: 6px 4px 10px; font-size: 13px; }
-  .nav .lang-switch a + a { margin-left: 8px; }
-  .nav .lang-switch a::after { display: none; }
+  .site-header { flex-wrap: nowrap; gap: 8px; justify-content: flex-start; }
+  .nav { flex: 1; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
+  nav.nav > a:not(.btn), nav.nav > .lang-switch { display: none; }
+  .nav .btn { padding: 11px 15px; font-size: 14px; white-space: nowrap; }
+  .burger { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .burger-lines { position: relative; width: 18px; height: 10px; }
+  .burger-lines i { position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1), top 0.4s cubic-bezier(0.7, 0, 0.2, 1); }
+  .burger-lines i:first-child { top: 0; }
+  .burger-lines i:last-child { top: 8px; }
+  .menu-open .burger-lines i { top: 4px; }
+  .menu-open .burger-lines i:first-child { transform: rotate(45deg); }
+  .menu-open .burger-lines i:last-child { transform: rotate(-45deg); }
+
+  .menu-mobile { position: fixed; inset: 0; z-index: 49; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 92px 20px max(24px, env(safe-area-inset-bottom)); background: var(--bg); color: var(--ink); overflow-y: auto; overscroll-behavior: contain; visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+  .menu-open .menu-mobile { visibility: visible; opacity: 1; transition: opacity 0.3s ease; }
+  .menu-links { display: flex; flex-direction: column; }
+  .menu-links a { display: flex; align-items: baseline; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: clamp(30px, 9vw, 40px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; opacity: 0; transform: translateY(14px); transition: opacity 0.2s ease, transform 0.2s ease; }
+  .menu-links a .mono { font-size: 12px; font-weight: 400; letter-spacing: 0.04em; color: var(--mut2); }
+  .menu-links a[aria-current] { color: var(--accent); }
+  .menu-open .menu-links a { opacity: 1; transform: none; transition: opacity 0.5s ease calc(0.08s + var(--i) * 0.05s), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) calc(0.08s + var(--i) * 0.05s); }
+  .menu-foot { display: flex; flex-direction: column; gap: 10px; }
+  .menu-foot .btn { text-align: center; padding: 17px 22px; font-size: 16px; }
+  .menu-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; font-size: 13px; }
+  .menu-meta > a { padding: 12px 0; }
+  .menu-meta .lang-switch a { padding: 12px 8px; }
+  /* Menu ouvert : l'en-tête reste en place et opaque, et la page derrière ne défile plus. */
+  .menu-open, .menu-open body { overflow: hidden; }
+  .menu-open .site-header-wrap { transform: none !important; background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+@media (max-width: 374px) { .nav .btn { display: none; } }
+@media (prefers-reduced-motion: reduce) { .menu-mobile, .menu-links a, .burger-lines i { transition: none !important; } }
 
 /* ---------- Rideau de chargement et de changement de page ---------- */
 .curtain { position: fixed; inset: 0; z-index: 1000; pointer-events: none; visibility: hidden; }

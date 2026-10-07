@@ -46,6 +46,9 @@ const toEn = alt ? other.en : '/en/';
         <a href={toEn} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
       </span>
       <a class="btn btn-dark" href={L('/contact/')}>{t('nav.quote')}</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" data-open={t('nav.menu')} data-close={t('nav.close')} aria-label={t('nav.menu')}>
+        <span class="burger-lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
     </nav>
   )}
 </header>
