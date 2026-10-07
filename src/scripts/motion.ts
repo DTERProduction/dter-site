@@ -154,8 +154,8 @@ function init() {
     prev.className = 'hover-preview';
     prev.setAttribute('aria-hidden', 'true');
     document.body.appendChild(prev);
-    const px = gsap.quickTo(prev, 'x', { duration: 0.7, ease: 'power3' });
-    const py = gsap.quickTo(prev, 'y', { duration: 0.7, ease: 'power3' });
+    const px = gsap.quickTo(prev, 'x', { duration: 0.4, ease: 'power3' });
+    const py = gsap.quickTo(prev, 'y', { duration: 0.4, ease: 'power3' });
     window.addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
     let timer = 0;
     let loop: gsap.core.Tween | null = null;
@@ -168,13 +168,16 @@ function init() {
         const deck = images.map((src) => prev.appendChild(img(src, 'hp-card')));
         const lay = (instant = false) => deck.forEach((c, i) => {
           c.style.zIndex = String(deck.length - i);
-          gsap.to(c, { x: i * 18, y: i * -12, rotate: i === 0 ? -3 : (i % 2 ? 5 : -7) + i, scale: 1 - i * 0.06, opacity: i > 3 ? 0 : 1, duration: instant ? 0 : 0.6, ease: 'power3.inOut' });
+          gsap.to(c, { x: i * 18, y: i * -12, rotate: i === 0 ? -3 : (i % 2 ? 5 : -7) + i, scale: 1 - i * 0.06, opacity: i > 3 ? 0 : 1, duration: instant ? 0 : 0.4, ease: 'power3.out' });
         });
-        lay(true);
-        timer = window.setInterval(() => {
+        // Les cartes partent empilées et s'ouvrent en éventail tout de suite, puis le jeu tourne sans attendre.
+        gsap.set(deck, { x: 0, y: 0, rotate: 0, scale: 0.9 });
+        lay();
+        const next = () => {
           const top = deck.shift()!;
-          gsap.to(top, { x: 230, y: 30, rotate: 18, duration: 0.38, ease: 'power2.in', onComplete: () => { deck.push(top); lay(); } });
-        }, 1000);
+          gsap.to(top, { x: 230, y: 30, rotate: 18, duration: 0.28, ease: 'power2.in', onComplete: () => { deck.push(top); lay(); } });
+        };
+        timer = window.setTimeout(() => { next(); timer = window.setInterval(next, 750); }, 320);
       },
       timeline: (images) => {
         const widths = [22, 14, 26, 18, 20].slice(0, images.length);
@@ -205,6 +208,10 @@ function init() {
         });
       },
     };
+
+    // Les images sont chargées d'avance pour que l'aperçu soit là dès le survol.
+    const warm = () => rows.forEach((r) => (JSON.parse(r.dataset.images || '[]') as string[]).forEach((src) => { new Image().src = src; }));
+    'requestIdleCallback' in window ? requestIdleCallback(warm) : setTimeout(warm, 1200);
 
     rows.forEach((r) => {
       r.addEventListener('pointerenter', () => {
