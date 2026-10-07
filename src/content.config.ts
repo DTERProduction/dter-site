@@ -10,8 +10,8 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     client: z.string(),
-    category: z.enum(['aftermovie', 'brand-content', 'interview', 'corporate', 'social']),
-    vimeoId: z.coerce.string(),
+    categories: z.array(z.enum(['evenement', 'brand-content', 'corporate', 'social', 'influence', 'temoignage'])).min(1),
+    vimeoId: z.coerce.string().optional(),
     thumb: z.string().optional(),
     vertical: z.boolean().default(false),
     featured: z.boolean().default(false),
@@ -27,6 +27,7 @@ const projects = defineCollection({
     resultTitle: z.string().optional(),
     result: z.string().optional(),
     stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
+    videos: z.array(z.object({ title: z.string(), vimeoId: z.coerce.string(), thumb: z.string().optional(), vertical: z.boolean().default(false) })).default([]),
     draft: z.boolean().default(false),
   }),
 });

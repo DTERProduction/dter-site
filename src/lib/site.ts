@@ -1,15 +1,17 @@
 import { getCollection } from 'astro:content';
 
 export const categories: Record<string, string> = {
-  aftermovie: 'Aftermovie',
+  evenement: 'Événement',
   'brand-content': 'Brand content',
-  interview: 'Interviews',
   corporate: 'Corporate',
+  temoignage: 'Témoignages',
   social: 'Réseaux sociaux',
+  influence: 'Influence',
 };
+export const catLabel = (list: string[]) => list.map((k) => categories[k]).join(' · ');
 
 export async function getProjects() {
-  const all = await getCollection('projects', ({ data }) => !data.draft);
+  const all = await getCollection('projects', ({ data }) => !data.draft && !!data.vimeoId);
   return all.sort((a, b) => a.data.order - b.data.order);
 }
 

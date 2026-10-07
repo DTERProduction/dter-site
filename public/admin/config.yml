@@ -35,16 +35,19 @@ collections:
     fields:
       - { label: Titre du projet, name: title, widget: string }
       - { label: Client, name: client, widget: string }
-      - label: Catégorie
-        name: category
+      - label: Catégories
+        name: categories
         widget: select
+        multiple: true
+        min: 1
         options:
-          - { label: Aftermovie, value: aftermovie }
+          - { label: Événement, value: evenement }
           - { label: Brand content, value: brand-content }
-          - { label: Interviews, value: interview }
           - { label: Corporate, value: corporate }
+          - { label: Témoignages, value: temoignage }
           - { label: Réseaux sociaux, value: social }
-      - { label: Identifiant Vimeo, name: vimeoId, widget: string, hint: 'Les chiffres à la fin du lien Vimeo, par exemple 1181920235' }
+          - { label: Influence, value: influence }
+      - { label: Identifiant Vimeo, name: vimeoId, widget: string, required: false, hint: 'Sans identifiant, le projet reste masqué. Les chiffres à la fin du lien Vimeo, par exemple 1181920235' }
       - { label: Vignette (lien ou image), name: thumb, widget: string, required: false }
       - { label: Vidéo verticale, name: vertical, widget: boolean, default: false }
       - { label: Mis en avant sur l'accueil, name: featured, widget: boolean, default: false }
@@ -59,6 +62,16 @@ collections:
       - { label: 'Notre réponse : texte', name: answer, widget: text, required: false }
       - { label: 'Résultat : titre', name: resultTitle, widget: string, required: false }
       - { label: 'Résultat : texte', name: result, widget: text, required: false }
+      - label: Autres vidéos du projet
+        name: videos
+        widget: list
+        required: false
+        summary: '{{fields.title}}'
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Identifiant Vimeo, name: vimeoId, widget: string }
+          - { label: Vignette (lien), name: thumb, widget: string, required: false }
+          - { label: Vidéo verticale, name: vertical, widget: boolean, default: false }
       - label: Chiffres clés
         name: stats
         widget: list

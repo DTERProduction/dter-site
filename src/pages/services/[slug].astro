@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 const s = service.data;
 const all = await getProjects();
-const related = all.filter((p) => s.categories.includes(p.data.category)).slice(0, 3);
+const related = all.filter((p) => p.data.categories.some((c) => s.categories.includes(c))).slice(0, 3);
 const poster = all.find((p) => p.data.vimeoId === s.vimeoId)?.data.thumb;
 const showGallery = service.id === 'photographie-corporate' && (await getPhotoSeries()).length > 0;
 const origin = new URL('/', Astro.site).href;

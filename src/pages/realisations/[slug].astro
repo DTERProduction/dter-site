@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Vimeo from '../../components/Vimeo.astro';
 import Cta from '../../components/Cta.astro';
-import { getProjects, categories } from '../../lib/site';
+import { getProjects, catLabel } from '../../lib/site';
 
 export async function getStaticPaths() {
   const projects = await getProjects();
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 }
 const { project, next } = Astro.props;
 const d = project.data;
-const cat = categories[d.category];
+const cat = catLabel(d.categories);
 const facts = [['Client', d.client], ['Format', cat], ['Avec', d.partner], ['Année', d.year], ['Livré en', d.deliveredIn]].filter(([, v]) => v);
 const parts = [
   ["L'objectif", d.objectiveTitle, d.objective],
@@ -29,6 +29,18 @@ const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réali
   <section class="wide">
     <Vimeo id={d.vimeoId} thumb={d.thumb} label={`${d.client}, ${d.title}`} ratio={d.vertical ? 'r-9-16' : 'r-16-9'} xl />
   </section>
+  {d.videos.length > 0 && (
+    <section class="wrap" style="padding-top:32px" aria-label="Autres vidéos du projet">
+      <div class:list={['more-videos', { 'is-vertical': d.videos.every((v) => v.vertical) }]}>
+        {d.videos.map((v) => (
+          <figure>
+            <Vimeo id={v.vimeoId} thumb={v.thumb} label={`${d.client}, ${v.title}`} ratio={v.vertical ? 'r-9-16' : 'r-16-9'} small />
+            <figcaption class="mono mut2">{v.title}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
   <section class="wrap" style="padding-top:32px" aria-label="Fiche du projet">
     <div class="facts">{facts.map(([k, v]) => <div><span class="mono">{k}</span><strong>{v}</strong></div>)}</div>
   </section>
