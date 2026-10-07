@@ -20,8 +20,6 @@ answer: "Une journée de tournage et d'interviews sur le parcours. Cinq capsules
 resultTitle: ""
 result: "Golazo a ensuite commandé une vidéo supplémentaire pour la révélation de la médaille."
 stats: []
-quote: "Les films sont exactement dans le ton. Le montage, les transitions… j'aime. Beau travail."
-quoteFrom: "Golazo"
 videos:
   - title: "What do you feel when running ?"
     vimeoId: "1131386957"

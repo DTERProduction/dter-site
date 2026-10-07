@@ -19,8 +19,6 @@ answer: "Quatre heures de tournage et de photo sur place. Les deux vidéos sont 
 resultTitle: ""
 result: ""
 stats: []
-quote: "Merci, elles sont super ! Rien à dire."
-quoteFrom: "The Friends"
 videos:
   - title: "Short 2"
     vimeoId: "1233649018"

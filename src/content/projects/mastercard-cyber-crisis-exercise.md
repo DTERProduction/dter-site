@@ -17,8 +17,6 @@ answer: "Une journée de tournage et les interviews des intervenants. Avant le m
 resultTitle: ""
 result: ""
 stats: []
-quote: "Un grand merci pour ta patience et réactivité ainsi que pour la qualité de la vidéo, nous avons reçu des feedbacks positifs de tous les intervenants !"
-quoteFrom: "Mastercard"
 videos: []
 draft: true
 ---
