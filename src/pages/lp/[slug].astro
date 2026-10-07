@@ -17,7 +17,10 @@ const { landing } = Astro.props;
 const l = landing.data;
 const all = await getProjects();
 const examples = l.examples.map((id) => all.find((p) => p.id === id)).filter(Boolean);
-const poster = all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
+// Vidéo d'en-tête : le projet choisi s'il est en ligne, sinon la vidéo de secours.
+const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : undefined;
+const heroId = heroProject?.data.vimeoId || l.vimeoId;
+const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
 const quote = testimonials.items[0];
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
@@ -29,7 +32,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <h1 class="lp-title">{l.title}</h1>
         <p class="hero-lead" style="max-width:560px">{l.lead}</p>
         <ul class="lp-bullets">{l.bullets.map((b) => <li>{b}</li>)}</ul>
-        {l.vimeoId && <Vimeo id={l.vimeoId} thumb={poster} label="Exemple de réalisation" small />}
+        {heroId && <Vimeo id={heroId} thumb={poster} label="Exemple de réalisation" small />}
       </div>
       <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark submit="Recevoir mon devis" />
     </div>

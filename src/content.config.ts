@@ -67,6 +67,7 @@ const landings = defineCollection({
     lead: z.string(),
     bullets: z.array(z.string()).default([]),
     vimeoId: z.coerce.string().optional(),
+    heroProject: z.string().optional(),
     formTitle: z.string(),
     dateLabel: z.string(),
     messageLabel: z.string(),

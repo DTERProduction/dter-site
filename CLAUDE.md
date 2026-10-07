@@ -70,7 +70,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 
 - Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
-- Projets : 24 fiches visibles d'après la liste de Thomas, 5 masquées en attente de leur vidéo sur Vimeo (Mastercard, Mondelez, PIONEERS, PwC Prophix, Nesquik). Fiches encore sans texte : PwC Future of Sales, Pfizer, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
+- Projets : 29 fiches en ligne d'après la liste de Thomas. Fiches encore sans texte : PwC Future of Sales, PwC Prophix, Nesquik, Pfizer, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
 - Ajouter les logos clients et la photo du studio. Le portrait de Thomas (`src/assets/thomas-dubois.jpg`) est sur la carte « Parler à Thomas » de l'accueil.
 - Photo : 35 images choisies par Thomas, rangées en trois thématiques (Événement, Brand content, Corporate), une série par thématique.
 - Rediriger www.dter.eu vers dter.eu (règle de redirection Cloudflare). Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.

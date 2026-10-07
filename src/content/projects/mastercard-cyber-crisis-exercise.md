@@ -3,6 +3,8 @@ title: "Cyber Crisis Exercise"
 client: "Mastercard"
 categories:
   - "corporate"
+vimeoId: "1233650391"
+thumb: "https://i.vimeocdn.com/video/2209378748-4bc6c4489ca8b9b9774801c31e92f59b19bde87113d35456dc57125d7d91cd95-d_1280?region=us"
 vertical: false
 featured: false
 order: 230
@@ -18,5 +20,5 @@ resultTitle: ""
 result: ""
 stats: []
 videos: []
-draft: true
+draft: false
 ---

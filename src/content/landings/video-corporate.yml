@@ -6,6 +6,7 @@ bullets:
   - "Un regard marketing dès le brief, pas seulement une belle image"
   - "Livraison en une à trois semaines, deux tours de retours inclus"
   - "Déclinaisons pour vos réseaux, votre site et vos présentations"
+heroProject: "pwc-prophix"
 vimeoId: "1181920235"
 formTitle: "Recevez votre devis sous 24 h"
 dateLabel: "Échéance souhaitée"
@@ -28,9 +29,9 @@ deliverables:
     text: "Des formats courts tirés du même tournage, sous-titrés, prêts pour LinkedIn. Un jour de tournage, plusieurs semaines de publications."
 examplesTitle: "Trois objectifs, trois films."
 examples:
-  - "pwc-future-of-sales"
-  - "pfizer-mimis-story"
   - "solvint-ferme-de-mont-saint-jean"
+  - "mastercard-cyber-crisis-exercise"
+  - "bruxelles-mobilite-parkway"
 faqTitle: "Avant de demander un devis."
 faq:
   - q: "Combien coûte une vidéo d'entreprise ?"

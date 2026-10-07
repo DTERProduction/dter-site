@@ -129,7 +129,8 @@ collections:
       - { label: Titre principal, name: title, widget: string }
       - { label: Accroche, name: lead, widget: text }
       - { label: Arguments, name: bullets, widget: list }
-      - { label: Identifiant Vimeo, name: vimeoId, widget: string, required: false }
+      - { label: Projet en tête de page, name: heroProject, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], required: false, hint: 'Si ce projet n''a pas encore de vidéo, la vidéo de secours ci-dessous est utilisée' }
+      - { label: Vidéo de secours (identifiant Vimeo), name: vimeoId, widget: string, required: false }
       - { label: Titre du formulaire, name: formTitle, widget: string }
       - { label: Libellé du champ date, name: dateLabel, widget: string }
       - { label: Libellé du champ message, name: messageLabel, widget: string }

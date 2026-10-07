@@ -3,6 +3,8 @@ title: "From Ambition to Implementation"
 client: "PIONEERS"
 categories:
   - "corporate"
+vimeoId: "1233652588"
+thumb: "https://i.vimeocdn.com/video/2209380251-4b7dab93c93ade889559191bd614f59b860002cf709130be22135344cf11f8f7-d_1280?region=us"
 vertical: false
 featured: false
 order: 250
@@ -18,5 +20,5 @@ resultTitle: ""
 result: ""
 stats: []
 videos: []
-draft: true
+draft: false
 ---

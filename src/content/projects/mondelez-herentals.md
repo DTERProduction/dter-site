@@ -3,6 +3,8 @@ title: "Usine de Herentals"
 client: "Mondelez"
 categories:
   - "corporate"
+vimeoId: "1233650822"
+thumb: "https://i.vimeocdn.com/video/2209379088-fa8f11ffc24c89c21c6360d439f49a904571281680628ff6e2003a5f525d8c74-d_1280?region=us"
 vertical: false
 featured: false
 order: 240
@@ -18,5 +20,5 @@ resultTitle: ""
 result: ""
 stats: []
 videos: []
-draft: true
+draft: false
 ---
