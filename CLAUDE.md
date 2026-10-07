@@ -5,9 +5,9 @@ Site vitrine de DTER Production SRL (Thomas Dubois, production vidéo et photo, 
 ## L'essentiel
 
 - **Dépôt** : `DTERProduction/dter-site`. Branche de travail : `travail`. Branche en ligne : `main`.
-- **Hébergement** : Cloudflare (Workers, fichiers statiques), déploiement automatique à chaque push sur `main` (réglages dans `wrangler.jsonc`, redirections dans `public/_redirects`). Adresse technique : https://dter-site.dark-hall-2f48.workers.dev. Chaque push sur `travail` génère une prévisualisation. Netlify a été quitté en octobre 2026 (crédits de déploiement épuisés) ; `netlify.toml` reste tant que le domaine n'est pas basculé.
-- **Publier reste une décision de Thomas.** Tout le travail se fait sur la branche `travail`. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier, en regroupant le plus de changements possible. Ne jamais pousser directement sur `main`.
-- **Domaine** : https://dter.eu (domaine principal dans Netlify). L'ancien domaine thomasdubois.pro et l'adresse Netlify `cosmic-dodol-d7bf9f.netlify.app` redirigent vers dter.eu (règles dans `netlify.toml`).
+- **Hébergement** : Cloudflare (Workers, fichiers statiques), déploiement automatique à chaque push sur `main` (réglages dans `wrangler.jsonc`, redirections de chemins dans `public/_redirects`). Adresse technique : https://dter-site.dark-hall-2f48.workers.dev. Chaque push sur `travail` génère une prévisualisation Cloudflare. Netlify a été quitté en octobre 2026.
+- **Publier reste une décision de Thomas.** Tout le travail se fait sur la branche `travail`. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier. Ne jamais pousser directement sur `main`. Avant d'affirmer qu'une chose est ou n'est pas en ligne, vérifier `git log origin/main`.
+- **Domaine** : https://dter.eu. Le DNS de dter.eu et de thomasdubois.pro est géré chez Cloudflare (domaines achetés chez Squarespace, dont le tableau DNS n'est plus lu). thomasdubois.pro redirige vers dter.eu par une règle de redirection Cloudflare. Toute modification DNS doit préserver les enregistrements mail (MX, SPF, DKIM, DMARC) des deux domaines.
 - **Email** : les adresses @dter.eu et @thomasdubois.pro arrivent dans la même boîte Google Workspace (dter.eu est un domaine alias).
 - **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Web3Forms pour l'envoi des formulaires par email (clé `formKey` dans `site.json`).
 
@@ -68,14 +68,12 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 
 - Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.
 
-- Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.
-
 - Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
 - Projets : 24 fiches visibles d'après la liste de Thomas, 5 masquées en attente de leur vidéo sur Vimeo (Mastercard, Mondelez, PIONEERS, PwC Prophix, Nesquik). Fiches encore sans texte : PwC Future of Sales, Pfizer, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
 - Ajouter les logos clients et la photo du studio. Le portrait de Thomas (`src/assets/thomas-dubois.jpg`) est sur la carte « Parler à Thomas » de l'accueil.
 - Photo : 35 images choisies par Thomas, rangées en trois thématiques (Événement, Brand content, Corporate), une série par thématique.
-- Connecter le CMS à GitHub (authentification Decap).
-- Tester les formulaires et activer les notifications par email dans Netlify.
-- Brancher thomasdubois.pro sur Netlify comme second domaine (pour que ses redirections vers dter.eu fonctionnent), puis arrêter Webflow.
+- Rediriger www.dter.eu vers dter.eu (règle de redirection Cloudflare). Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.
+- Connecter Decap à GitHub demande un petit service d'authentification maintenant que le site est chez Cloudflare.
+- Google Search Console et Bing Webmaster Tools : déclarer dter.eu et soumettre le sitemap.
 - Les conditions générales et la politique de confidentialité n'ont pas été relues par un juriste.
