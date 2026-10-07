@@ -3,16 +3,28 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Faq from '../components/Faq.astro';
 import PhotoBand from '../components/PhotoBand.astro';
+import { getImage } from 'astro:assets';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import clients from '../data/clients.json';
 import testimonials from '../data/testimonials.json';
-import { getProjects, getServices, categories } from '../lib/site';
+import { getProjects, getServices, getPhotoSeries, categories } from '../lib/site';
 
 const projects = await getProjects();
 const featured = projects.filter((p) => p.data.featured).slice(0, 4);
 const thumbOf = (vimeoId?: string) => projects.find((p) => p.data.vimeoId === vimeoId)?.data.thumb;
 const trail = projects.map((p) => p.data.thumb).filter(Boolean).slice(0, 8);
+// Aperçus au survol des services : une image pour la vidéo, un jeu de cartes pour la photo, une table de montage pour la post-production.
+const allPhotos = (await getPhotoSeries()).flatMap((x) => x.data.photos);
+const pickedPhotos = (allPhotos.filter((x) => x.featured).length >= 4 ? allPhotos.filter((x) => x.featured) : allPhotos).slice(0, 5);
+const photoCards = await Promise.all(pickedPhotos.map(async (x) => (await getImage({ src: x.image, width: 640, format: 'webp' })).src));
+const clipThumbs = projects.map((p) => p.data.thumb).filter(Boolean).slice(0, 5);
+const preview = (id: string, vimeoId?: string) => {
+  if (id === 'photographie-corporate' && photoCards.length) return { kind: 'photos', images: photoCards };
+  if (id === 'post-production' && clipThumbs.length) return { kind: 'timeline', images: clipThumbs };
+  const t = thumbOf(vimeoId);
+  return t ? { kind: 'video', images: [t] } : null;
+};
 const services = await getServices();
 const [mainQuote, ...quotes] = testimonials.items;
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -36,6 +48,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <a class="hero-card" href={site.calendar}>
           <span class="avatar">TD</span>
           <span><strong>Parler à Thomas</strong><small>Fondateur de DTER · appel de 20 min</small></span>
+          <span class="hero-card-arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -72,8 +85,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
       {featured.map((p, i) => (
         <a class="stack-card" style={`--i:${i}`} href={`/realisations/${p.id}/`}>
           <div class="stack-inner">
-            <div class="media">{p.data.thumb && <img src={p.data.thumb} alt="" loading="lazy" decoding="async" />}</div>
             <div class="stack-meta"><strong>{p.data.client} · {p.data.title}</strong><span class="mono mut2">{categories[p.data.category]}</span></div>
+            <div class="media">{p.data.thumb && <img src={p.data.thumb} alt="" loading="lazy" decoding="async" />}</div>
           </div>
         </a>
       ))}
@@ -106,7 +119,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </div>
     <div class="rows">
       {services.map((s, i) => (
-        <a href={`/services/${s.id}/`} data-preview={thumbOf(s.data.vimeoId)}>
+        <a href={`/services/${s.id}/`} data-kind={preview(s.id, s.data.vimeoId)?.kind} data-images={JSON.stringify(preview(s.id, s.data.vimeoId)?.images || [])}>
           <span class="idx">{i + 1}</span>
           <h3 class="name">{s.data.name}</h3>
           <span class="desc">

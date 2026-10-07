@@ -43,8 +43,8 @@ function init() {
       gsap.set(el, { visibility: 'visible' });
       gsap.from(split.lines, {
         yPercent: 110,
-        duration: 1,
-        ease: 'expo.out',
+        duration: 1.25,
+        ease: 'expo.inOut',
         stagger: 0.09,
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       });
@@ -53,12 +53,24 @@ function init() {
   });
 
   // Blocs : montée douce, décalée entre voisins.
-  const blocks = '.card, .project:not(.stack-card), .rows > *, .steps > *, .faq details, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
+  const blocks = '.project:not(.stack-card), .rows > *, .steps > *, .faq details, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
   gsap.set(blocks, { visibility: 'visible', opacity: 0, y: 36 });
   ScrollTrigger.batch(blocks, {
     start: 'top 92%',
     once: true,
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.07, overwrite: true }),
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1.05, ease: 'power3.inOut', stagger: 0.08, overwrite: true }),
+  });
+
+  // Cartes (promesses, usages) : elles se lèvent une à une en pivotant depuis le bas.
+  $$('.cards').forEach((group) => {
+    const cards = $$('.card', group);
+    gsap.set(group, { perspective: 1400 });
+    gsap.set(cards, { visibility: 'visible' });
+    gsap.from(cards, {
+      opacity: 0, y: 140, rotateX: -38, rotate: (i) => (i - (cards.length - 1) / 2) * 5, transformOrigin: '50% 100%',
+      duration: 1.3, ease: 'expo.inOut', stagger: 0.14,
+      scrollTrigger: { trigger: group, start: 'top 85%', once: true },
+    });
   });
 
   // Images : léger déplacement en profondeur pendant le défilement.
@@ -83,16 +95,16 @@ function init() {
     });
   }
 
-  // Réalisations : les cartes s'empilent, celles du dessous reculent.
+  // Réalisations : les cartes s'empilent en laissant leur titre visible. Celle du dessous recule et s'assombrit seulement quand la suivante la recouvre.
   const cards = $$('.stack-card');
   cards.forEach((card, i) => {
     const next = cards[i + 1];
     if (!next) return;
     gsap.to(card.querySelector('.stack-inner'), {
-      scale: 0.93,
-      filter: 'brightness(0.6)',
-      ease: 'none',
-      scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 15%', scrub: true },
+      scale: 0.95,
+      '--dim': 0.5,
+      ease: 'power1.inOut',
+      scrollTrigger: { trigger: next, start: 'top 80%', end: 'top 25%', scrub: 0.4 },
     });
   });
 
@@ -119,6 +131,25 @@ function init() {
     gsap.fromTo(steps, { '--line': 0 }, { '--line': 1, ease: 'none', scrollTrigger: { trigger: steps, start: 'top 80%', end: 'bottom 55%', scrub: true } });
   });
 
+  // FAQ : ouverture et fermeture en douceur.
+  $$('.faq details').forEach((d) => {
+    const summary = d.querySelector('summary');
+    const body = d.querySelector<HTMLElement>('p');
+    if (!summary || !body) return;
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      gsap.killTweensOf(body);
+      if (d.open && !d.classList.contains('is-closing')) {
+        d.classList.add('is-closing');
+        gsap.to(body, { height: 0, opacity: 0, duration: 0.55, ease: 'power2.inOut', onComplete: () => { d.open = false; d.classList.remove('is-closing'); gsap.set(body, { clearProps: 'height,opacity' }); } });
+      } else {
+        d.classList.remove('is-closing');
+        d.open = true;
+        gsap.fromTo(body, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.65, ease: 'power2.inOut', onComplete: () => gsap.set(body, { clearProps: 'height' }) });
+      }
+    });
+  });
+
   if (!finePointer) return;
 
   // Curseur « Voir » sur les projets.
@@ -135,24 +166,105 @@ function init() {
     el.addEventListener('pointerleave', () => badge.classList.remove('is-on'));
   });
 
-  // Services : aperçu qui suit la souris.
-  const rows = $$('.rows > a[data-preview]');
+  // Services : aperçu qui suit la souris. Une image pour la vidéo, un jeu de cartes pour la photo, une table de montage pour la post-production.
+  const rows = $$('.rows > a[data-kind]');
   if (rows.length) {
     const prev = document.createElement('div');
     prev.className = 'hover-preview';
     prev.setAttribute('aria-hidden', 'true');
-    const img = document.createElement('img');
-    img.alt = '';
-    prev.appendChild(img);
     document.body.appendChild(prev);
-    const px = gsap.quickTo(prev, 'x', { duration: 0.6, ease: 'power3' });
-    const py = gsap.quickTo(prev, 'y', { duration: 0.6, ease: 'power3' });
+    const px = gsap.quickTo(prev, 'x', { duration: 0.7, ease: 'power3' });
+    const py = gsap.quickTo(prev, 'y', { duration: 0.7, ease: 'power3' });
     window.addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
+    let timer = 0;
+    let loop: gsap.core.Tween | null = null;
+    const stop = () => { clearInterval(timer); loop?.kill(); loop = null; gsap.killTweensOf(prev.querySelectorAll('*')); };
+    const img = (src: string, cls = '') => { const im = new Image(); im.src = src; im.alt = ''; im.className = cls; return im; };
+
+    const builders: Record<string, (images: string[]) => void> = {
+      video: (images) => { prev.appendChild(img(images[0])); },
+      photos: (images) => {
+        const deck = images.map((src) => prev.appendChild(img(src, 'hp-card')));
+        const lay = (instant = false) => deck.forEach((c, i) => {
+          c.style.zIndex = String(deck.length - i);
+          gsap.to(c, { x: i * 18, y: i * -12, rotate: i === 0 ? -3 : (i % 2 ? 5 : -7) + i, scale: 1 - i * 0.06, opacity: i > 3 ? 0 : 1, duration: instant ? 0 : 0.6, ease: 'power3.inOut' });
+        });
+        lay(true);
+        timer = window.setInterval(() => {
+          const top = deck.shift()!;
+          gsap.to(top, { x: 230, y: 30, rotate: 18, duration: 0.38, ease: 'power2.in', onComplete: () => { deck.push(top); lay(); } });
+        }, 1000);
+      },
+      timeline: (images) => {
+        const widths = [22, 14, 26, 18, 20].slice(0, images.length);
+        const total = widths.reduce((a, b) => a + b, 0);
+        prev.innerHTML = `<div class="hp-view"></div><div class="hp-bar mono"><span class="accent">●</span><span data-hp-tc>00:00:00:00</span></div>
+          <div class="hp-tracks">
+            <div class="hp-track">${images.map((src, i) => `<span style="flex:${widths[i]};background-image:url('${src}')"></span>`).join('')}</div>
+            <div class="hp-track is-audio">${widths.map((w) => `<span style="flex:${w}"></span>`).join('')}</div>
+            <div class="hp-track is-titles"><span style="flex:18"></span><i style="flex:26"></i><span style="flex:30"></span><i style="flex:26"></i></div>
+            <b class="hp-head"></b>
+          </div>`;
+        const view = prev.querySelector('.hp-view')!;
+        const shots = images.map((src) => view.appendChild(img(src)));
+        const tcEl = prev.querySelector('[data-hp-tc]')!;
+        const head = prev.querySelector<HTMLElement>('.hp-head')!;
+        const o = { p: 0 };
+        let current = -1;
+        loop = gsap.to(o, {
+          p: 1, duration: 4.5, ease: 'none', repeat: -1,
+          onUpdate: () => {
+            head.style.left = `${o.p * 100}%`;
+            let acc = 0;
+            const idx = widths.findIndex((w) => (acc += w / total) > o.p);
+            if (idx !== current) { current = idx; shots.forEach((sh, k) => { sh.style.opacity = k === idx ? '1' : '0'; }); }
+            const f = Math.floor(o.p * 4.5 * 25);
+            tcEl.textContent = `00:00:${String(Math.floor(f / 25)).padStart(2, '0')}:${String(f % 25).padStart(2, '0')}`;
+          },
+        });
+      },
+    };
+
     rows.forEach((r) => {
-      r.addEventListener('pointerenter', () => { if (r.dataset.preview) { img.src = r.dataset.preview; prev.classList.add('is-on'); } });
-      r.addEventListener('pointerleave', () => prev.classList.remove('is-on'));
+      r.addEventListener('pointerenter', () => {
+        const kind = r.dataset.kind || 'video';
+        const images: string[] = JSON.parse(r.dataset.images || '[]');
+        if (!images.length) return;
+        stop();
+        prev.replaceChildren();
+        prev.className = `hover-preview is-${kind}`;
+        builders[kind]?.(images);
+        requestAnimationFrame(() => prev.classList.add('is-on'));
+      });
+      r.addEventListener('pointerleave', () => { prev.classList.remove('is-on'); stop(); });
     });
   }
+
+  // Cartes : elles s'inclinent vers la souris.
+  $$('.cards > .card').forEach((card) => {
+    const rx = gsap.quickTo(card, 'rotateX', { duration: 0.6, ease: 'power3' });
+    const ry = gsap.quickTo(card, 'rotateY', { duration: 0.6, ease: 'power3' });
+    const ty = gsap.quickTo(card, 'y', { duration: 0.6, ease: 'power3' });
+    card.addEventListener('pointermove', (e) => {
+      const b = card.getBoundingClientRect();
+      rx(((e.clientY - b.top) / b.height - 0.5) * -9);
+      ry(((e.clientX - b.left) / b.width - 0.5) * 11);
+      ty(-8);
+    });
+    card.addEventListener('pointerleave', () => { rx(0); ry(0); ty(0); });
+  });
+
+  // Carte « Parler à Thomas » : elle est attirée par la souris.
+  $$('.hero-card').forEach((el) => {
+    const mx = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
+    const my = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+    el.addEventListener('pointermove', (e) => {
+      const b = el.getBoundingClientRect();
+      mx((e.clientX - (b.left + b.width / 2)) * 0.18);
+      my((e.clientY - (b.top + b.height / 2)) * 0.3);
+    });
+    el.addEventListener('pointerleave', () => { mx(0); my(0); });
+  });
 
   // Appel final : traînée d'images sous la souris.
   const trail = document.querySelector<HTMLElement>('[data-trail]');
