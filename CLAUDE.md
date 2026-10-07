@@ -68,7 +68,7 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 
 - Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
-- Projets : 23 fiches en ligne d'après la liste de Thomas, 5 masquées en attente de leur vidéo sur Vimeo (Mastercard, Mondelez, PIONEERS, PwC Prophix, Nesquik). Fiches encore sans texte : PwC Future of Sales, Crodino, Mlle Derrico, Marius Story. Quatre anciens exemples restent en fin de liste (Cohabs, Premier Padel, Energy Traders Europe, Toiture Desbeck) en attendant la décision de Thomas.
+- Projets : 22 fiches visibles d'après la liste de Thomas, 5 masquées en attente de leur vidéo sur Vimeo (Mastercard, Mondelez, PIONEERS, PwC Prophix, Nesquik). Fiches encore sans texte : PwC Future of Sales, Crodino, Mlle Derrico, Marius Story. Quatre anciens exemples restent en fin de liste (Cohabs, Premier Padel, Energy Traders Europe, Toiture Desbeck) en attendant la décision de Thomas.
 - Ajouter les logos clients et la photo du studio.
 - Photo : 26 images en ligne dans cinq séries. Les séries « Conférence internationale » et « Réception officielle » ont un titre provisoire, à remplacer par le vrai nom du projet.
 - Connecter le CMS à GitHub (authentification Decap).
