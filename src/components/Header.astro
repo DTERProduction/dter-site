@@ -1,13 +1,14 @@
 ---
 import site from '../data/site.json';
+import mark from './logo-mark.svg?raw';
 const { landing = false } = Astro.props;
 const path = Astro.url.pathname;
 const cur = (p: string) => (path.startsWith(p) ? 'page' : undefined);
 ---
 <header class="site-header">
   {landing
-    ? <span class="logo">{site.name}<span class="accent">®</span></span>
-    : <a class="logo" href="/" aria-label="DTER, accueil">{site.name}<span class="accent">®</span></a>}
+    ? <span class="logo"><span class="logo-mark" set:html={mark} />{site.name}<span class="accent">®</span></span>
+    : <a class="logo" href="/" aria-label="DTER, accueil"><span class="logo-mark" set:html={mark} />{site.name}<span class="accent">®</span></a>}
   {landing ? (
     <div class="nav">
       <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
