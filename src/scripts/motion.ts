@@ -136,7 +136,8 @@ function init() {
   // Curseur « Voir » sur les projets.
   const badge = document.createElement('div');
   badge.className = 'cursor-badge';
-  badge.textContent = 'Voir';
+  // Un bouton de lecture entouré d'un texte qui tourne, comme une étiquette de bobine.
+  badge.innerHTML = `<span class="cursor-inner"><svg class="cursor-ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="cursor-ring-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text><textPath href="#cursor-ring-path" textLength="270">REGARDER · LECTURE · REGARDER · LECTURE ·</textPath></text></svg><span class="cursor-play"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg></span></span>`;
   badge.setAttribute('aria-hidden', 'true');
   document.body.appendChild(badge);
   const bx = gsap.quickTo(badge, 'x', { duration: 0.35, ease: 'power3' });
@@ -161,7 +162,7 @@ function init() {
   window.addEventListener('scroll', ask, { passive: true });
   document.documentElement.addEventListener('pointerleave', () => { mx = -1; hideBadge(); });
   window.addEventListener('blur', () => { mx = -1; hideBadge(); });
-  window.addEventListener('pointerdown', hideBadge, { passive: true });
+  window.addEventListener('pointerdown', () => { badge.classList.add('is-press'); setTimeout(() => { badge.classList.remove('is-press'); hideBadge(); }, 180); }, { passive: true });
   window.addEventListener('pageshow', () => { mx = -1; hideBadge(); });
 
   // Services : aperçu qui suit la souris. Une image pour la vidéo, un jeu de cartes pour la photo, une table de montage pour la post-production.
