@@ -10,7 +10,7 @@ Les présentes conditions générales de vente ont pour objet de régir les rela
 
 ## 2. Définitions
 
-« DTER Production » désigne l'entreprise établie Zuidlaan 14, 1560 Hoeilaart, Belgique, TVA BE 1043.250.440, joignable à l'adresse hello@thomasdubois.pro.
+« DTER Production » désigne la société à responsabilité limitée (SRL) DTER Production, dont le siège est établi Zuidlaan 14, 1560 Hoeilaart, Belgique, inscrite à la Banque-Carrefour des Entreprises sous le numéro 1043.250.440, TVA BE 1043.250.440, joignable à l'adresse hello@thomasdubois.pro.
 
 « Client » désigne toute personne physique majeure ou toute personne morale faisant appel aux services de DTER Production.
 
