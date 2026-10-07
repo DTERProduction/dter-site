@@ -43,9 +43,9 @@ function init() {
       gsap.set(el, { visibility: 'visible' });
       gsap.from(split.lines, {
         yPercent: 110,
-        duration: 1.25,
-        ease: 'expo.inOut',
-        stagger: 0.09,
+        duration: 0.9,
+        ease: 'power4.inOut',
+        stagger: 0.06,
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       });
     });
@@ -53,12 +53,12 @@ function init() {
   });
 
   // Blocs : montée douce, décalée entre voisins.
-  const blocks = '.project:not(.stack-card), .rows > *, .steps > *, .faq details, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
+  const blocks = '.project:not(.stack-card), .rows > *, .steps > *, .faq-item, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
   gsap.set(blocks, { visibility: 'visible', opacity: 0, y: 36 });
   ScrollTrigger.batch(blocks, {
     start: 'top 92%',
     once: true,
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1.05, ease: 'power3.inOut', stagger: 0.08, overwrite: true }),
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.inOut', stagger: 0.05, overwrite: true }),
   });
 
   // Cartes (promesses, usages) : elles se lèvent une à une en pivotant depuis le bas.
@@ -68,7 +68,7 @@ function init() {
     gsap.set(cards, { visibility: 'visible' });
     gsap.from(cards, {
       opacity: 0, y: 140, rotateX: -38, rotate: (i) => (i - (cards.length - 1) / 2) * 5, transformOrigin: '50% 100%',
-      duration: 1.3, ease: 'expo.inOut', stagger: 0.14,
+      duration: 0.95, ease: 'power4.inOut', stagger: 0.09,
       scrollTrigger: { trigger: group, start: 'top 85%', once: true },
     });
   });
@@ -129,25 +129,6 @@ function init() {
   // Méthode : la ligne de progression se remplit.
   $$('.steps').forEach((steps) => {
     gsap.fromTo(steps, { '--line': 0 }, { '--line': 1, ease: 'none', scrollTrigger: { trigger: steps, start: 'top 80%', end: 'bottom 55%', scrub: true } });
-  });
-
-  // FAQ : ouverture et fermeture en douceur.
-  $$('.faq details').forEach((d) => {
-    const summary = d.querySelector('summary');
-    const body = d.querySelector<HTMLElement>('p');
-    if (!summary || !body) return;
-    summary.addEventListener('click', (e) => {
-      e.preventDefault();
-      gsap.killTweensOf(body);
-      if (d.open && !d.classList.contains('is-closing')) {
-        d.classList.add('is-closing');
-        gsap.to(body, { height: 0, opacity: 0, duration: 0.55, ease: 'power2.inOut', onComplete: () => { d.open = false; d.classList.remove('is-closing'); gsap.set(body, { clearProps: 'height,opacity' }); } });
-      } else {
-        d.classList.remove('is-closing');
-        d.open = true;
-        gsap.fromTo(body, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.65, ease: 'power2.inOut', onComplete: () => gsap.set(body, { clearProps: 'height' }) });
-      }
-    });
   });
 
   if (!finePointer) return;
@@ -321,15 +302,15 @@ function openCurtain() {
   });
   if (first && tcEl) {
     const o = { f: 0 };
-    tl.to(o, { f: 32, duration: 1.1, ease: 'power1.in', onUpdate: () => { tcEl.textContent = tc(o.f); } });
+    tl.to(o, { f: 22, duration: 0.75, ease: 'power1.in', onUpdate: () => { tcEl.textContent = tc(o.f); } });
   } else {
     gsap.set('.curtain-tc', { display: 'none' });
     tl.to({}, { duration: 0.12 });
   }
   tl.call(start)
     .to(curtainMid, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' })
-    .fromTo(curtainTop, { y: 0, yPercent: 0 }, { yPercent: -101, duration: 0.9, ease: 'expo.inOut' }, '>-0.05')
-    .fromTo(curtainBottom, { y: 0, yPercent: 0 }, { yPercent: 101, duration: 0.9, ease: 'expo.inOut' }, '<');
+    .fromTo(curtainTop, { y: 0, yPercent: 0 }, { yPercent: -101, duration: 0.7, ease: 'expo.inOut' }, '>-0.05')
+    .fromTo(curtainBottom, { y: 0, yPercent: 0 }, { yPercent: 101, duration: 0.7, ease: 'expo.inOut' }, '<');
 }
 
 function closeCurtainThen(go: () => void) {
@@ -338,10 +319,10 @@ function closeCurtainThen(go: () => void) {
   gsap.set('.curtain-tc', { display: 'none' });
   gsap.timeline({ onComplete: go })
     // y: 0 est indispensable : sans lui, le décalage de départ défini en CSS s'ajoute et les volets restent hors de l'écran.
-    .fromTo(curtainTop, { y: 0, yPercent: -101 }, { y: 0, yPercent: 0, duration: 0.55, ease: 'expo.inOut' })
-    .fromTo(curtainBottom, { y: 0, yPercent: 101 }, { y: 0, yPercent: 0, duration: 0.55, ease: 'expo.inOut' }, '<')
+    .fromTo(curtainTop, { y: 0, yPercent: -101 }, { y: 0, yPercent: 0, duration: 0.42, ease: 'power3.inOut' })
+    .fromTo(curtainBottom, { y: 0, yPercent: 101 }, { y: 0, yPercent: 0, duration: 0.42, ease: 'power3.inOut' }, '<')
     // Le logo n'apparaît qu'une fois les volets fermés.
-    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' }, '>-0.08');
+    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.18, ease: 'power2.out' }, '>-0.08');
 }
 
 if (reduced) {

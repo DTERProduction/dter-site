@@ -1,12 +1,18 @@
 ---
 const { items = [] } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 7);
 ---
 <div class="faq">
   {items.map((f: any, i: number) => (
-    <details open={i === 0}>
-      <summary>{f.q}</summary>
-      <p>{f.a}</p>
-    </details>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="true" aria-controls={`faq-${uid}-${i}`}>
+        <span>{f.q}</span>
+        <i aria-hidden="true"></i>
+      </button>
+      <div class="faq-a" id={`faq-${uid}-${i}`}>
+        <div><p>{f.a}</p></div>
+      </div>
+    </div>
   ))}
 </div>
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -14,3 +20,20 @@ const { items = [] } = Astro.props;
   '@type': 'FAQPage',
   mainEntity: items.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 })} />
+<script>
+  // Sans script, toutes les réponses restent lisibles. Avec, seule la première est ouverte au départ.
+  document.querySelectorAll('.faq').forEach((faq) => {
+    if ((faq as HTMLElement).dataset.ready) return;
+    (faq as HTMLElement).dataset.ready = '1';
+    const items = Array.from(faq.querySelectorAll<HTMLElement>('.faq-item'));
+    const set = (item: HTMLElement, open: boolean) => {
+      item.classList.toggle('is-closed', !open);
+      item.querySelector('.faq-q')?.setAttribute('aria-expanded', String(open));
+    };
+    items.forEach((item, i) => {
+      set(item, i === 0);
+      item.querySelector('.faq-q')?.addEventListener('click', () => set(item, item.classList.contains('is-closed')));
+    });
+    requestAnimationFrame(() => faq.classList.add('is-animated'));
+  });
+</script>
