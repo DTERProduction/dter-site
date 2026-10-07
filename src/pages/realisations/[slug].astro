@@ -62,6 +62,14 @@ const desc = d.summary || `${d.client}, ${d.title} : ${cat.toLowerCase()} réali
       </div>
     </section>
   )}
+  {d.quote && (
+    <section class="wrap section-b">
+      <figure class="project-quote">
+        <blockquote>« {d.quote} »</blockquote>
+        {d.quoteFrom && <figcaption class="mono">{d.quoteFrom}</figcaption>}
+      </figure>
+    </section>
+  )}
   <section class="wrap section">
     <a class="between" style="border-top:1px solid var(--ink);padding-top:28px;align-items:baseline" href={`/realisations/${next.id}/`}>
       <span class="mono mut2">Projet suivant</span>

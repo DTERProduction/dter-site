@@ -20,6 +20,8 @@ answer: ""
 resultTitle: ""
 result: ""
 stats: []
+quote: "Super vidéo, beau boulot ! Frissons."
+quoteFrom: "Pulse Foundation"
 videos: []
 draft: false
 ---

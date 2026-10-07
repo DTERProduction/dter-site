@@ -20,6 +20,8 @@ answer: "Deux cadreurs sur place, de l'accueil au dîner sur le rooftop. Un afte
 resultTitle: ""
 result: ""
 stats: []
+quote: "Le contenu est excellent !"
+quoteFrom: "L'Oréal"
 videos: []
 draft: false
 ---

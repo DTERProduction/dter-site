@@ -27,6 +27,8 @@ const projects = defineCollection({
     resultTitle: z.string().optional(),
     result: z.string().optional(),
     stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
+    quote: z.string().optional(),
+    quoteFrom: z.string().optional(),
     videos: z.array(z.object({ title: z.string(), vimeoId: z.coerce.string(), thumb: z.string().optional(), vertical: z.boolean().default(false) })).default([]),
     draft: z.boolean().default(false),
   }),

@@ -62,6 +62,8 @@ collections:
       - { label: 'Notre réponse : texte', name: answer, widget: text, required: false }
       - { label: 'Résultat : titre', name: resultTitle, widget: string, required: false }
       - { label: 'Résultat : texte', name: result, widget: text, required: false }
+      - { label: Retour du client (citation), name: quote, widget: text, required: false }
+      - { label: 'Retour du client : société, sans nom de personne', name: quoteFrom, widget: string, required: false }
       - label: Autres vidéos du projet
         name: videos
         widget: list

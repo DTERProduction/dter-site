@@ -19,6 +19,8 @@ answer: "Un dossier de pré-production, puis un tournage avec un photographe par
 resultTitle: ""
 result: ""
 stats: []
+quote: "Globalement très content, c'est vraiment pro !"
+quoteFrom: "La Forge"
 videos:
   - title: "Opening Date"
     vimeoId: "1181916093"
