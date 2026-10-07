@@ -7,6 +7,7 @@ Site vitrine de DTER Production SRL (Thomas Dubois, production vidéo et photo, 
 - **Dépôt** : `DTERProduction/dter-site`. Branche de travail : `travail`. Branche en ligne : `main`.
 - **Hébergement** : Cloudflare (Workers, fichiers statiques), déploiement automatique à chaque push sur `main` (réglages dans `wrangler.jsonc`, redirections de chemins dans `public/_redirects`). Adresse technique : https://dter-site.dark-hall-2f48.workers.dev. Chaque push sur `travail` génère une prévisualisation Cloudflare. Netlify a été quitté en octobre 2026.
 - **Publier reste une décision de Thomas.** Tout le travail se fait sur la branche `travail`. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier. Ne jamais pousser directement sur `main`. Avant d'affirmer qu'une chose est ou n'est pas en ligne, vérifier `git log origin/main`.
+- **CMS** : `https://dter.eu/admin/` (Decap). Thomas s'y connecte avec GitHub ; la connexion passe par `worker/index.js` (routes `/api/auth` et `/api/callback`), dont les secrets `GITHUB_CLIENT_ID` et `GITHUB_CLIENT_SECRET` sont réglés dans Cloudflare. Le CMS enregistre directement sur `main`, donc en ligne. Avant tout travail : `git fetch` puis fusionner `origin/main` dans `travail`, sinon les modifications de Thomas seraient écrasées. Le même service renvoie www.dter.eu vers dter.eu.
 - **Domaine** : https://dter.eu. Le DNS de dter.eu et de thomasdubois.pro est géré chez Cloudflare (domaines achetés chez Squarespace, dont le tableau DNS n'est plus lu). thomasdubois.pro redirige vers dter.eu par une règle de redirection Cloudflare. Toute modification DNS doit préserver les enregistrements mail (MX, SPF, DKIM, DMARC) des deux domaines.
 - **Email** : les adresses @dter.eu et @thomasdubois.pro arrivent dans la même boîte Google Workspace (dter.eu est un domaine alias).
 - **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Web3Forms pour l'envoi des formulaires par email (clé `formKey` dans `site.json`).
@@ -73,7 +74,6 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Projets : 29 fiches en ligne d'après la liste de Thomas. Fiches encore sans texte : PwC Future of Sales, PwC Prophix, Nesquik, Pfizer, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
 - Ajouter les logos clients et la photo du studio. Le portrait de Thomas (`src/assets/thomas-dubois.jpg`) est sur la carte « Parler à Thomas » de l'accueil.
 - Photo : 35 images choisies par Thomas, rangées en trois thématiques (Événement, Brand content, Corporate), une série par thématique.
-- Rediriger www.dter.eu vers dter.eu (règle de redirection Cloudflare). Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.
-- Connecter Decap à GitHub demande un petit service d'authentification maintenant que le site est chez Cloudflare.
+- Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.
 - Google Search Console et Bing Webmaster Tools : déclarer dter.eu et soumettre le sitemap.
 - Les conditions générales et la politique de confidentialité n'ont pas été relues par un juriste.

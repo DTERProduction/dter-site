@@ -3,6 +3,15 @@ backend:
   name: github
   repo: DTERProduction/dter-site
   branch: main
+  # Connexion à GitHub assurée par le petit service du site (worker/index.js).
+  base_url: https://dter.eu
+  auth_endpoint: api/auth
+  commit_messages:
+    create: 'Contenu : ajout de {{collection}} « {{slug}} »'
+    update: 'Contenu : modification de {{collection}} « {{slug}} »'
+    delete: 'Contenu : suppression de {{collection}} « {{slug}} »'
+    uploadMedia: 'Contenu : ajout du fichier {{path}}'
+    deleteMedia: 'Contenu : suppression du fichier {{path}}'
 # Permet de tester le CMS en local avec "npm run cms" dans un second terminal.
 local_backend: true
 locale: fr

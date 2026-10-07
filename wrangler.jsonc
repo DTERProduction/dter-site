@@ -1,10 +1,15 @@
 {
-  // Hébergement Cloudflare : le site est statique, Cloudflare sert simplement le dossier dist.
+  // Hébergement Cloudflare. Le site est statique : Cloudflare sert le dossier dist.
+  // Le petit service worker/index.js ne s'exécute que pour la connexion du CMS (/api/...)
+  // et pour renvoyer www.dter.eu vers dter.eu.
   "name": "dter-site",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "html_handling": "force-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": true
   }
 }
