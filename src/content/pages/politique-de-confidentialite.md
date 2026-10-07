@@ -15,6 +15,7 @@ Pour toute question sur vos données, écrivez à hello@thomasdubois.pro.
 Nous collectons uniquement les données que vous nous transmettez :
 
 - via les formulaires du site : nom et prénom, société, adresse email, téléphone, type de projet, date ou échéance souhaitée, et le contenu de votre message ;
+- avec chaque demande envoyée par un formulaire : la page d'où elle part et, si vous êtes arrivé par une annonce, les références de cette annonce (source, campagne, mot-clé) présentes dans l'adresse de la page. Aucun cookie n'est utilisé pour cela ;
 - lorsque vous nous contactez par email, téléphone, WhatsApp ou lors de la prise d'un rendez-vous ;
 - dans le cadre d'une commande : coordonnées de facturation et informations nécessaires à la réalisation du projet.
 

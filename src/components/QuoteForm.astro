@@ -2,8 +2,16 @@
 interface Props { name: string; title: string; dateLabel?: string; messageLabel?: string; full?: boolean; onDark?: boolean; submit?: string; }
 const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre projet en quelques lignes', full = false, onDark = false, submit = 'Envoyer ma demande' } = Astro.props;
 ---
-<form id="devis" class:list={['form', { 'on-dark': onDark }]} name={name} method="POST" action="/merci/" data-netlify="true" netlify-honeypot="site-web" aria-label={title}>
+<form id="devis" class:list={['form', { 'on-dark': onDark }]} name={name} method="POST" action={`/merci/?demande=${name}`} data-netlify="true" netlify-honeypot="site-web" aria-label={title}>
   <input type="hidden" name="form-name" value={name} />
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  <input type="hidden" name="source" data-utm="utm_source" />
+  <input type="hidden" name="support" data-utm="utm_medium" />
+  <input type="hidden" name="campagne" data-utm="utm_campaign" />
+  <input type="hidden" name="annonce" data-utm="utm_content" />
+  <input type="hidden" name="mot-cle" data-utm="utm_term" />
+  <input type="hidden" name="clic-google" data-utm="gclid" />
+  <input type="hidden" name="clic-meta" data-utm="fbclid" />
   <p hidden><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off" /></label></p>
   <span class="form-title">{title}</span>
   {onDark && <small>Gratuit et sans engagement.</small>}
@@ -32,3 +40,9 @@ const { name, title, dateLabel = 'Échéance souhaitée', messageLabel = 'Votre 
   <button class:list={['btn', onDark ? 'btn-accent' : 'btn-dark']} type="submit">{submit}</button>
   <small>{onDark ? 'Réponse de Thomas, fondateur de DTER, en personne. ' : ''}Vos données servent uniquement à vous répondre. <a href="/politique-de-confidentialite/" style="text-decoration:underline">Politique de confidentialité</a></small>
 </form>
+
+<script>
+  // Provenance de la visite : lue dans l'adresse de la page, sans cookie, et jointe à la demande.
+  const params = new URLSearchParams(location.search);
+  document.querySelectorAll<HTMLInputElement>('input[data-utm]').forEach((i) => { i.value = params.get(i.dataset.utm || '') || ''; });
+</script>

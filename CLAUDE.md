@@ -49,6 +49,8 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - **Vidéos** : hébergées sur Vimeo, chargées au clic (sauf le fond du hero), avec `dnt=1`.
 - **Rideau** : au chargement et à chaque changement de page, deux volets sombres se ferment et s'ouvrent comme une coupe au montage, avec le logo. À la première visite, un compteur de timecode tourne environ une seconde. Tout est dans `motion.ts` (fonctions `openCurtain` et `closeCurtainThen`) et la section « Rideau » de `global.css`.
 - **Animations** : toutes désactivées si l'utilisateur a demandé moins d'animations. Les éléments animés sont listés à deux endroits qui doivent rester identiques : le sélecteur `blocks` dans `motion.ts` et la règle `.js-motion` dans `global.css`.
+- **Menu de l'univers photo** : sur `/photo/` et `/services/photographie-corporate/`, le menu devient Galerie, Tarifs et déroulé, Demander un devis.
+- **Suivi des conversions** : chaque formulaire porte son propre nom (`contact`, `lp-<landing>`) et joint à la demande la page d'envoi et les paramètres d'annonce de l'adresse (`utm_*`, `gclid`, `fbclid`), sans cookie. Après envoi, le visiteur arrive sur `/merci/?demande=<nom du formulaire>`.
 - **Vie privée** : aucun cookie publicitaire ni mesure d'audience. Si un pixel ou un outil de statistiques est ajouté, mettre à jour la politique de confidentialité et ajouter un bandeau de consentement.
 
 ## Prix d'appel validés (HTVA)

@@ -208,8 +208,8 @@ function openCurtain() {
   }
   tl.call(start)
     .to(curtainMid, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' })
-    .to(curtainTop, { yPercent: -101, duration: 0.9, ease: 'expo.inOut' }, '<0.05')
-    .to(curtainBottom, { yPercent: 101, duration: 0.9, ease: 'expo.inOut' }, '<');
+    .fromTo(curtainTop, { y: 0, yPercent: 0 }, { yPercent: -101, duration: 0.9, ease: 'expo.inOut' }, '>-0.05')
+    .fromTo(curtainBottom, { y: 0, yPercent: 0 }, { yPercent: 101, duration: 0.9, ease: 'expo.inOut' }, '<');
 }
 
 function closeCurtainThen(go: () => void) {
@@ -217,9 +217,11 @@ function closeCurtainThen(go: () => void) {
   root.classList.add('pt-leave');
   gsap.set('.curtain-tc', { display: 'none' });
   gsap.timeline({ onComplete: go })
-    .fromTo(curtainTop, { yPercent: -101 }, { yPercent: 0, duration: 0.55, ease: 'expo.inOut' })
-    .fromTo(curtainBottom, { yPercent: 101 }, { yPercent: 0, duration: 0.55, ease: 'expo.inOut' }, '<')
-    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }, '-=0.25');
+    // y: 0 est indispensable : sans lui, le décalage de départ défini en CSS s'ajoute et les volets restent hors de l'écran.
+    .fromTo(curtainTop, { y: 0, yPercent: -101 }, { y: 0, yPercent: 0, duration: 0.55, ease: 'expo.inOut' })
+    .fromTo(curtainBottom, { y: 0, yPercent: 101 }, { y: 0, yPercent: 0, duration: 0.55, ease: 'expo.inOut' }, '<')
+    // Le logo n'apparaît qu'une fois les volets fermés.
+    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' }, '>-0.08');
 }
 
 if (reduced) {

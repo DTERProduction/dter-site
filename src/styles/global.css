@@ -237,10 +237,11 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
 
 .btn { position: relative; overflow: hidden; transition: transform 0.3s ease; }
 .btn:active { transform: scale(0.97); }
-.roll { display: block; position: relative; }
+/* Le masque est sur le libellé lui-même : rien ne dépasse avant ni après l'animation. */
+.roll { display: block; position: relative; overflow: hidden; padding-block: 0.25em; margin-block: -0.25em; }
 .roll > span { display: block; transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1); }
-.roll::after { content: attr(data-label); position: absolute; left: 0; top: 0; width: 100%; transform: translateY(160%); transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1); }
-.btn:hover .roll > span { transform: translateY(-160%); }
+.roll::after { content: attr(data-label); position: absolute; left: 0; top: 0.25em; width: 100%; transform: translateY(200%); transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1); }
+.btn:hover .roll > span { transform: translateY(-200%); }
 .btn:hover .roll::after { transform: translateY(0); }
 
 .h-xl { font-size: clamp(52px, 9vw, 128px); line-height: 0.88; }

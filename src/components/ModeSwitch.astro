@@ -3,7 +3,7 @@ import { getPhotoSeries } from '../lib/site';
 interface Props { videoHref?: string; }
 const { videoHref = '/' } = Astro.props;
 const hasPhotos = (await getPhotoSeries()).length > 0;
-const onPhoto = Astro.url.pathname.startsWith('/photo/');
+const onPhoto = Astro.url.pathname.startsWith('/photo/') || Astro.url.pathname.startsWith('/services/photographie-corporate/');
 ---
 {hasPhotos && (
   <div class="mode-switch" role="group" aria-label="Vidéo ou photo">
