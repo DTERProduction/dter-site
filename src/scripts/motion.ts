@@ -141,11 +141,28 @@ function init() {
   document.body.appendChild(badge);
   const bx = gsap.quickTo(badge, 'x', { duration: 0.35, ease: 'power3' });
   const by = gsap.quickTo(badge, 'y', { duration: 0.35, ease: 'power3' });
-  window.addEventListener('pointermove', (e) => { bx(e.clientX); by(e.clientY); }, { passive: true });
-  $$('a.project, a.stack-card').forEach((el) => {
-    el.addEventListener('pointerenter', () => badge.classList.add('is-on'));
-    el.addEventListener('pointerleave', () => badge.classList.remove('is-on'));
-  });
+  // Une seule règle : la pastille n'est visible que si la souris est réellement au-dessus d'un projet.
+  // On revérifie aussi pendant le défilement, car les cartes glissent sous la souris sans prévenir.
+  let mx = -1, my = -1, placed = false, queued = false;
+  const hideBadge = () => badge.classList.remove('is-on');
+  const check = () => {
+    queued = false;
+    if (mx < 0 || document.documentElement.classList.contains('pt-leave')) return hideBadge();
+    const over = document.elementFromPoint(mx, my)?.closest('a.project, a.stack-card');
+    badge.classList.toggle('is-on', !!over);
+  };
+  const ask = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;
+    mx = e.clientX; my = e.clientY;
+    if (!placed) { placed = true; gsap.set(badge, { x: mx, y: my }); }
+    bx(mx); by(my); ask();
+  }, { passive: true });
+  window.addEventListener('scroll', ask, { passive: true });
+  document.documentElement.addEventListener('pointerleave', () => { mx = -1; hideBadge(); });
+  window.addEventListener('blur', () => { mx = -1; hideBadge(); });
+  window.addEventListener('pointerdown', hideBadge, { passive: true });
+  window.addEventListener('pageshow', () => { mx = -1; hideBadge(); });
 
   // Services : aperçu qui suit la souris. Une image pour la vidéo, un jeu de cartes pour la photo, une table de montage pour la post-production.
   const rows = $$('.rows > a[data-kind]');

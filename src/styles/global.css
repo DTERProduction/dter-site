@@ -483,3 +483,4 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
   .mode-switch a:hover { color: var(--mut2); }
   .mode-switch a[aria-current]:hover { color: var(--bg); }
 }
+.pt-enter .cursor-badge, .pt-leave .cursor-badge { scale: 0; }
