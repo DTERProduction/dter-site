@@ -8,7 +8,7 @@ vimeoId: "1233648454"
 thumb: "https://i.vimeocdn.com/video/2209374646-456a3aecd735f6e21c8c2706f608a600619e84ca26960bc58d505d1515b5b723-d_1280?region=us"
 vertical: false
 featured: true
-order: 5
+order: 8
 summary: "Les séquences d'ouverture et le défilé de rue tournés pour un livestream de la marque depuis le Théâtre de Namur."
 year: "2026"
 partner: "Balance Event"
