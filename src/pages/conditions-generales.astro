@@ -1,0 +1,15 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+const page = await getEntry('pages', 'conditions-generales');
+const { Content } = await render(page!);
+const d = page!.data;
+---
+<Base title={`${d.title} · DTER Production`} description={d.description}>
+  <section class="wrap section stack" style="gap:24px">
+    <span class="eyebrow">Mentions légales</span>
+    <h1 class="display">{d.title}</h1>
+    {d.updated && <p class="mono mut2">Dernière mise à jour : {d.updated}</p>}
+    <div class="prose"><Content /></div>
+  </section>
+</Base>

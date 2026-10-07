@@ -4,3 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/legal/terms-and-conditions"
+  to = "/conditions-generales/"
+  status = 301
+
+[[redirects]]
+  from = "/terms-conditions"
+  to = "/conditions-generales/"
+  status = 301

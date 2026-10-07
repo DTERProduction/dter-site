@@ -326,3 +326,12 @@ a.btn:hover, a.project:hover, a.stack-card:hover, .rows > a:hover, a.hero-card:h
   .nav { flex-wrap: nowrap; gap: 4px 16px; }
   .nav .btn { padding: 11px 16px; white-space: nowrap; }
 }
+
+/* Pages de texte */
+.prose { max-width: 760px; color: var(--mut); }
+.prose h2 { font-weight: 600; font-size: 24px; letter-spacing: -0.025em; color: var(--ink); margin: 48px 0 14px; padding-top: 24px; border-top: 1px solid var(--line); }
+.prose p { margin: 0 0 14px; }
+.prose ul { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 8px; }
+.prose li { display: flex; gap: 12px; }
+.prose li::before { content: '●'; color: var(--accent); font-size: 0.7em; line-height: 2.1; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; word-break: break-word; }
