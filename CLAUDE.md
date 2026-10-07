@@ -4,8 +4,9 @@ Site vitrine de DTER Production SRL (Thomas Dubois, production vidéo et photo, 
 
 ## L'essentiel
 
-- **Dépôt** : `DTERProduction/dter-site`, branche `main`.
+- **Dépôt** : `DTERProduction/dter-site`. Branche de travail : `travail`. Branche en ligne : `main`.
 - **Hébergement** : Netlify, déploiement automatique à chaque push sur `main` (réglages dans `netlify.toml`).
+- **Publier coûte des crédits Netlify.** Tout le travail se fait sur la branche `travail`, qui ne déclenche aucune mise en ligne. On ne fusionne `travail` dans `main` que lorsque Thomas demande explicitement de publier, en regroupant le plus de changements possible. Ne jamais pousser directement sur `main`.
 - **Adresse provisoire** : https://cosmic-dodol-d7bf9f.netlify.app
 - **Domaine final** : thomasdubois.pro (encore sur Webflow, bascule à faire).
 - **Pile technique** : Astro (site statique), GSAP + ScrollTrigger + SplitText et Lenis pour les animations, Decap CMS pour le contenu, Netlify Forms pour les formulaires.
