@@ -59,7 +59,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="wrap head"><span class="eyebrow">Marques</span><h2 class="h2">{home.clientsTitle}</h2></div>
     <div class="marquee">
       <div class="marquee-track">
-        {[...clients.items, ...clients.items].map((c, i) => <span class="marquee-item" aria-hidden={i >= clients.items.length ? 'true' : undefined}>{c}</span>)}
+        {[...clients.items, ...clients.items].map((c, i) => (
+          <span class:list={['marquee-item', { 'has-logo': c.logo }]} aria-hidden={i >= clients.items.length ? 'true' : undefined}>
+            {c.logo ? <img src={c.logo} alt={c.name} loading="lazy" decoding="async" /> : c.name}
+          </span>
+        ))}
       </div>
     </div>
   </section>

@@ -257,7 +257,13 @@ collections:
         label: Clients
         file: src/data/clients.json
         fields:
-          - { label: Clients, name: items, widget: list }
+          - label: Clients
+            name: items
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { label: Nom, name: name, widget: string }
+              - { label: Logo, name: logo, widget: image, required: false, media_folder: /public/images/clients, public_folder: /images/clients, hint: 'Fichier officiel fourni par le client, SVG ou PNG à fond transparent. Sans logo, le nom s''affiche en texte.' }
       - name: testimonials
         label: Témoignages
         file: src/data/testimonials.json

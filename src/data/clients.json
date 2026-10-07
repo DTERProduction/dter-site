@@ -1,1 +1,76 @@
-{ "items": ["Forbes", "La Mer", "Pfizer", "BabylissPro", "Cohabs", "Mix", "CAP 48", "Celestetic"] }
+{
+  "items": [
+    {
+      "name": "L'Oréal",
+      "logo": ""
+    },
+    {
+      "name": "Peugeot",
+      "logo": ""
+    },
+    {
+      "name": "PwC",
+      "logo": ""
+    },
+    {
+      "name": "Pfizer",
+      "logo": ""
+    },
+    {
+      "name": "Mastercard",
+      "logo": ""
+    },
+    {
+      "name": "Aperol",
+      "logo": ""
+    },
+    {
+      "name": "Carolina Herrera",
+      "logo": ""
+    },
+    {
+      "name": "Bruxelles Mobilité",
+      "logo": ""
+    },
+    {
+      "name": "Mondelez",
+      "logo": ""
+    },
+    {
+      "name": "La Mer",
+      "logo": ""
+    },
+    {
+      "name": "Cohabs",
+      "logo": ""
+    },
+    {
+      "name": "RTBF",
+      "logo": ""
+    },
+    {
+      "name": "Golazo",
+      "logo": ""
+    },
+    {
+      "name": "Forbes",
+      "logo": ""
+    },
+    {
+      "name": "BabylissPro",
+      "logo": ""
+    },
+    {
+      "name": "Mix",
+      "logo": ""
+    },
+    {
+      "name": "CAP 48",
+      "logo": ""
+    },
+    {
+      "name": "Celestetic",
+      "logo": ""
+    }
+  ]
+}
