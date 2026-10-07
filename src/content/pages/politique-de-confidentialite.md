@@ -55,6 +55,8 @@ Ce site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience.
 
 Les vidéos sont hébergées par Vimeo. Sur la page d'accueil, la vidéo d'arrière-plan est chargée depuis Vimeo à l'ouverture de la page, et la vidéo de coulisses lorsqu'elle arrive à l'écran. Les autres vidéos sont chargées uniquement lorsque vous cliquez pour les lire. Elles sont intégrées avec l'option qui demande à Vimeo de ne pas suivre votre navigation. Vimeo reçoit néanmoins des données techniques, dont votre adresse IP.
 
+Sur la page contact, le calendrier de prise de rendez-vous est fourni par Google. Il n'est chargé que lorsque vous cliquez sur « Afficher les créneaux ». Google reçoit alors des données techniques, dont votre adresse IP, et peut déposer ses propres cookies.
+
 Les liens vers Instagram, WhatsApp et la prise de rendez-vous mènent à des services tiers, soumis à leur propre politique de confidentialité.
 
 ## 7. Vos droits

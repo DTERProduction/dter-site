@@ -6,7 +6,7 @@ const rows = [
   ['Email', site.email, `mailto:${site.email}`],
   ['Téléphone', site.phone, `tel:${site.phoneHref}`],
   ['WhatsApp', 'Écrire sur WhatsApp', site.whatsapp],
-  ['Appel de 20 min', 'Choisir un créneau', site.calendar],
+  ['Appel de 20 min', 'Choisir un créneau', site.calendarEmbed ? '#appel' : site.calendar],
 ];
 ---
 <Base title="Contact et devis · DTER Production, Bruxelles" description="Demandez un devis pour votre vidéo corporate, aftermovie, brand content ou shooting photo. Thomas vous répond en personne.">
@@ -22,4 +22,48 @@ const rows = [
     </div>
     <div style="flex:1 1 420px;min-width:0"><QuoteForm name="contact" title="Demander un devis" full /></div>
   </section>
+
+  {site.calendarEmbed && (
+    <section class="wide" id="appel">
+      <div class="panel booking">
+        <div class="booking-side">
+          <span class="eyebrow">Appel découverte</span>
+          <h2 class="booking-title">20 minutes pour cadrer votre projet.</h2>
+          <ul class="booking-points">
+            <li><span class="mono">01</span>Vous choisissez un créneau, la confirmation arrive par email.</li>
+            <li><span class="mono">02</span>On parle objectif, public, délai et budget.</li>
+            <li><span class="mono">03</span>Vous recevez un devis clair dans la foulée.</li>
+          </ul>
+          <p class="booking-note">Gratuit et sans engagement. En visio ou par téléphone.</p>
+        </div>
+        <div class="booking-frame" data-booking={site.calendarEmbed}>
+          <div class="booking-bar mono"><i></i><i></i><i></i><span>Agenda de Thomas</span></div>
+          <div class="booking-body">
+            <div class="booking-grid" aria-hidden="true">{Array.from({ length: 28 }).map((_, i) => <i style={`--i:${i}`}></i>)}</div>
+            <div class="booking-cta">
+              <button class="btn btn-accent" type="button" data-booking-open>Afficher les créneaux</button>
+              <a class="booking-alt" href={site.calendar} target="_blank" rel="noopener">Ouvrir dans un nouvel onglet</a>
+              <small>Le calendrier est fourni par Google et se charge à votre demande.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <script>
+    const frame = document.querySelector<HTMLElement>('[data-booking]');
+    const open = () => {
+      if (!frame || frame.classList.contains('is-open')) return;
+      const body = frame.querySelector('.booking-body')!;
+      const f = document.createElement('iframe');
+      f.src = frame.dataset.booking!;
+      f.title = 'Choisir un créneau pour un appel avec Thomas';
+      f.loading = 'lazy';
+      frame.classList.add('is-loading');
+      f.addEventListener('load', () => { frame.classList.remove('is-loading'); frame.classList.add('is-open'); });
+      body.appendChild(f);
+    };
+    frame?.querySelector('[data-booking-open]')?.addEventListener('click', open);
+  </script>
 </Base>

@@ -45,7 +45,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </div>
       <div class="hero-over">
         <p class="hero-line">{home.heroLines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
-        <a class="hero-card" href={site.calendar}>
+        <a class="hero-card" href={site.calendarEmbed ? '/contact/#appel' : site.calendar}>
           <span class="avatar">TD</span>
           <span><strong>Parler à Thomas</strong><small>Fondateur de DTER · appel de 20 min</small></span>
           <span class="hero-card-arrow" aria-hidden="true">→</span>
@@ -179,7 +179,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <span class="mono trail-hint">Bougez la souris</span>
       <h2 class="cta-title" style="font-size:clamp(44px,7.4vw,120px);flex-basis:100%">{home.ctaTitle}</h2>
       <div class="row" style="align-items:center;gap:12px 28px">
-        <a class="btn btn-accent" href={site.calendar}>Réserver un appel</a>
+        <a class="btn btn-accent" href={site.calendarEmbed ? '/contact/#appel' : site.calendar}>Réserver un appel</a>
         <a class="link" style="font-weight:500" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
     </div>

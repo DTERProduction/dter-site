@@ -189,6 +189,7 @@ collections:
           - { label: Téléphone (format lien), name: phoneHref, widget: string }
           - { label: Lien WhatsApp, name: whatsapp, widget: string }
           - { label: Lien de prise de rendez-vous, name: calendar, widget: string }
+          - { label: Calendrier intégré à la page contact (adresse du iframe Google), name: calendarEmbed, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }
           - { label: Conditions générales, name: legal, widget: string }
           - { label: Politique de confidentialité, name: privacy, widget: string }
