@@ -76,5 +76,5 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Logos clients : le bandeau de l'accueil affiche le logo quand un fichier est fourni (`logo` dans `src/data/clients.json`, fichiers dans `public/images/clients/`), sinon le nom en texte. Dès que six clients ont un logo, seuls ceux-là sont affichés. N'utiliser que des fichiers officiels fournis par le client ou par Thomas, jamais un logo redessiné. Photo du studio à ajouter. Le portrait de Thomas (`src/assets/thomas-dubois.jpg`) est sur la carte « Parler à Thomas » de l'accueil.
 - Photo : 35 images choisies par Thomas, rangées en trois thématiques (Événement, Brand content, Corporate), une série par thématique.
 - Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.
-- Google Search Console et Bing Webmaster Tools : déclarer dter.eu et soumettre le sitemap.
+- Google Search Console (propriété Domaine dter.eu) et Bing Webmaster Tools : faits le 8 octobre 2026, sitemap `https://dter.eu/sitemap-index.xml` envoyé. Reste : fiche Google Business Profile.
 - Les conditions générales et la politique de confidentialité n'ont pas été relues par un juriste.
