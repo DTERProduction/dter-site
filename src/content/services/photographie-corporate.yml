@@ -1,6 +1,6 @@
 name: "Photographie corporate"
 order: 40
-title: "Photographe corporate à Bruxelles : portraits, reportage, événement"
+title: "Photographe corporate à Bruxelles : portraits, événements"
 seoDescription: "Portraits d'équipe, reportage d'entreprise et photo d'événement à Bruxelles. Livraison en cinq jours ouvrables. À partir de 750 € HTVA."
 lead: "Lumière, composition, émotion. Des images qui ressemblent à votre entreprise, cohérentes avec vos films et utilisables partout."
 short: "Portraits, reportage d'entreprise et photo d'événement. Des images cohérentes avec vos films, tournées le même jour si besoin."
@@ -43,7 +43,7 @@ faq:
 # Version anglaise
 en:
   name: Corporate photography
-  title: 'Corporate photographer in Brussels: portraits, reportage, events'
+  title: 'Corporate photographer in Brussels: portraits, events'
   seoDescription: Team portraits, corporate reportage and event photography in Brussels. Delivery in five working days. From €750 excl. VAT.
   lead: Light, composition, emotion. Images that look like your company, consistent with your films and usable everywhere.
   short: Portraits, corporate reportage and event photography. Images consistent with your films, shot the same day if needed.
