@@ -68,7 +68,7 @@ const business = {
       // Masque les éléments animés avant leur entrée. Filet de sécurité : tout réapparaît si le script d'animation ne démarre pas.
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('js-motion', 'pt-enter');
-        setTimeout(function () { if (!window.__motion) document.documentElement.classList.remove('js-motion'); }, 4000);
+        setTimeout(function () { if (!window.__motion) document.documentElement.classList.remove('js-motion'); }, 1500);
       }
     </script>
   </head>

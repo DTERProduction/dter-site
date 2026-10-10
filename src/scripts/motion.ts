@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
+import { prefetch } from 'astro:prefetch';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -43,8 +44,8 @@ function init() {
       gsap.set(el, { visibility: 'visible' });
       gsap.from(split.lines, {
         yPercent: 110,
-        duration: 0.9,
-        ease: 'power4.inOut',
+        duration: 0.7,
+        ease: 'power4.out',
         stagger: 0.06,
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       });
@@ -53,12 +54,13 @@ function init() {
   });
 
   // Blocs : montée douce, décalée entre voisins.
-  const blocks = '.project:not(.stack-card), .rows > *, .steps > *, .faq-item, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .price-box, .contact-rows > *, .form, .filters, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
-  gsap.set(blocks, { visibility: 'visible', opacity: 0, y: 36 });
+  // L'UI fonctionnelle (formulaires, filtres, FAQ, coordonnées, prix) n'en fait pas partie : elle est visible tout de suite.
+  const blocks = '.project:not(.stack-card), .rows > *, .steps > *, .facts > *, .stats > *, .quotes figure, .checks li, .lead, .eyebrow, .case > *, .marquee, .hero-card, .wide > .media, .lp-bullets li, .photo-item';
+  gsap.set(blocks, { visibility: 'visible', opacity: 0, y: 16 });
   ScrollTrigger.batch(blocks, {
     start: 'top 92%',
     once: true,
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.inOut', stagger: 0.05, overwrite: true }),
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.05, overwrite: true }),
   });
 
   // Filtre des réalisations : les cartes restantes remontent dans la page sans passer par leur point de déclenchement.
@@ -76,7 +78,7 @@ function init() {
     gsap.set(cards, { visibility: 'visible' });
     gsap.from(cards, {
       opacity: 0, y: 140, rotateX: -38, rotate: (i) => (i - (cards.length - 1) / 2) * 5, transformOrigin: '50% 100%',
-      duration: 0.95, ease: 'power4.inOut', stagger: 0.09,
+      duration: 0.7, ease: 'power3.out', stagger: 0.07,
       scrollTrigger: { trigger: group, start: 'top 85%', once: true },
     });
   });
@@ -338,12 +340,12 @@ function openCurtain() {
     tl.to(o, { f: 22, duration: 0.75, ease: 'power1.in', onUpdate: () => { tcEl.textContent = tc(o.f); } });
   } else {
     gsap.set('.curtain-tc', { display: 'none' });
-    tl.to({}, { duration: 0.12 });
   }
+  // Levée rapide, sans attente : la page est déjà prête.
   tl.call(start)
-    .to(curtainMid, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' })
-    .fromTo(curtainTop, { y: 0, yPercent: 0 }, { yPercent: -101, duration: 0.7, ease: 'expo.inOut' }, '>-0.05')
-    .fromTo(curtainBottom, { y: 0, yPercent: 0 }, { yPercent: 101, duration: 0.7, ease: 'expo.inOut' }, '<');
+    .to(curtainMid, { opacity: 0, scale: 0.9, duration: 0.15, ease: 'power2.out' })
+    .fromTo(curtainTop, { y: 0, yPercent: 0 }, { yPercent: -101, duration: 0.45, ease: 'expo.out' }, '>-0.05')
+    .fromTo(curtainBottom, { y: 0, yPercent: 0 }, { yPercent: 101, duration: 0.45, ease: 'expo.out' }, '<');
 }
 
 function closeCurtainThen(go: () => void) {
@@ -352,11 +354,15 @@ function closeCurtainThen(go: () => void) {
   gsap.set('.curtain-tc', { display: 'none' });
   gsap.timeline({ onComplete: go })
     // y: 0 est indispensable : sans lui, le décalage de départ défini en CSS s'ajoute et les volets restent hors de l'écran.
-    .fromTo(curtainTop, { y: 0, yPercent: -101 }, { y: 0, yPercent: 0, duration: 0.42, ease: 'power3.inOut' })
-    .fromTo(curtainBottom, { y: 0, yPercent: 101 }, { y: 0, yPercent: 0, duration: 0.42, ease: 'power3.inOut' }, '<')
-    // Le logo n'apparaît qu'une fois les volets fermés.
-    .fromTo(curtainMid, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.18, ease: 'power2.out' }, '>-0.08');
+    .fromTo(curtainTop, { y: 0, yPercent: -101 }, { y: 0, yPercent: 0, duration: 0.2, ease: 'power3.out' })
+    .fromTo(curtainBottom, { y: 0, yPercent: 101 }, { y: 0, yPercent: 0, duration: 0.2, ease: 'power3.out' }, '<');
 }
+
+// Sur mobile, le doigt qui se pose sur un lien lance déjà le chargement de la page.
+document.addEventListener('touchstart', (e) => {
+  const a = (e.target as Element).closest?.('a');
+  if (a && a.origin === location.origin && !a.pathname.startsWith('/admin')) prefetch(a.href, { ignoreSlowConnection: true });
+}, { passive: true });
 
 if (reduced) {
   root.classList.remove('js-motion', 'pt-enter');
