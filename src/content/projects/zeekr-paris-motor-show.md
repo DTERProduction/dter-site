@@ -12,7 +12,7 @@ featured: false
 order: 9
 summary: "Le lancement du all-new Zeekr 7X au Paris Motor Show, filmé et monté sur place pendant le salon."
 year: "2026"
-partner: ""
+partner: "Crolle"
 deliveredIn: "Pendant le salon"
 objectiveTitle: ""
 objective: "Faire vivre la première du all-new Zeekr 7X à Paris et l'énergie du stand, partagé avec Geely Auto et Lynk & Co. Les images devaient servir partout : kit presse, site, CRM et réseaux sociaux. Au programme, 10 vidéos sociales verticales et 9 séries photo en trois jours, les photos livrées le jour même."
