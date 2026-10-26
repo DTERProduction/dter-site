@@ -1,10 +1,11 @@
 ---
-interface Props { name: string; title: string; dateLabel?: string; messageLabel?: string; full?: boolean; onDark?: boolean; submit?: string; }
+interface Props { name: string; title: string; dateLabel?: string; messageLabel?: string; full?: boolean; onDark?: boolean; submit?: string; company?: boolean; note?: string; }
 import site from '../data/site.json';
 import { langOf, useT, link } from '../lib/i18n';
 const lang = langOf(Astro.url);
 const t = useT(lang);
-const { name, title, dateLabel = t('form.deadline'), messageLabel = t('form.message'), full = false, onDark = false, submit = t('form.send') } = Astro.props;
+// company : le champ Société (retiré des landings, la société se lit dans l'email pro). note : prix ou réassurance sous le titre.
+const { name, title, dateLabel = t('form.deadline'), messageLabel = t('form.message'), full = false, onDark = false, submit = t('form.send'), company = true, note } = Astro.props;
 // Avec une clé Web3Forms, la demande part par email. Sans clé, on garde les formulaires Netlify.
 const key = (site as { formKey?: string }).formKey;
 const thanks = `${link(lang, '/merci/')}?demande=${name}`;
@@ -32,9 +33,10 @@ const thanks = `${link(lang, '/merci/')}?demande=${name}`;
   <p hidden><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off" /></label></p>
   <span class="form-title">{title}</span>
   {onDark && <small>{t('form.free')}</small>}
+  {note && <p class="form-note">{note}</p>}
   <div class="fields">
     <label class="field">{t('form.name')}<input type="text" name="nom" autocomplete="name" required /></label>
-    <label class="field">{t('form.company')}<input type="text" name="societe" autocomplete="organization" /></label>
+    {company && <label class="field">{t('form.company')}<input type="text" name="societe" autocomplete="organization" /></label>}
   </div>
   <div class="fields">
     <label class="field">{t('form.email')}<input type="email" name="email" autocomplete="email" required /></label>
@@ -55,6 +57,7 @@ const thanks = `${link(lang, '/merci/')}?demande=${name}`;
   <label class="field">{dateLabel}<input type="date" name="date" /></label>
   <label class="field">{messageLabel}<textarea name="message" rows={full ? 4 : 3}></textarea></label>
   <button class:list={['btn', onDark ? 'btn-accent' : 'btn-dark']} type="submit">{submit}</button>
+  <slot />
   <small>{onDark ? t('form.personal') : ''}{t('form.data')} <a href="/politique-de-confidentialite/" hreflang="fr" style="text-decoration:underline">{t('form.policy')}</a></small>
 </form>
 

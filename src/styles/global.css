@@ -209,6 +209,10 @@ button, input, select, textarea { font: inherit; }
 .form > .field { flex: none; }
 .fields { display: flex; flex-wrap: wrap; gap: 16px; }
 .form small { font-size: 13px; color: var(--mut2); }
+.form-note { margin: -6px 0 0; font-weight: 600; font-size: 15px; }
+.form-proof { margin: 0; padding-top: 14px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.45; }
+.form-proof cite { font-style: normal; font-size: 13px; color: var(--mut2); }
+.form-reassure { margin: 0; font-size: 14px; color: var(--mut2); }
 .contact-rows { border-top: 1px solid var(--ink); max-width: 560px; }
 .contact-rows a { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .contact-rows strong { font-weight: 600; font-size: 19px; }

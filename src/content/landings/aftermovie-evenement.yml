@@ -1,7 +1,7 @@
 seoTitle: "Aftermovie et captation d'événement à Bruxelles · DTER"
 eyebrow: "Aftermovie · Captation d'événement · Bruxelles"
 title: "Votre événement dure un soir. Son aftermovie travaille toute l'année."
-lead: "Captation vidéo et photo de conférences, lancements et soirées d'entreprise, à Bruxelles et partout en Belgique. Un seul interlocuteur, un devis clair sous 24 h."
+lead: "Un film qui fait revivre votre événement, vend la prochaine édition et nourrit vos réseaux pendant des mois. Conférences, lancements et soirées d'entreprise, à Bruxelles et partout en Belgique."
 bullets:
   - "Aftermovie et extraits verticaux pour vos réseaux"
   - "Livraison en une à trois semaines, deux tours de retours inclus"
@@ -9,6 +9,9 @@ bullets:
 heroProject: "aperol-rock-werchter"
 vimeoId: "1233648452"
 formTitle: "Recevez votre devis sous 24 h"
+priceNote: "À partir de 1 500 € HTVA. Devis détaillé sous 24 h."
+quote: "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes."
+quoteFrom: "BabylissPro"
 dateLabel: "Date de l'événement"
 messageLabel: "Votre événement en deux lignes"
 clientsLabel: "Ils nous ont confié leur événement"
@@ -48,12 +51,14 @@ en:
   seoTitle: Event aftermovie and video coverage in Brussels · DTER
   eyebrow: Aftermovie · Event coverage · Brussels
   title: Your event lasts one evening. Its aftermovie works all year.
-  lead: Video and photo coverage of conferences, launches and corporate evenings, in Brussels and across Belgium. One point of contact, a clear quote within 24 hours.
+  lead: A film that brings your event back to life, sells the next edition and feeds your social channels for months. Conferences, launches and corporate evenings, in Brussels and across Belgium.
   bullets:
   - Aftermovie and vertical clips for your social channels
   - Delivery in one to three weeks, two rounds of revisions included
   - Video and photo by the same crew, on the same day
   formTitle: Get your quote within 24 hours
+  priceNote: From €1,500 excl. VAT. Detailed quote within 24 hours.
+  quote: From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations.
   dateLabel: Event date
   messageLabel: Your event in two lines
   clientsLabel: They trusted us with their event

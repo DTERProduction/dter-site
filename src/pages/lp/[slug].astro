@@ -6,7 +6,6 @@ import QuoteForm from '../../components/QuoteForm.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import site from '../../data/site.json';
-import testimonials from '../../data/testimonials.json';
 import { getProjects, catLabel } from '../../lib/site';
 import { langOf, useT, link, loc } from '../../lib/i18n';
 
@@ -26,8 +25,6 @@ const examples = l.examples.map((id) => all.find((p) => p.id === id)).filter(Boo
 const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : undefined;
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
-const q0: any = testimonials.items[0];
-const quote = lang === 'en' ? { ...q0, quote: q0.quoteEn || q0.quote, role: q0.roleEn || q0.role } : q0;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
@@ -40,7 +37,15 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <ul class="lp-bullets">{l.bullets.map((b) => <li>{b}</li>)}</ul>
         {heroId && <Vimeo id={heroId} thumb={poster} label={t('lp.example')} small />}
       </div>
-      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark submit={t('form.getMine')} />
+      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} note={l.priceNote} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark company={false} submit={t('form.getMine')}>
+        {l.reassurance && <p class="form-reassure">{l.reassurance}</p>}
+        {l.quote && (
+          <figure class="form-proof">
+            <blockquote style="margin:0">« {l.quote} »</blockquote>
+            {l.quoteFrom && <cite>{l.quoteFrom}</cite>}
+          </figure>
+        )}
+      </QuoteForm>
     </div>
   </section>
 
@@ -72,12 +77,6 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </section>
   )}
 
-  <section class="wide section" aria-label={lang === 'en' ? 'Testimonial' : 'Témoignage'}>
-    <figure class="panel stack" style="gap:22px">
-      <blockquote class="quote-lg">« {quote.quote} »</blockquote>
-      <figcaption class="quote-by"><strong>{quote.name}</strong> · {quote.role}</figcaption>
-    </figure>
-  </section>
 
   <section class="wrap section-b split">
     <h2 class="h2 side">{l.faqTitle}</h2>

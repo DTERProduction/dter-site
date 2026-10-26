@@ -8,14 +8,17 @@ interface Props { ask?: boolean; }
 const { ask = false } = Astro.props;
 const lang = langOf(Astro.url);
 const t = useT(lang);
-const cfg = site as { googleAds?: string; googleAdsLabel?: string };
+const cfg = site as { googleAds?: string; googleAdsLabel?: string; googleAdsCallLabel?: string };
 const id = (cfg.googleAds || '').trim();
 const label = (cfg.googleAdsLabel || '').trim();
 const isThanks = /^\/(en\/)?(merci|thank-you)\/?$/.test(Astro.url.pathname);
 const conv = isThanks && label ? `${id}/${label}` : '';
+// Second compteur : les clics sur le numéro de téléphone depuis une landing.
+const callLabel = (cfg.googleAdsCallLabel || '').trim();
+const call = !isThanks && callLabel ? `${id}/${callLabel}` : '';
 ---
 {id && ask && (
-  <div class="consent" data-consent data-ads={id} data-conv={conv} role="region" aria-label={t('ads.label')} hidden>
+  <div class="consent" data-consent data-ads={id} data-conv={conv} data-call={call} role="region" aria-label={t('ads.label')} hidden>
     <p>{t('ads.text')} <a href="/politique-de-confidentialite/#cookies" hreflang="fr">{t('ads.more')}</a></p>
     <div class="consent-actions">
       <button type="button" class="btn btn-light" data-choice="no">{t('ads.refuse')}</button>
@@ -39,6 +42,11 @@ const conv = isThanks && label ? `${id}/${label}` : '';
     w.gtag('js', new Date());
     w.gtag('config', el.dataset.ads, { allow_ad_personalization_signals: false });
     if (el.dataset.conv) w.gtag('event', 'conversion', { send_to: el.dataset.conv });
+    if (el.dataset.call) {
+      document.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a[href^="tel:"]')) w.gtag('event', 'conversion', { send_to: el.dataset.call });
+      });
+    }
     const s = document.createElement('script');
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${el.dataset.ads}`;

@@ -175,6 +175,10 @@ collections:
       - { label: Projet en tête de page, name: heroProject, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], required: false, hint: 'Si ce projet n''a pas encore de vidéo, la vidéo de secours ci-dessous est utilisée' }
       - { label: Vidéo de secours (identifiant Vimeo), name: vimeoId, widget: string, required: false }
       - { label: Titre du formulaire, name: formTitle, widget: string }
+      - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
+      - { label: Réassurance près du formulaire, name: reassurance, widget: string, required: false }
+      - { label: Retour client sous le bouton, name: quote, widget: text, required: false }
+      - { label: Société du retour client, name: quoteFrom, widget: string, required: false, hint: 'Le nom de la société, jamais celui de la personne' }
       - { label: Libellé du champ date, name: dateLabel, widget: string }
       - { label: Libellé du champ message, name: messageLabel, widget: string }
       - { label: Titre des clients, name: clientsLabel, widget: string }
@@ -198,6 +202,9 @@ collections:
           - { label: Accroche, name: lead, widget: text, required: false }
           - { label: Arguments, name: bullets, widget: list, required: false }
           - { label: Titre du formulaire, name: formTitle, widget: string, required: false }
+          - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
+          - { label: Réassurance près du formulaire, name: reassurance, widget: string, required: false }
+          - { label: Retour client sous le bouton, name: quote, widget: text, required: false }
           - { label: Libellé du champ date, name: dateLabel, widget: string, required: false }
           - { label: Libellé du champ message, name: messageLabel, widget: string, required: false }
           - { label: Titre des clients, name: clientsLabel, widget: string, required: false }
@@ -277,6 +284,7 @@ collections:
           - { label: Calendrier intégré à la page contact (adresse du iframe Google), name: calendarEmbed, widget: string, required: false }
           - { label: "Google Ads : identifiant (AW-…), vide = aucune mesure", name: googleAds, widget: string, required: false }
           - { label: "Google Ads : libellé de la conversion « demande de devis »", name: googleAdsLabel, widget: string, required: false }
+          - { label: "Google Ads : libellé de la conversion « clic sur le téléphone »", name: googleAdsCallLabel, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }
           - { label: Conditions générales, name: legal, widget: string }
           - { label: Politique de confidentialité, name: privacy, widget: string }
