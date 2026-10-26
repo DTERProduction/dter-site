@@ -51,6 +51,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
   <section class="wrap stack" style="gap:24px;padding-top:clamp(48px,6vw,88px)" aria-label="Clients">
     <span class="eyebrow">{l.clientsLabel}</span>
+    {l.proof && <p class="h3" style="margin:0;max-width:760px">{l.proof}</p>}
     <div class="logos">{l.clients.map((c) => <span>{c}</span>)}</div>
   </section>
 

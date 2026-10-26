@@ -182,6 +182,7 @@ collections:
       - { label: Libellé du champ date, name: dateLabel, widget: string }
       - { label: Libellé du champ message, name: messageLabel, widget: string }
       - { label: Titre des clients, name: clientsLabel, widget: string }
+      - { label: Preuve chiffrée (sous le titre des clients), name: proof, widget: string, required: false }
       - { label: Clients, name: clients, widget: list }
       - { label: Titre des livrables, name: deliverTitle, widget: string }
       - { label: Livrables, name: deliverables, widget: list, summary: '{{fields.title}}', fields: *titled }
@@ -208,6 +209,7 @@ collections:
           - { label: Libellé du champ date, name: dateLabel, widget: string, required: false }
           - { label: Libellé du champ message, name: messageLabel, widget: string, required: false }
           - { label: Titre des clients, name: clientsLabel, widget: string, required: false }
+          - { label: Preuve chiffrée (sous le titre des clients), name: proof, widget: string, required: false }
           - { label: Titre des livrables, name: deliverTitle, widget: string, required: false }
           - { label: Livrables, name: deliverables, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
           - { label: Titre des exemples, name: examplesTitle, widget: string, required: false }

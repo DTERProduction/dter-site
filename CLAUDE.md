@@ -66,6 +66,8 @@ Tout champ ajouté au schéma doit aussi être ajouté dans `public/admin/config
 - Photographie corporate : 750 €
 - Post-production : 900 €
 
+Engagements validés par Thomas (26 octobre 2026) : date de livraison garantie au devis, deux tours de retours inclus. Aftermovie : teaser sous 5 jours ouvrables, sous 48 h en option payante. Pack aftermovie (film, extraits, photos) sans prix fixe, chiffré au projet. Preuve : en activité depuis 2020, plus de 130 jours de tournage depuis l'été 2024 (comptés dans son agenda).
+
 ## Reste à faire
 
 - Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.

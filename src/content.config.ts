@@ -79,6 +79,7 @@ const landings = defineCollection({
     dateLabel: z.string(),
     messageLabel: z.string(),
     clientsLabel: z.string(),
+    proof: z.string().optional(),
     clients: z.array(z.string()).default([]),
     deliverTitle: z.string(),
     deliverables: titled,
