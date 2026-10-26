@@ -6,6 +6,7 @@ import QuoteForm from '../../components/QuoteForm.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import site from '../../data/site.json';
+import clientData from '../../data/clients.json';
 import { getProjects, catLabel } from '../../lib/site';
 import { langOf, useT, link, loc } from '../../lib/i18n';
 
@@ -26,6 +27,12 @@ const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : un
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
 const pad = (n: number) => String(n).padStart(2, '0');
+// Logo officiel s'il existe dans clients.json (« L'Oréal Professionnel » prend celui de « L'Oréal »), sinon le nom. Les logos d'abord.
+const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const known = (clientData as any).items.filter((c: any) => c.logo);
+const clientTiles = l.clients
+  .map((name) => ({ name, logo: known.find((c: any) => norm(name).startsWith(norm(c.name)))?.logo as string | undefined }))
+  .sort((a, b) => Number(!!b.logo) - Number(!!a.logo));
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
   <section class="wide">
@@ -52,7 +59,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="wrap stack" style="gap:24px;padding-top:clamp(48px,6vw,88px)" aria-label="Clients">
     <span class="eyebrow">{l.clientsLabel}</span>
     {l.proof && <p class="h3" style="margin:0;max-width:760px">{l.proof}</p>}
-    <div class="logos">{l.clients.map((c) => <span>{c}</span>)}</div>
+    <div class="logos">{clientTiles.map((c) => c.logo ? <span class="has-logo"><img src={c.logo} alt={c.name} loading="lazy" /></span> : <span>{c.name}</span>)}</div>
   </section>
 
   <section class="wrap section stack">
