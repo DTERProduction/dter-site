@@ -6,9 +6,12 @@ lead: "Conférences, lancements et soirées d'entreprise. Vidéo et photo par la
 heroProject: "aperol-rock-werchter"
 vimeoId: "1233648452"
 reels:
-  - "loreal-hair-pro-edition"
-  - "zeekr-paris-motor-show"
-  - "aperol-rock-werchter"
+  - project: "loreal-hair-pro-edition"
+    label: "Aftermovie"
+  - project: "zeekr-paris-motor-show"
+    label: "Format vertical"
+  - project: "aperol-rock-werchter"
+    label: "Film d'événement"
 formTitle: "Votre date est-elle libre ? Devis sous 24 h."
 priceNote: "Pack sur mesure, aftermovie seul dès 1 500 € HTVA"
 submitLabel: "Vérifier ma date"
@@ -74,6 +77,13 @@ en:
   formTitle: Is your date free? Quote within 24 hours.
   priceNote: Tailored package, aftermovie alone from €1,500 excl. VAT
   submitLabel: Check my date
+  reels:
+  - project: loreal-hair-pro-edition
+    label: Aftermovie
+  - project: zeekr-paris-motor-show
+    label: Vertical clip
+  - project: aperol-rock-werchter
+    label: Event film
   quote: From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations.
   dateLabel: Event date
   messageLabel: Your event in two lines

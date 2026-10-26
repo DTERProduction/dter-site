@@ -29,7 +29,15 @@ const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : un
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
 // Formats verticaux de la landing événement : seuls les projets en ligne avec une image.
-const reels = (l.reels || []).map((id) => all.find((p) => p.id === id)).filter((p) => p && p.data.thumb);
+const reels = (landing.data.reels || [])
+  .map((r, i) => ({ label: (l.reels?.[i] as any)?.label || r.label, p: all.find((p) => p.id === r.project) }))
+  .filter((r) => r.p && r.p.data.thumb);
+// Fond animé de la landing corporate : une boucle muette (le showreel par défaut), sinon l'image du film.
+const loopId = l.loopVimeoId;
+const bgImage = l.loopPoster || poster;
+// Film ouvert au clic sur l'en-tête : la boucle de fond en version complète si elle existe, sinon le film du projet.
+const filmId = loopId || heroId;
+const filmLabel = l.watchLabel || (heroProject ? `${t('lp.watch')} ${heroProject.data.client}` : t('lp.watch'));
 // Seuls les clients dont le logo officiel est dans clients.json s'affichent (« L'Oréal Professionnel » prend celui de « L'Oréal »).
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const known = (clientData as any).items.filter((c: any) => c.logo);
@@ -40,26 +48,31 @@ const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
   <section class="wide">
-    <div class:list={['lp-a', { 'is-event': isEvent }]}>
-      {!isEvent && poster && <img class="lp-a-bg" src={poster} alt="" decoding="async" fetchpriority="high" />}
+    <div class:list={['lp-a', { 'is-event': isEvent }]} data-film-zone={!isEvent && filmId ? filmId : undefined} data-film-label={filmLabel}>
+      {!isEvent && bgImage && <img class="lp-a-bg" src={bgImage} alt="" decoding="async" fetchpriority="high" />}
+      {!isEvent && loopId && <div class="lp-a-loop" data-loop={loopId} data-loop-title={filmLabel}></div>}
       <div class="lp-a-body">
         <div class="lp-a-text">
           <span class="eyebrow">{l.eyebrow}</span>
           <h1 class="lp-title">{l.title}</h1>
           <p class="lp-a-lead">{l.lead}</p>
-          {!isEvent && heroId && (
-            <button class="btn lp-watch" type="button" data-film={heroId} data-film-label={heroProject ? `${heroProject.data.client}, ${heroProject.data.title}` : l.title}>
+          {!isEvent && filmId && (
+            <button class="btn lp-watch" type="button" data-film={filmId} data-film-label={filmLabel}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>
-              {t('lp.watch')}{heroProject ? ` ${heroProject.data.client}` : ''}
+              {filmLabel}
             </button>
           )}
         </div>
         {isEvent ? (
           reels.length > 0 && (
             <div class="lp-reels">
-              {reels.map((p) => (
-                <button class="lp-reel" type="button" data-film={p!.data.vimeoId} data-film-label={`${p!.data.client}, ${loc(p!.data, lang).title}`}>
-                  <span class="lp-reel-img"><img src={p!.data.thumb} alt="" loading="lazy" decoding="async" /></span>
+              {reels.map(({ p, label }) => (
+                <button class="lp-reel" type="button" data-film={p!.data.vimeoId} data-film-zone={p!.data.vimeoId} data-film-label={`${label} · ${p!.data.client}`} aria-label={`${t('lp.watch')} : ${label}, ${p!.data.client}`}>
+                  <span class:list={['lp-reel-img', { 'is-vertical': p!.data.vertical }]}>
+                    <img src={p!.data.thumb} alt="" loading="lazy" decoding="async" />
+                    <span class="lp-reel-loop" data-loop={p!.data.vimeoId} data-loop-title={label}></span>
+                    <span class="lp-reel-tag">{label}</span>
+                  </span>
                   <span class="mono">{p!.data.client}</span>
                 </button>
               ))}
@@ -172,4 +185,35 @@ const pad = (n: number) => String(n).padStart(2, '0');
   dialog?.querySelector('[data-film-close]')?.addEventListener('click', () => dialog.close());
   dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
   dialog?.addEventListener('close', () => box?.replaceChildren());
+
+  // En-tête corporate : un clic hors du formulaire et du bandeau de logos ouvre le film.
+  const zone = document.querySelector<HTMLElement>('.lp-a[data-film-zone]');
+  zone?.addEventListener('click', (e) => {
+    const el = e.target as HTMLElement;
+    if (el.closest('form, a, button, input, .lp-proof')) return;
+    zone.querySelector<HTMLElement>('.lp-watch')?.click();
+  });
+
+  // Boucles muettes (fond corporate, formats verticaux) : chargées quand elles arrivent à l'écran,
+  // jamais si le visiteur limite les animations ou les données. Le son vient au clic, dans la fenêtre du film.
+  const quiet = matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator as any).connection?.saveData;
+  const loops = Array.from(document.querySelectorAll<HTMLElement>('[data-loop]'));
+  if (!quiet && loops.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target as HTMLElement;
+        io.unobserve(el);
+        const f = document.createElement('iframe');
+        f.src = `https://player.vimeo.com/video/${el.dataset.loop}?background=1&autoplay=1&muted=1&loop=1&dnt=1`;
+        f.allow = 'autoplay';
+        f.title = el.dataset.loopTitle || 'Vidéo';
+        f.setAttribute('aria-hidden', 'true');
+        f.tabIndex = -1;
+        f.addEventListener('load', () => el.classList.add('is-live'));
+        el.appendChild(f);
+      });
+    }, { rootMargin: '200px' });
+    window.addEventListener('load', () => loops.forEach((el) => io.observe(el)));
+  }
 </script>

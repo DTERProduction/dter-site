@@ -177,7 +177,10 @@ collections:
       - { label: Titre du formulaire, name: formTitle, widget: string }
       - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
       - { label: Texte du bouton, name: submitLabel, widget: string, required: false }
-      - { label: Formats verticaux en tête (page événement), name: reels, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], multiple: true, required: false }
+      - { label: Formats verticaux en tête (page événement), name: reels, widget: list, required: false, summary: '{{fields.label}}', fields: [{ label: Projet, name: project, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'] }, { label: Étiquette, name: label, widget: string }] }
+      - { label: Boucle vidéo en fond (identifiant Vimeo, page corporate), name: loopVimeoId, widget: string, required: false }
+      - { label: Image de fond avant la boucle, name: loopPoster, widget: string, required: false }
+      - { label: Texte du bouton vidéo, name: watchLabel, widget: string, required: false }
       - { label: Retour client, name: quote, widget: text, required: false }
       - { label: Société du retour client, name: quoteFrom, widget: string, required: false, hint: 'Le nom de la société, jamais celui de la personne' }
       - { label: Libellé du champ date, name: dateLabel, widget: string }
@@ -209,6 +212,8 @@ collections:
           - { label: Titre du formulaire, name: formTitle, widget: string, required: false }
           - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
           - { label: Texte du bouton, name: submitLabel, widget: string, required: false }
+          - { label: Texte du bouton vidéo, name: watchLabel, widget: string, required: false }
+          - { label: Formats verticaux en tête, name: reels, widget: list, required: false, summary: '{{fields.label}}', fields: [{ label: Projet, name: project, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'] }, { label: Étiquette, name: label, widget: string }] }
           - { label: Retour client, name: quote, widget: text, required: false }
           - { label: Libellé du champ date, name: dateLabel, widget: string, required: false }
           - { label: Libellé du champ message, name: messageLabel, widget: string, required: false }

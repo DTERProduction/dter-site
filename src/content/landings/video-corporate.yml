@@ -5,6 +5,9 @@ title: "Une vidéo pensée comme un outil marketing."
 lead: "Films de marque, témoignages clients et interviews, déclinés pour LinkedIn."
 heroProject: "pwc-prophix"
 vimeoId: "1181920235"
+loopVimeoId: "1233566059"
+loopPoster: "https://i.vimeocdn.com/video/2209270877-438a7dfc3804bb0cc6af76f74108ea971397355a5166b92f150bb7b3f02d15a9-d_1280?region=us"
+watchLabel: "Voir le showreel"
 formTitle: "Votre devis sous 24 h."
 priceNote: "Dès 2 500 € HTVA. Date de livraison garantie."
 submitLabel: "Chiffrer ma vidéo"
@@ -72,6 +75,7 @@ en:
   formTitle: Your quote within 24 hours.
   priceNote: From €2,500 excl. VAT. Guaranteed delivery date.
   submitLabel: Price my video
+  watchLabel: Watch the showreel
   quote: Many thanks for your patience and responsiveness, and for the quality of the video. We received positive feedback from all the speakers!
   dateLabel: Preferred deadline
   messageLabel: Your project in two lines

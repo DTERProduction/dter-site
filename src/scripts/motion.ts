@@ -143,7 +143,7 @@ function init() {
 
   if (!finePointer) return;
 
-  // Pastille de lecture : uniquement sur les quatre cartes de projets de l'accueil.
+  // Pastille de lecture : sur les cartes de projets de l'accueil et sur les vidéos des landings (en-tête corporate, formats verticaux).
   const badge = document.createElement('div');
   badge.className = 'cursor-badge';
   // Un bouton de lecture entouré d'un texte qui tourne, comme une étiquette de bobine.
@@ -159,7 +159,8 @@ function init() {
   const check = () => {
     queued = false;
     if (mx < 0 || document.documentElement.classList.contains('pt-leave')) return hideBadge();
-    const over = document.elementFromPoint(mx, my)?.closest('a.stack-card');
+    const el = document.elementFromPoint(mx, my);
+    const over = el?.closest('a.stack-card, [data-film-zone]') && !el?.closest('form, .lp-proof, .lp-watch');
     badge.classList.toggle('is-on', !!over);
   };
   const ask = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
