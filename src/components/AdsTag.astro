@@ -1,0 +1,75 @@
+---
+// Mesure Google Ads : rien n'est chargé tant que le visiteur n'a pas accepté.
+// La question n'est posée que sur les landings et la page de remerciement ; ailleurs, le site reste sans cookie.
+// Sans identifiant googleAds dans site.json, ce composant n'affiche rien.
+import site from '../data/site.json';
+import { langOf, useT } from '../lib/i18n';
+interface Props { ask?: boolean; }
+const { ask = false } = Astro.props;
+const lang = langOf(Astro.url);
+const t = useT(lang);
+const cfg = site as { googleAds?: string; googleAdsLabel?: string };
+const id = (cfg.googleAds || '').trim();
+const label = (cfg.googleAdsLabel || '').trim();
+const isThanks = /^\/(en\/)?(merci|thank-you)\/?$/.test(Astro.url.pathname);
+const conv = isThanks && label ? `${id}/${label}` : '';
+---
+{id && ask && (
+  <div class="consent" data-consent data-ads={id} data-conv={conv} role="region" aria-label={t('ads.label')} hidden>
+    <p>{t('ads.text')} <a href="/politique-de-confidentialite/#cookies" hreflang="fr">{t('ads.more')}</a></p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-light" data-choice="no">{t('ads.refuse')}</button>
+      <button type="button" class="btn btn-accent" data-choice="yes">{t('ads.accept')}</button>
+    </div>
+  </div>
+)}
+
+<script>
+  const KEY = 'dter-ads';
+  const read = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const save = (v: string | null) => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch { /* navigation privée */ } };
+
+  const box = document.querySelector<HTMLElement>('[data-consent]');
+  const load = (el: HTMLElement) => {
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { w.dataLayer.push(arguments); };
+    // Mesure des conversions uniquement : pas de reciblage, pas de personnalisation, pas de statistiques.
+    w.gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'denied' });
+    w.gtag('js', new Date());
+    w.gtag('config', el.dataset.ads, { allow_ad_personalization_signals: false });
+    if (el.dataset.conv) w.gtag('event', 'conversion', { send_to: el.dataset.conv });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${el.dataset.ads}`;
+    document.head.appendChild(s);
+  };
+
+  if (box) {
+    const choice = read();
+    if (choice === 'yes') load(box);
+    else if (choice !== 'no') {
+      box.hidden = false;
+      box.addEventListener('click', (e) => {
+        const b = (e.target as HTMLElement).closest<HTMLElement>('[data-choice]');
+        if (!b) return;
+        save(b.dataset.choice || 'no');
+        box.hidden = true;
+        if (b.dataset.choice === 'yes') load(box);
+      });
+    }
+  }
+
+  // Bouton de la politique de confidentialité : retirer son accord aussi simplement qu'on l'a donné.
+  document.querySelectorAll<HTMLButtonElement>('[data-consent-reset]').forEach((b) => {
+    b.addEventListener('click', () => {
+      save('no');
+      document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => n.startsWith('_gcl')).forEach((n) => {
+        document.cookie = `${n}=; Max-Age=0; path=/; domain=.${location.hostname.replace(/^www\./, '')}`;
+        document.cookie = `${n}=; Max-Age=0; path=/`;
+      });
+      b.textContent = b.dataset.done || b.textContent;
+      b.disabled = true;
+    });
+  });
+</script>

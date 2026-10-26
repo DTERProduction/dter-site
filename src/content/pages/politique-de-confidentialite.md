@@ -1,7 +1,7 @@
 ---
 title: "Politique de confidentialité"
 description: "Comment DTER Production SRL collecte, utilise et protège vos données personnelles."
-updated: "7 octobre 2026"
+updated: "26 octobre 2026"
 ---
 
 ## 1. Qui est responsable de vos données
@@ -44,7 +44,7 @@ Vos données sont accessibles à DTER Production et, dans la mesure nécessaire,
 
 - Cloudflare, qui héberge le site ;
 - Web3Forms, qui transmet par email les demandes envoyées via les formulaires ;
-- Google, pour la messagerie et la prise de rendez-vous ;
+- Google, pour la messagerie, la prise de rendez-vous et, si vous l'acceptez, la mesure de nos annonces ;
 - notre logiciel de comptabilité et notre comptable, pour la facturation ;
 - les collaborateurs indépendants qui interviennent sur votre projet.
 
@@ -52,7 +52,11 @@ Certains de ces prestataires sont établis hors de l'Union européenne, notammen
 
 ## 6. Cookies et contenus tiers
 
-Ce site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience.
+Ce site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience. Une seule exception, soumise à votre accord, décrite ci-dessous.
+
+<span id="cookies"></span>**Mesure des annonces Google Ads.** Sur nos pages d'annonce (adresses en /lp/) et sur la page qui confirme l'envoi d'une demande, nous vous demandons si vous acceptez un cookie de Google Ads. Il sert uniquement à savoir si une demande de devis fait suite à un clic sur l'une de nos annonces. Si vous refusez, ou tant que vous n'avez pas répondu, rien n'est chargé depuis Google. Si vous acceptez, Google reçoit des données techniques, dont votre adresse IP, et dépose un cookie conservé 90 jours au plus. Nous n'utilisons ni reciblage, ni personnalisation publicitaire, ni outil de statistiques. Votre choix est enregistré dans votre navigateur, et vous pouvez le retirer ici :
+
+<button type="button" class="btn btn-dark" data-consent-reset data-done="Accord retiré">Retirer mon accord</button>
 
 Les vidéos sont hébergées par Vimeo. Sur la page d'accueil, la vidéo d'arrière-plan est chargée depuis Vimeo à l'ouverture de la page, et la vidéo de coulisses lorsqu'elle arrive à l'écran. Les autres vidéos sont chargées uniquement lorsque vous cliquez pour les lire. Elles sont intégrées avec l'option qui demande à Vimeo de ne pas suivre votre navigation. Vimeo reçoit néanmoins des données techniques, dont votre adresse IP.
 

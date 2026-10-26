@@ -275,6 +275,8 @@ collections:
           - { label: Clé Web3Forms (envoi des formulaires par email), name: formKey, widget: string, required: false }
           - { label: Lien de prise de rendez-vous, name: calendar, widget: string }
           - { label: Calendrier intégré à la page contact (adresse du iframe Google), name: calendarEmbed, widget: string, required: false }
+          - { label: "Google Ads : identifiant (AW-…), vide = aucune mesure", name: googleAds, widget: string, required: false }
+          - { label: "Google Ads : libellé de la conversion « demande de devis »", name: googleAdsLabel, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }
           - { label: Conditions générales, name: legal, widget: string }
           - { label: Politique de confidentialité, name: privacy, widget: string }
