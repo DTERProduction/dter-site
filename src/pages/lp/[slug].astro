@@ -8,7 +8,7 @@ import Cta from '../../components/Cta.astro';
 import site from '../../data/site.json';
 import clientData from '../../data/clients.json';
 import { getProjects, catLabel } from '../../lib/site';
-import { langOf, useT, link, loc } from '../../lib/i18n';
+import { langOf, useT, loc } from '../../lib/i18n';
 
 
 export async function getStaticPaths() {
@@ -18,61 +18,110 @@ export async function getStaticPaths() {
 const { landing } = Astro.props;
 const lang = langOf(Astro.url);
 const t = useT(lang);
-const L = (p: string) => link(lang, p);
 const l = loc(landing.data, lang);
+// Deux mises en page : « corporate » (formulaire à côté du titre, plan du film en fond) et « event » (formats verticaux, formulaire en barre).
+const isEvent = l.layout === 'event';
+const submit = l.submitLabel || t('form.getMine');
 const all = await getProjects();
 const examples = l.examples.map((id) => all.find((p) => p.id === id)).filter(Boolean);
-// Vidéo d'en-tête : le projet choisi s'il est en ligne, sinon la vidéo de secours.
+// Film d'en-tête : le projet choisi s'il est en ligne, sinon la vidéo de secours.
 const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : undefined;
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
-const pad = (n: number) => String(n).padStart(2, '0');
+// Formats verticaux de la landing événement : seuls les projets en ligne avec une image.
+const reels = (l.reels || []).map((id) => all.find((p) => p.id === id)).filter((p) => p && p.data.thumb);
 // Seuls les clients dont le logo officiel est dans clients.json s'affichent (« L'Oréal Professionnel » prend celui de « L'Oréal »).
-const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const known = (clientData as any).items.filter((c: any) => c.logo);
-const clientTiles = l.clients
+const logos = l.clients
   .map((name) => ({ name, logo: known.find((c: any) => norm(name).startsWith(norm(c.name)))?.logo as string | undefined }))
   .filter((c) => c.logo);
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
   <section class="wide">
-    <div class="panel lp-hero">
-      <div class="lp-hero-text">
-        <span class="eyebrow">{l.eyebrow}</span>
-        <h1 class="lp-title">{l.title}</h1>
-        <p class="hero-lead" style="max-width:560px">{l.lead}</p>
-        <ul class="lp-bullets">{l.bullets.map((b) => <li>{b}</li>)}</ul>
-        {heroId && <Vimeo id={heroId} thumb={poster} label={t('lp.example')} small />}
-      </div>
-      <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} note={l.priceNote} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark company={false} submit={t('form.getMine')}>
-        {l.reassurance && <p class="form-reassure">{l.reassurance}</p>}
-        {l.quote && (
-          <figure class="form-proof">
-            <blockquote style="margin:0">« {l.quote} »</blockquote>
-            {l.quoteFrom && <cite>{l.quoteFrom}</cite>}
-          </figure>
+    <div class:list={['lp-a', { 'is-event': isEvent }]}>
+      {!isEvent && poster && <img class="lp-a-bg" src={poster} alt="" decoding="async" fetchpriority="high" />}
+      <div class="lp-a-body">
+        <div class="lp-a-text">
+          <span class="eyebrow">{l.eyebrow}</span>
+          <h1 class="lp-title">{l.title}</h1>
+          <p class="lp-a-lead">{l.lead}</p>
+          {!isEvent && heroId && (
+            <button class="btn lp-watch" type="button" data-film={heroId} data-film-label={heroProject ? `${heroProject.data.client}, ${heroProject.data.title}` : l.title}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>
+              {t('lp.watch')}{heroProject ? ` ${heroProject.data.client}` : ''}
+            </button>
+          )}
+        </div>
+        {isEvent ? (
+          reels.length > 0 && (
+            <div class="lp-reels">
+              {reels.map((p) => (
+                <button class="lp-reel" type="button" data-film={p!.data.vimeoId} data-film-label={`${p!.data.client}, ${loc(p!.data, lang).title}`}>
+                  <span class="lp-reel-img"><img src={p!.data.thumb} alt="" loading="lazy" decoding="async" /></span>
+                  <span class="mono">{p!.data.client}</span>
+                </button>
+              ))}
+            </div>
+          )
+        ) : (
+          <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} note={l.priceNote} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark company={false} message={false} dateOptional submit={submit} />
         )}
-      </QuoteForm>
+      </div>
+      {isEvent && (
+        <div class="lp-a-bar">
+          <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} note={l.priceNote} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark company={false} message={false} bar submit={submit} />
+        </div>
+      )}
+      {(l.proof || logos.length > 0) && (
+        <div class="lp-proof">
+          {l.proof && <span class="mono">{l.proof}</span>}
+          {logos.length > 0 && <span class="lp-logos" role="list" aria-label={l.clientsLabel}>{logos.map((c) => <img role="listitem" src={c.logo} alt={c.name} loading="lazy" />)}</span>}
+        </div>
+      )}
     </div>
   </section>
 
-  <section class="wrap stack" style="gap:24px;padding-top:clamp(48px,6vw,88px)" aria-label="Clients">
-    <span class="eyebrow">{l.clientsLabel}</span>
-    {l.proof && <p class="h3" style="margin:0;max-width:760px">{l.proof}</p>}
-    {clientTiles.length > 0 && <div class="logos">{clientTiles.map((c) => <span class="has-logo"><img src={c.logo} alt={c.name} loading="lazy" /></span>)}</div>}
-  </section>
+  {l.deliverables.length > 0 && (
+    <section class="wrap lp-sec stack">
+      {l.deliverEyebrow && <span class="eyebrow">{l.deliverEyebrow}</span>}
+      <h2 class="h2" style="max-width:860px">{l.deliverTitle}</h2>
+      <div class:list={['cards', { 'is-big-num': isEvent }]}>
+        {l.deliverables.map((d, i) => (
+          <div class:list={['card', { 'is-dark': !isEvent && i === l.deliverables.length - 1 }]}><span class="num">{pad(i + 1)}</span><h3 class="h3">{d.title}</h3><p class="mut">{d.text}</p></div>
+        ))}
+      </div>
+    </section>
+  )}
 
-  <section class="wrap section stack">
-    <h2 class="h2" style="max-width:900px">{l.deliverTitle}</h2>
-    <div class="cards">
-      {l.deliverables.map((d, i) => (
-        <div class="card"><span class="num">{pad(i + 1)}</span><h3 class="h3">{d.title}</h3><p class="mut">{d.text}</p></div>
-      ))}
-    </div>
-  </section>
+  {(() => {
+    const quote = l.quote && (
+      <section class="wide lp-sec" aria-label={t('lp.feedback')}>
+        <figure class:list={['panel', 'stack', 'lp-quote', { 'is-accent': isEvent }]}>
+          <span class="eyebrow">{t('lp.feedback')}</span>
+          <blockquote class="quote-lg">« {l.quote} »</blockquote>
+          {l.quoteFrom && <figcaption class="quote-by"><strong>{l.quoteFrom}</strong></figcaption>}
+        </figure>
+      </section>
+    );
+    const steps = l.steps.length > 0 && (
+      <section class="wrap lp-sec stack">
+        {l.stepsEyebrow && <span class="eyebrow">{l.stepsEyebrow}</span>}
+        {l.stepsTitle && <h2 class="h2">{l.stepsTitle}</h2>}
+        <div class="steps">
+          {l.steps.map((s) => (
+            <div><span class="mono">{s.label}</span><h3 class="h3">{s.title}</h3><p class="mut">{s.text}</p></div>
+          ))}
+        </div>
+      </section>
+    );
+    return isEvent ? <>{steps}{quote}</> : <>{quote}{steps}</>;
+  })()}
 
   {examples.length > 0 && (
-    <section class="wrap section-b stack" style="gap:28px" aria-label={lang === 'en' ? 'Examples' : 'Exemples'}>
+    <section class="wrap lp-sec stack" style="gap:28px" aria-label={t('lp.work')}>
+      <span class="eyebrow">{t('lp.work')}</span>
       <h2 class="h2">{l.examplesTitle}</h2>
       <div class="projects">
         {examples.map((p) => (
@@ -85,13 +134,42 @@ const clientTiles = l.clients
     </section>
   )}
 
-
-  <section class="wrap section-b stack" style="gap:28px">
+  <section class="wrap lp-sec stack" style="gap:28px">
     <h2 class="h2">{l.faqTitle}</h2>
     <div style="max-width:880px"><Faq items={l.faq} /></div>
   </section>
 
-  <Cta title={l.ctaTitle} accent href="#devis" label={t('form.getMine')}>
-    <a style="font-weight:600;font-size:19px;padding:12px 0" href={`tel:${site.phoneHref}`}>{t('lp.or')} {site.phone}</a>
-  </Cta>
+  <div class="lp-sec">
+    <Cta title={l.ctaTitle} accent={!isEvent} href="#devis" label={submit}>
+      <a style="font-weight:600;font-size:19px;padding:12px 0" href={`tel:${site.phoneHref}`}>{t('lp.or')} {site.phone}</a>
+    </Cta>
+  </div>
+
+  <dialog class="film" data-film-dialog aria-label={t('lp.watch')}>
+    <button class="film-close" type="button" data-film-close aria-label={t('lp.close')}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <div class="media r-16-9" data-film-box></div>
+  </dialog>
 </Base>
+
+<script>
+  // Film en grand au clic : rien n'est demandé à Vimeo avant que le visiteur ne le décide.
+  const dialog = document.querySelector<HTMLDialogElement>('[data-film-dialog]');
+  const box = dialog?.querySelector<HTMLElement>('[data-film-box]');
+  document.querySelectorAll<HTMLElement>('[data-film]').forEach((b) => {
+    b.addEventListener('click', () => {
+      if (!dialog || !box) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://player.vimeo.com/video/${b.dataset.film}?autoplay=1&dnt=1&title=0&byline=0&portrait=0`;
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.title = b.dataset.filmLabel || 'Vidéo';
+      box.replaceChildren(iframe);
+      dialog.showModal();
+    });
+  });
+  dialog?.querySelector('[data-film-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog?.addEventListener('close', () => box?.replaceChildren());
+</script>

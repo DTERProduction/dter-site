@@ -167,25 +167,30 @@ collections:
     create: true
     summary: '{{title}}'
     fields:
+      - { label: Mise en page, name: layout, widget: select, options: [{ label: 'Corporate (formulaire à côté du titre)', value: corporate }, { label: 'Événement (formats verticaux, formulaire en barre)', value: event }], default: corporate }
       - { label: Titre Google, name: seoTitle, widget: string }
       - { label: Sur-titre, name: eyebrow, widget: string }
       - { label: Titre principal, name: title, widget: string }
       - { label: Accroche, name: lead, widget: text }
-      - { label: Arguments, name: bullets, widget: list }
       - { label: Projet en tête de page, name: heroProject, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], required: false, hint: 'Si ce projet n''a pas encore de vidéo, la vidéo de secours ci-dessous est utilisée' }
       - { label: Vidéo de secours (identifiant Vimeo), name: vimeoId, widget: string, required: false }
       - { label: Titre du formulaire, name: formTitle, widget: string }
       - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
-      - { label: Réassurance près du formulaire, name: reassurance, widget: string, required: false }
-      - { label: Retour client sous le bouton, name: quote, widget: text, required: false }
+      - { label: Texte du bouton, name: submitLabel, widget: string, required: false }
+      - { label: Formats verticaux en tête (page événement), name: reels, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], multiple: true, required: false }
+      - { label: Retour client, name: quote, widget: text, required: false }
       - { label: Société du retour client, name: quoteFrom, widget: string, required: false, hint: 'Le nom de la société, jamais celui de la personne' }
       - { label: Libellé du champ date, name: dateLabel, widget: string }
       - { label: Libellé du champ message, name: messageLabel, widget: string }
       - { label: Titre des clients, name: clientsLabel, widget: string }
       - { label: Preuve chiffrée (sous le titre des clients), name: proof, widget: string, required: false }
       - { label: Clients, name: clients, widget: list }
+      - { label: Sur-titre des livrables, name: deliverEyebrow, widget: string, required: false }
       - { label: Titre des livrables, name: deliverTitle, widget: string }
       - { label: Livrables, name: deliverables, widget: list, summary: '{{fields.title}}', fields: *titled }
+      - { label: Sur-titre des étapes, name: stepsEyebrow, widget: string, required: false }
+      - { label: Titre des étapes, name: stepsTitle, widget: string, required: false }
+      - { label: Étapes, name: steps, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Repère, name: label, widget: string }, { label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: string }] }
       - { label: Titre des exemples, name: examplesTitle, widget: string }
       - { label: Projets en exemple, name: examples, widget: relation, collection: projects, search_fields: [client, title], value_field: '{{slug}}', display_fields: ['{{client}} · {{title}}'], multiple: true, required: false }
       - { label: Titre de la FAQ, name: faqTitle, widget: string }
@@ -201,17 +206,20 @@ collections:
           - { label: Sur-titre, name: eyebrow, widget: string, required: false }
           - { label: Titre principal, name: title, widget: string, required: false }
           - { label: Accroche, name: lead, widget: text, required: false }
-          - { label: Arguments, name: bullets, widget: list, required: false }
           - { label: Titre du formulaire, name: formTitle, widget: string, required: false }
           - { label: Prix et délai sous le titre du formulaire, name: priceNote, widget: string, required: false }
-          - { label: Réassurance près du formulaire, name: reassurance, widget: string, required: false }
-          - { label: Retour client sous le bouton, name: quote, widget: text, required: false }
+          - { label: Texte du bouton, name: submitLabel, widget: string, required: false }
+          - { label: Retour client, name: quote, widget: text, required: false }
           - { label: Libellé du champ date, name: dateLabel, widget: string, required: false }
           - { label: Libellé du champ message, name: messageLabel, widget: string, required: false }
           - { label: Titre des clients, name: clientsLabel, widget: string, required: false }
           - { label: Preuve chiffrée (sous le titre des clients), name: proof, widget: string, required: false }
+          - { label: Sur-titre des livrables, name: deliverEyebrow, widget: string, required: false }
           - { label: Titre des livrables, name: deliverTitle, widget: string, required: false }
           - { label: Livrables, name: deliverables, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: text }] }
+          - { label: Sur-titre des étapes, name: stepsEyebrow, widget: string, required: false }
+          - { label: Titre des étapes, name: stepsTitle, widget: string, required: false }
+          - { label: Étapes, name: steps, widget: list, required: false, summary: '{{fields.title}}', fields: [{ label: Repère, name: label, widget: string }, { label: Titre, name: title, widget: string }, { label: Texte, name: text, widget: string }] }
           - { label: Titre des exemples, name: examplesTitle, widget: string, required: false }
           - { label: Titre de la FAQ, name: faqTitle, widget: string, required: false }
           - { label: Questions fréquentes, name: faq, widget: list, required: false, summary: '{{fields.q}}', fields: [{ label: Question, name: q, widget: string }, { label: Réponse, name: a, widget: text }] }

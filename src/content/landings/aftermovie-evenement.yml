@@ -1,39 +1,54 @@
+layout: event
 seoTitle: "Aftermovie et captation d'événement à Bruxelles · DTER"
 eyebrow: "Aftermovie · Captation d'événement · Bruxelles"
-title: "Votre événement dure un soir. Son aftermovie travaille toute l'année."
-lead: "Un film qui fait revivre votre événement, vend la prochaine édition et nourrit vos réseaux pendant des mois. Conférences, lancements et soirées d'entreprise, à Bruxelles et partout en Belgique."
-bullets:
-  - "Aftermovie et extraits verticaux pour vos réseaux"
-  - "Teaser pour vos réseaux sous 5 jours ouvrables, ou sous 48 h en option"
-  - "Date de livraison garantie, deux tours de retours inclus"
-  - "Vidéo et photo par la même équipe, le même jour"
+title: "Un soir. Un film. Des mois de contenus."
+lead: "Conférences, lancements et soirées d'entreprise. Vidéo et photo par la même équipe, le même soir."
 heroProject: "aperol-rock-werchter"
 vimeoId: "1233648452"
-formTitle: "Recevez votre devis sous 24 h"
-priceNote: "Pack sur mesure, aftermovie seul à partir de 1 500 € HTVA. Devis détaillé sous 24 h."
+reels:
+  - "loreal-hair-pro-edition"
+  - "zeekr-paris-motor-show"
+  - "aperol-rock-werchter"
+formTitle: "Votre date est-elle libre ? Devis sous 24 h."
+priceNote: "Pack sur mesure, aftermovie seul dès 1 500 € HTVA"
+submitLabel: "Vérifier ma date"
 quote: "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes."
 quoteFrom: "BabylissPro"
 dateLabel: "Date de l'événement"
 messageLabel: "Votre événement en deux lignes"
 clientsLabel: "Ils nous ont confié leur événement"
-proof: "Depuis 2020. Plus de 130 jours de tournage depuis l'été 2024."
+proof: "Depuis 2020 · 130+ jours de tournage depuis l'été 2024"
 clients:
   - "Peugeot"
   - "L'Oréal Professionnel"
-  - "BabylissPro"
-  - "Brussels Bar Show"
-  - "Fêtes de Wallonie"
-  - "A La Kool"
   - "Aperol"
   - "Golazo"
-deliverTitle: "Le pack aftermovie : ce que vous recevez après votre événement."
+  - "BabylissPro"
+  - "Brussels Bar Show"
+deliverEyebrow: "Le pack aftermovie"
+deliverTitle: "Une soirée, de quoi communiquer pendant des mois."
 deliverables:
-  - title: "Un aftermovie"
-    text: "Le film qui résume l'ambiance, les moments forts et les visages. À diffuser en interne, à vos invités et pour vendre la prochaine édition."
-  - title: "Des extraits pour vos réseaux"
-    text: "Formats verticaux et carrés, sous-titrés, prêts pour LinkedIn et Instagram. Pensés dès le tournage, pas recadrés après coup."
-  - title: "Un reportage photo"
-    text: "Par la même équipe, le même jour. Des images cohérentes avec le film, pour votre communication et vos intervenants."
+  - title: "L'aftermovie"
+    text: "L'ambiance, les moments forts et les visages. Pour vos invités, en interne et pour vendre la prochaine édition."
+  - title: "Des extraits verticaux"
+    text: "Sous-titrés, prêts pour LinkedIn et Instagram. Pensés dès le tournage, pas recadrés après coup."
+  - title: "Le reportage photo"
+    text: "Par la même équipe, le même soir. Des images cohérentes avec le film, pour vous et vos intervenants."
+stepsEyebrow: "Après votre événement"
+stepsTitle: "Vous publiez pendant que ça compte encore."
+steps:
+  - label: "Le soir J"
+    title: "Tournage vidéo et photo"
+    text: "En petite équipe, sans gêner vos invités."
+  - label: "Sous 5 jours ouvrables"
+    title: "Le teaser pour vos réseaux"
+    text: "Ou sous 48 h, en option."
+  - label: "En 1 à 3 semaines"
+    title: "L'aftermovie et les photos"
+    text: "À la date garantie dans le devis."
+  - label: "Inclus"
+    title: "Deux tours de retours"
+    text: "Vous ajustez, on livre la version finale."
 examplesTitle: "Trois événements, trois films."
 examples:
   - "loreal-hair-pro-edition"
@@ -54,28 +69,40 @@ ctaTitle: "Votre date est-elle encore libre ?"
 en:
   seoTitle: Event aftermovie and video coverage in Brussels · DTER
   eyebrow: Aftermovie · Event coverage · Brussels
-  title: Your event lasts one evening. Its aftermovie works all year.
-  lead: A film that brings your event back to life, sells the next edition and feeds your social channels for months. Conferences, launches and corporate evenings, in Brussels and across Belgium.
-  bullets:
-  - Aftermovie and vertical clips for your social channels
-  - A teaser for your social channels within 5 working days, or within 48 hours as an option
-  - Guaranteed delivery date, two rounds of revisions included
-  - Video and photo by the same crew, on the same day
-  formTitle: Get your quote within 24 hours
-  priceNote: Tailored package, aftermovie alone from €1,500 excl. VAT. Detailed quote within 24 hours.
+  title: One evening. One film. Months of content.
+  lead: Conferences, launches and corporate evenings. Video and photo by the same crew, on the same evening.
+  formTitle: Is your date free? Quote within 24 hours.
+  priceNote: Tailored package, aftermovie alone from €1,500 excl. VAT
+  submitLabel: Check my date
   quote: From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations.
   dateLabel: Event date
   messageLabel: Your event in two lines
   clientsLabel: They trusted us with their event
-  proof: Since 2020. Over 130 shooting days since summer 2024.
-  deliverTitle: "The aftermovie package: what you receive after your event."
+  proof: Since 2020 · 130+ shooting days since summer 2024
+  deliverEyebrow: The aftermovie package
+  deliverTitle: One evening, enough to communicate for months.
   deliverables:
-  - title: An aftermovie
-    text: The film that sums up the atmosphere, the highlights and the faces. To share internally, with your guests, and to sell the next edition.
-  - title: Clips for your social channels
-    text: Vertical and square formats, subtitled, ready for LinkedIn and Instagram. Planned during the shoot, not cropped afterwards.
+  - title: The aftermovie
+    text: The atmosphere, the highlights and the faces. For your guests, internally, and to sell the next edition.
+  - title: Vertical clips
+    text: Subtitled, ready for LinkedIn and Instagram. Planned during the shoot, not cropped afterwards.
   - title: Photo coverage
-    text: By the same crew, on the same day. Images consistent with the film, for your communications and your speakers.
+    text: By the same crew, on the same evening. Images consistent with the film, for you and your speakers.
+  stepsEyebrow: After your event
+  stepsTitle: You post while it still matters.
+  steps:
+  - label: The evening
+    title: Video and photo shoot
+    text: With a small crew, without getting in your guests' way.
+  - label: Within 5 working days
+    title: The teaser for your social channels
+    text: Or within 48 hours, as an option.
+  - label: In 1 to 3 weeks
+    title: The aftermovie and the photos
+    text: On the date guaranteed in the quote.
+  - label: Included
+    title: Two rounds of revisions
+    text: You adjust, we deliver the final version.
   examplesTitle: Three events, three films.
   faqTitle: Before you ask for a quote.
   faq:
@@ -84,7 +111,7 @@ en:
   - q: When will we receive the film?
     a: A teaser for your social channels within 5 working days, or within 48 hours as an option. The full aftermovie in one to three weeks, on a delivery date guaranteed in the quote. Two rounds of revisions are included.
   - q: Our event is coming up soon. Is it still possible?
-    a: 'Often, yes. Enter the date in the form or call directly: you''ll know straight away whether it''s free.'
+    a: "Often, yes. Enter the date in the form or call directly: you'll know straight away whether it's free."
   - q: Do you travel outside Brussels?
     a: Yes, across Belgium and in Europe.
   ctaTitle: Is your date still free?
