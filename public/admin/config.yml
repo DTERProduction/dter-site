@@ -183,6 +183,7 @@ collections:
       - { label: Texte du bouton vidéo, name: watchLabel, widget: string, required: false }
       - { label: Retour client, name: quote, widget: text, required: false }
       - { label: Société du retour client, name: quoteFrom, widget: string, required: false, hint: 'Le nom de la société, jamais celui de la personne' }
+      - { label: Autres retours (noms tels que dans Témoignages), name: reviews, widget: list, required: false }
       - { label: Libellé du champ date, name: dateLabel, widget: string }
       - { label: Libellé du champ message, name: messageLabel, widget: string }
       - { label: Titre des clients, name: clientsLabel, widget: string }
@@ -301,6 +302,9 @@ collections:
           - { label: "Google Ads : libellé de la conversion « demande de devis »", name: googleAdsLabel, widget: string, required: false }
           - { label: "Google Ads : libellé de la conversion « clic sur le téléphone »", name: googleAdsCallLabel, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }
+          - { label: "Note Google (ex. 5,0), vide = pas de badge", name: googleRating, widget: string, required: false }
+          - { label: Nombre d'avis Google, name: googleReviews, widget: number, required: false }
+          - { label: Lien public de la fiche Google, name: googleProfile, widget: string, required: false }
           - { label: Conditions générales, name: legal, widget: string }
           - { label: Politique de confidentialité, name: privacy, widget: string }
       - name: home
@@ -384,3 +388,4 @@ collections:
               - { label: Fonction et société, name: role, widget: string }
               - { label: Citation en anglais, name: quoteEn, widget: text, required: false }
               - { label: Fonction et société en anglais, name: roleEn, widget: string, required: false }
+              - { label: Source, name: source, widget: select, options: [{ label: Client, value: client }, { label: Avis Google, value: google }], required: false }

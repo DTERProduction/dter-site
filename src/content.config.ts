@@ -81,6 +81,7 @@ const landings = defineCollection({
     watchLabel: z.string().optional(),
     quote: z.string().optional(),
     quoteFrom: z.string().optional(),
+    reviews: z.array(z.string()).default([]),
     dateLabel: z.string(),
     messageLabel: z.string(),
     clientsLabel: z.string(),

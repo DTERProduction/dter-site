@@ -7,6 +7,7 @@ import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import site from '../../data/site.json';
 import clientData from '../../data/clients.json';
+import testimonials from '../../data/testimonials.json';
 import { getProjects, catLabel } from '../../lib/site';
 import { langOf, useT, loc } from '../../lib/i18n';
 
@@ -45,6 +46,14 @@ const logos = l.clients
   .map((name) => ({ name, logo: known.find((c: any) => norm(name).startsWith(norm(c.name)))?.logo as string | undefined }))
   .filter((c) => c.logo);
 const pad = (n: number) => String(n).padStart(2, '0');
+// Autres retours, choisis par leur nom dans testimonials.json (avis Google compris).
+const reviews = (landing.data.reviews || [])
+  .map((n) => (testimonials.items as any[]).find((q) => q.name === n))
+  .filter(Boolean)
+  .map((q: any) => (lang === 'en' ? { ...q, quote: q.quoteEn || q.quote, role: q.roleEn || q.role } : q));
+// Badge de note Google, affiché seulement si la note est renseignée.
+const g = site as { googleRating?: string; googleReviews?: number; googleProfile?: string };
+const googleLine = g.googleRating ? `★ ${lang === 'en' ? g.googleRating.replace(',', '.') : g.googleRating} ${t('lp.google')}${g.googleReviews ? ` · ${g.googleReviews} ${t('lp.reviews')}` : ''}` : '';
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
   <section class="wide">
@@ -87,9 +96,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
           <QuoteForm name={`lp-${landing.id}`} title={l.formTitle} note={l.priceNote} dateLabel={l.dateLabel} messageLabel={l.messageLabel} onDark company={false} message={false} bar submit={submit} />
         </div>
       )}
-      {(l.proof || logos.length > 0) && (
+      {(l.proof || googleLine || logos.length > 0) && (
         <div class="lp-proof">
-          {l.proof && <span class="mono">{l.proof}</span>}
+          {(l.proof || googleLine) && (
+            <span class="lp-proof-text">
+              {l.proof && <span class="mono">{l.proof}</span>}
+              {googleLine && (g.googleProfile ? <a class="mono lp-google" href={g.googleProfile} target="_blank" rel="noopener">{googleLine}</a> : <span class="mono lp-google">{googleLine}</span>)}
+            </span>
+          )}
           {logos.length > 0 && <span class="lp-logos" role="list" aria-label={l.clientsLabel}>{logos.map((c) => <img role="listitem" src={c.logo} alt={c.name} loading="lazy" />)}</span>}
         </div>
       )}
@@ -115,6 +129,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
           <span class="eyebrow">{t('lp.feedback')}</span>
           <blockquote class="quote-lg">« {l.quote} »</blockquote>
           {l.quoteFrom && <figcaption class="quote-by"><strong>{l.quoteFrom}</strong></figcaption>}
+          {reviews.length > 0 && (
+            <div class="quotes">
+              {reviews.map((q) => (
+                <figure>
+                  <blockquote>« {q.quote} »</blockquote>
+                  <figcaption class="quote-by"><strong>{q.name}</strong> · {q.role}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
         </figure>
       </section>
     );

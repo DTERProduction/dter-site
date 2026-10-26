@@ -18,6 +18,38 @@
       "role": "Fondatrice, Ballet Workout",
       "quoteEn": "I'm very impressed with the video. Beautiful editing, I love it.",
       "roleEn": "Founder, Ballet Workout"
+    },
+    {
+      "quote": "Working with Thomas is always a pleasure! He’s fast, flexible, always smiling, and a great listener who really understands your needs. He delivers the right content, on time and with great attention to detail.",
+      "name": "Cohabs",
+      "role": "Avis Google",
+      "quoteEn": "Working with Thomas is always a pleasure! He’s fast, flexible, always smiling, and a great listener who really understands your needs. He delivers the right content, on time and with great attention to detail.",
+      "roleEn": "Google review",
+      "source": "google"
+    },
+    {
+      "quote": "Nos expériences avec DTER Production méritent une très bonne note, tant sur le plan technique que sur le plan créatif. Aussi le respect des délais et des budgets.",
+      "name": "The Friends",
+      "role": "Agence de communication et d'événements · Avis Google",
+      "quoteEn": "Our experiences with DTER Production deserve a very good rating, both technically and creatively. Deadlines and budgets are respected too.",
+      "roleEn": "Communication and events agency · Google review",
+      "source": "google"
+    },
+    {
+      "quote": "Travailler avec Thomas a été un vrai plaisir, très créatif, travail pro, tout ce qu'on aime !",
+      "name": "L'Oréal Groupe",
+      "role": "Avis Google",
+      "quoteEn": "Working with Thomas was a real pleasure, very creative, professional work, everything we love!",
+      "roleEn": "Google review",
+      "source": "google"
+    },
+    {
+      "quote": "Thomas est très professionnel, un plaisir de collaborer avec lui, le travail rendu est toujours top !",
+      "name": "Photographe indépendant",
+      "role": "Avis Google",
+      "quoteEn": "Thomas is very professional, a pleasure to work with, and the work he delivers is always great!",
+      "roleEn": "Google review",
+      "source": "google"
     }
   ]
 }
