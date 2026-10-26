@@ -27,12 +27,12 @@ const heroProject = l.heroProject ? all.find((p) => p.id === l.heroProject) : un
 const heroId = heroProject?.data.vimeoId || l.vimeoId;
 const poster = heroProject?.data.thumb || all.find((p) => p.data.vimeoId === l.vimeoId)?.data.thumb;
 const pad = (n: number) => String(n).padStart(2, '0');
-// Logo officiel s'il existe dans clients.json (« L'Oréal Professionnel » prend celui de « L'Oréal »), sinon le nom. Les logos d'abord.
+// Seuls les clients dont le logo officiel est dans clients.json s'affichent (« L'Oréal Professionnel » prend celui de « L'Oréal »).
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const known = (clientData as any).items.filter((c: any) => c.logo);
 const clientTiles = l.clients
   .map((name) => ({ name, logo: known.find((c: any) => norm(name).startsWith(norm(c.name)))?.logo as string | undefined }))
-  .sort((a, b) => Number(!!b.logo) - Number(!!a.logo));
+  .filter((c) => c.logo);
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
   <section class="wide">
@@ -59,7 +59,7 @@ const clientTiles = l.clients
   <section class="wrap stack" style="gap:24px;padding-top:clamp(48px,6vw,88px)" aria-label="Clients">
     <span class="eyebrow">{l.clientsLabel}</span>
     {l.proof && <p class="h3" style="margin:0;max-width:760px">{l.proof}</p>}
-    <div class="logos">{clientTiles.map((c) => c.logo ? <span class="has-logo"><img src={c.logo} alt={c.name} loading="lazy" /></span> : <span>{c.name}</span>)}</div>
+    {clientTiles.length > 0 && <div class="logos">{clientTiles.map((c) => <span class="has-logo"><img src={c.logo} alt={c.name} loading="lazy" /></span>)}</div>}
   </section>
 
   <section class="wrap section stack">
@@ -72,7 +72,7 @@ const clientTiles = l.clients
   </section>
 
   {examples.length > 0 && (
-    <section class="wrap stack" style="gap:28px" aria-label={lang === 'en' ? 'Examples' : 'Exemples'}>
+    <section class="wrap section-b stack" style="gap:28px" aria-label={lang === 'en' ? 'Examples' : 'Exemples'}>
       <h2 class="h2">{l.examplesTitle}</h2>
       <div class="projects">
         {examples.map((p) => (
@@ -86,9 +86,9 @@ const clientTiles = l.clients
   )}
 
 
-  <section class="wrap section-b split">
-    <h2 class="h2 side">{l.faqTitle}</h2>
-    <div class="main"><Faq items={l.faq} /></div>
+  <section class="wrap section-b stack" style="gap:28px">
+    <h2 class="h2">{l.faqTitle}</h2>
+    <div style="max-width:880px"><Faq items={l.faq} /></div>
   </section>
 
   <Cta title={l.ctaTitle} accent href="#devis" label={t('form.getMine')}>
