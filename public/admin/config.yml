@@ -301,6 +301,7 @@ collections:
           - { label: "Google Ads : identifiant (AW-…), vide = aucune mesure", name: googleAds, widget: string, required: false }
           - { label: "Google Ads : libellé de la conversion « demande de devis »", name: googleAdsLabel, widget: string, required: false }
           - { label: "Google Ads : libellé de la conversion « clic sur le téléphone »", name: googleAdsCallLabel, widget: string, required: false }
+          - { label: "Cloudflare Web Analytics : jeton (vide = pas de mesure d'audience)", name: cfAnalytics, widget: string, required: false }
           - { label: Instagram, name: instagram, widget: string }
           - { label: "Note Google (ex. 5,0), vide = pas de badge", name: googleRating, widget: string, required: false }
           - { label: Nombre d'avis Google, name: googleReviews, widget: number, required: false }

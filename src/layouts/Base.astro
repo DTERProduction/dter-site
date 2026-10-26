@@ -67,6 +67,8 @@ const business = {
     <meta name="theme-color" content={dark ? '#141413' : '#f8f7f3'} />
     {!landing && <script type="application/ld+json" set:html={JSON.stringify(business)} />}
     {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+    {/* Mesure d'audience Cloudflare : sans cookie, chiffres agrégés. Active seulement si le jeton est renseigné. */}
+    {(site as { cfAnalytics?: string }).cfAnalytics && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: (site as { cfAnalytics?: string }).cfAnalytics })}></script>}
     <script is:inline>
       // Masque les éléments animés avant leur entrée. Filet de sécurité : tout réapparaît si le script d'animation ne démarre pas.
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {

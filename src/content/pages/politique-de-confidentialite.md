@@ -42,7 +42,7 @@ Nous n'utilisons pas vos données pour de la prospection sans votre accord, et n
 
 Vos données sont accessibles à DTER Production et, dans la mesure nécessaire, à ses prestataires :
 
-- Cloudflare, qui héberge le site ;
+- Cloudflare, qui héberge le site et en mesure l'audience de façon anonyme ;
 - Web3Forms, qui transmet par email les demandes envoyées via les formulaires ;
 - Google, pour la messagerie, la prise de rendez-vous et, si vous l'acceptez, la mesure de nos annonces ;
 - notre logiciel de comptabilité et notre comptable, pour la facturation ;
@@ -52,7 +52,9 @@ Certains de ces prestataires sont établis hors de l'Union européenne, notammen
 
 ## 6. Cookies et contenus tiers
 
-Ce site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience. Une seule exception, soumise à votre accord, décrite ci-dessous.
+**Mesure d'audience.** Nous comptons les visites avec Cloudflare Web Analytics, qui ne dépose aucun cookie et ne suit pas les visiteurs d'un site à l'autre. Nous voyons uniquement des chiffres agrégés : pages vues, pays, type d'appareil, vitesse de chargement. Aucune donnée ne permet de vous identifier.
+
+Ce site n'utilise pas de cookies publicitaires. Une seule exception, soumise à votre accord, décrite ci-dessous.
 
 <span id="cookies"></span>**Mesure des annonces Google Ads.** Sur nos pages d'annonce (adresses en /lp/) et sur la page qui confirme l'envoi d'une demande, nous vous demandons si vous acceptez un cookie de Google Ads. Il sert uniquement à savoir si une demande de devis fait suite à un clic sur l'une de nos annonces. Si vous refusez, ou tant que vous n'avez pas répondu, rien n'est chargé depuis Google. Si vous acceptez, Google reçoit des données techniques, dont votre adresse IP, et dépose un cookie conservé 90 jours au plus. Nous n'utilisons ni reciblage, ni personnalisation publicitaire, ni outil de statistiques. Votre choix est enregistré dans votre navigateur, et vous pouvez le retirer ici :
 
