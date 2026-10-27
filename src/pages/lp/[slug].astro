@@ -134,7 +134,7 @@ const googleLine = g.googleRating ? `★ ${lang === 'en' ? g.googleRating.replac
               {reviews.map((q) => (
                 <figure>
                   <blockquote>« {q.quote} »</blockquote>
-                  <figcaption class="quote-by"><strong>{q.name}</strong> · {q.role}</figcaption>
+                  <figcaption class="quote-by"><strong>{q.name}</strong>{q.role ? ` · ${q.role}` : ''} · {q.source === 'google' ? t('tm.google') : t('tm.client')}</figcaption>
                 </figure>
               ))}
             </div>

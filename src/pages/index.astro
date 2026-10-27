@@ -36,7 +36,12 @@ const preview = (id: string, vimeoId?: string) => {
 const withLogo = clients.items.filter((c) => c.logo);
 const shownClients = withLogo.length >= 6 ? withLogo : clients.items;
 const services = await getServices();
-const [mainQuote, ...quotes] = testimonials.items.map((q: any) => (lang === 'en' ? { ...q, quote: q.quoteEn || q.quote, role: q.roleEn || q.role } : q));
+// Témoignages : deux rangées qui défilent en sens opposés, la note Google à gauche.
+const quotes = testimonials.items.map((q: any) => (lang === 'en' ? { ...q, quote: q.quoteEn || q.quote, role: q.roleEn || q.role } : q));
+const half = Math.ceil(quotes.length / 2);
+const tmRows = [quotes.slice(0, half), quotes.slice(half)].filter((r) => r.length > 0);
+const gr = site as { googleRating?: string; googleReviews?: number; googleProfile?: string };
+const rating = gr.googleRating ? (lang === 'en' ? gr.googleRating.replace(',', '.') : gr.googleRating) : '';
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title={home.seoTitle} description={home.seoDescription} image={home.heroPoster}>
@@ -109,18 +114,36 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <PhotoBand />
 
   <section class="wide" aria-label={t('home.testimonials')}>
-    <div class="panel stack" style="gap:48px">
-      <span class="eyebrow">{t('home.testimonials')}</span>
-      <figure class="stack" style="gap:22px">
-        <blockquote class="quote-lg">« {mainQuote.quote} »</blockquote>
-        <figcaption class="quote-by"><strong>{mainQuote.name}</strong> · {mainQuote.role}</figcaption>
-      </figure>
-      <div class="quotes">
-        {quotes.map((q) => (
-          <figure>
-            <blockquote>« {q.quote} »</blockquote>
-            <figcaption class="quote-by"><strong>{q.name}</strong> · {q.role}</figcaption>
-          </figure>
+    <div class="tm">
+      <div class="tm-side">
+        <div class="stack" style="gap:16px">
+          <span class="eyebrow">{t('home.testimonials')}</span>
+          <h2 class="tm-title">{t('tm.title')}</h2>
+        </div>
+        {rating && (
+          <div class="tm-rating">
+            <span class="tm-score">{rating}</span>
+            <span class="tm-stars" role="img" aria-label={t('tm.stars')}>★★★★★</span>
+            <span class="mono">{gr.googleReviews ? `${gr.googleReviews} ${t('tm.googleCount')}` : t('tm.google')}{gr.googleRating === '5,0' ? ` · ${t('tm.allFive')}` : ''}</span>
+            {gr.googleProfile && <a class="btn btn-light" href={gr.googleProfile} target="_blank" rel="noopener">{t('tm.read')}</a>}
+          </div>
+        )}
+      </div>
+      <div class="tm-rows">
+        {tmRows.map((row, r) => (
+          <div class="tm-row">
+            <div class:list={['tm-track', { 'is-reverse': r === 1 }]}>
+              {[...row, ...row].map((q: any, i: number) => (
+                <figure class:list={['tm-card', { 'is-hi': q.highlight }]} aria-hidden={i >= row.length ? 'true' : undefined}>
+                  <blockquote>« {q.quote} »</blockquote>
+                  <figcaption>
+                    <span><strong>{q.name}</strong>{q.role && <span class="tm-role">{q.role}</span>}</span>
+                    <span class:list={['tm-chip', { 'is-google': q.source === 'google' }]}>{q.source === 'google' ? t('tm.google') : t('tm.client')}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>

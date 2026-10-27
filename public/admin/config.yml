@@ -373,7 +373,7 @@ collections:
             widget: list
             summary: '{{fields.name}}'
             fields:
-              - { label: Nom, name: name, widget: string }
+              - { label: Société, name: name, widget: string, hint: 'Le nom de la société, jamais celui de la personne' }
               - { label: Logo, name: logo, widget: image, required: false, media_folder: /public/images/clients, public_folder: /images/clients, hint: 'Fichier officiel fourni par le client, SVG ou PNG à fond transparent. Sans logo, le nom s''affiche en texte.' }
       - name: testimonials
         label: Témoignages
@@ -386,7 +386,8 @@ collections:
             fields:
               - { label: Citation, name: quote, widget: text }
               - { label: Nom, name: name, widget: string }
-              - { label: Fonction et société, name: role, widget: string }
+              - { label: Fonction, name: role, widget: string, required: false }
               - { label: Citation en anglais, name: quoteEn, widget: text, required: false }
-              - { label: Fonction et société en anglais, name: roleEn, widget: string, required: false }
+              - { label: Fonction en anglais, name: roleEn, widget: string, required: false }
+              - { label: Mise en avant (carte orange), name: highlight, widget: boolean, required: false, default: false }
               - { label: Source, name: source, widget: select, options: [{ label: Client, value: client }, { label: Avis Google, value: google }], required: false }

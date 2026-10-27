@@ -1,54 +1,69 @@
 {
   "items": [
     {
-      "quote": "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes.",
-      "name": "Audrey Gilson",
-      "role": "Marketing Manager, BabylissPro",
-      "quoteEn": "From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations."
-    },
-    {
-      "quote": "Les films sont exactement dans le ton. Le montage, les transitions… j'aime. Beau travail.",
-      "name": "Bartel Lambeau",
-      "role": "Communication Manager, Golazo",
-      "quoteEn": "The movies are spot on! The editing, the transitions… I like! Nice work."
-    },
-    {
-      "quote": "Je suis très impressionnée par la vidéo. Un beau montage, j'adore.",
-      "name": "Tatevik Mkrtoumian",
-      "role": "Fondatrice, Ballet Workout",
-      "quoteEn": "I'm very impressed with the video. Beautiful editing, I love it.",
-      "roleEn": "Founder, Ballet Workout"
+      "quote": "Un grand merci pour ta patience et réactivité ainsi que pour la qualité de la vidéo, nous avons reçu des feedbacks positifs de tous les intervenants !",
+      "name": "Mastercard",
+      "role": "",
+      "quoteEn": "Many thanks for your patience and responsiveness, and for the quality of the video. We received positive feedback from all the speakers!",
+      "roleEn": "",
+      "source": "client",
+      "highlight": true
     },
     {
       "quote": "Working with Thomas is always a pleasure! He’s fast, flexible, always smiling, and a great listener who really understands your needs. He delivers the right content, on time and with great attention to detail.",
       "name": "Cohabs",
-      "role": "Avis Google",
+      "role": "",
       "quoteEn": "Working with Thomas is always a pleasure! He’s fast, flexible, always smiling, and a great listener who really understands your needs. He delivers the right content, on time and with great attention to detail.",
-      "roleEn": "Google review",
+      "roleEn": "",
       "source": "google"
+    },
+    {
+      "quote": "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes.",
+      "name": "BabylissPro",
+      "role": "Marketing Manager",
+      "quoteEn": "From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations.",
+      "roleEn": "Marketing Manager",
+      "source": "client"
     },
     {
       "quote": "Nos expériences avec DTER Production méritent une très bonne note, tant sur le plan technique que sur le plan créatif. Aussi le respect des délais et des budgets.",
       "name": "The Friends",
-      "role": "Agence de communication et d'événements · Avis Google",
+      "role": "Agence de communication et d'événements",
       "quoteEn": "Our experiences with DTER Production deserve a very good rating, both technically and creatively. Deadlines and budgets are respected too.",
-      "roleEn": "Communication and events agency · Google review",
+      "roleEn": "Communication and events agency",
       "source": "google"
+    },
+    {
+      "quote": "Les films sont exactement dans le ton. Le montage, les transitions… j'aime. Beau travail.",
+      "name": "Golazo",
+      "role": "Communication Manager",
+      "quoteEn": "The movies are spot on! The editing, the transitions… I like! Nice work.",
+      "roleEn": "Communication Manager",
+      "source": "client"
     },
     {
       "quote": "Travailler avec Thomas a été un vrai plaisir, très créatif, travail pro, tout ce qu'on aime !",
       "name": "L'Oréal Groupe",
-      "role": "Avis Google",
+      "role": "",
       "quoteEn": "Working with Thomas was a real pleasure, very creative, professional work, everything we love!",
-      "roleEn": "Google review",
-      "source": "google"
+      "roleEn": "",
+      "source": "google",
+      "highlight": true
+    },
+    {
+      "quote": "Je suis très impressionnée par la vidéo. Un beau montage, j'adore.",
+      "name": "Ballet Workout",
+      "role": "Fondatrice",
+      "quoteEn": "I'm very impressed with the video. Beautiful editing, I love it.",
+      "roleEn": "Founder",
+      "source": "client"
     },
     {
       "quote": "Thomas est très professionnel, un plaisir de collaborer avec lui, le travail rendu est toujours top !",
       "name": "Photographe indépendant",
-      "role": "Avis Google",
+      "role": "",
       "quoteEn": "Thomas is very professional, a pleasure to work with, and the work he delivers is always great!",
-      "roleEn": "Google review",
+      "roleEn": "",
       "source": "google"
     }
   ]

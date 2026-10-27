@@ -674,3 +674,35 @@ html, body { overflow-x: clip; }
   .lp-reel:nth-child(2) { transform: translateY(-20px); }
   .lp-reel-tag { left: 6px; top: 6px; padding: 5px 8px; font-size: 11px; }
 }
+
+/* ---------- Témoignages de l'accueil : note Google fixe à gauche, deux rangées qui défilent ---------- */
+.tm { display: flex; flex-wrap: wrap; background: var(--dark); color: var(--on-dark); border-radius: 24px; overflow: hidden; }
+.tm-side { flex: 1 1 320px; max-width: 400px; box-sizing: border-box; padding: clamp(32px, 4vw, 52px) clamp(24px, 3.4vw, 48px); display: flex; flex-direction: column; justify-content: space-between; gap: 40px; border-right: 1px solid rgba(248, 247, 243, 0.12); }
+.tm-title { margin: 0; font-weight: 600; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.05; letter-spacing: -0.035em; }
+.tm-rating { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.tm-rating .mono { font-size: 13px; color: var(--on-dark-mut); }
+.tm-rating .btn { margin-top: 12px; }
+.tm-score { font-weight: 600; font-size: clamp(80px, 8vw, 112px); line-height: 0.85; letter-spacing: -0.05em; }
+.tm-stars { color: var(--accent); font-size: 24px; letter-spacing: 4px; }
+.tm-rows { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 40px 0; }
+.tm-row { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 90%, transparent); }
+.tm-track { display: flex; gap: 12px; width: max-content; animation: marquee 70s linear infinite; }
+.tm-track.is-reverse { animation-direction: reverse; }
+@media (hover: hover) and (pointer: fine) { .tm-row:hover .tm-track { animation-play-state: paused; } }
+.tm-card { margin: 0; flex: none; width: min(380px, 78vw); min-height: 196px; box-sizing: border-box; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; background: var(--dark2); color: var(--on-dark); }
+.tm-card blockquote { margin: 0; font-size: 17px; line-height: 1.45; }
+.tm-card figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px; }
+.tm-card strong { font-weight: 600; }
+.tm-role { display: block; font-size: 13px; color: var(--on-dark-mut); }
+.tm-chip { flex: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; white-space: nowrap; background: var(--accent); color: var(--dark); }
+.tm-chip.is-google { background: rgba(248, 247, 243, 0.1); color: var(--on-dark); }
+.tm-card.is-hi { background: var(--accent); color: var(--dark); }
+.tm-card.is-hi .tm-role { color: rgba(20, 20, 19, 0.7); }
+.tm-card.is-hi .tm-chip { background: var(--dark); color: var(--on-dark); }
+@media (max-width: 720px) { .tm-side { max-width: none; border-right: 0; border-bottom: 1px solid rgba(248, 247, 243, 0.12); } }
+/* Sans animation : les rangées se parcourent au doigt ou à la molette, sans les doublons. */
+@media (prefers-reduced-motion: reduce) {
+  .tm-track { animation: none; }
+  .tm-row { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .tm-card[aria-hidden='true'] { display: none; }
+}
