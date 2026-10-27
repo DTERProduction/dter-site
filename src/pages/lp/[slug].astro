@@ -53,6 +53,7 @@ const reviews = (landing.data.reviews || [])
   .map((q: any) => (lang === 'en' ? { ...q, quote: q.quoteEn || q.quote, role: q.roleEn || q.role } : q));
 // Badge de note Google, affiché seulement si la note est renseignée.
 const g = site as { googleRating?: string; googleReviews?: number; googleProfile?: string };
+const rating = g.googleRating ? (lang === 'en' ? g.googleRating.replace(',', '.') : g.googleRating) : '';
 const googleLine = g.googleRating ? `★ ${lang === 'en' ? g.googleRating.replace(',', '.') : g.googleRating} ${t('lp.google')}${g.googleReviews ? ` · ${g.googleReviews} ${t('lp.reviews')}` : ''}` : '';
 ---
 <Base title={l.seoTitle} description={l.lead} landing noindex>
@@ -123,23 +124,40 @@ const googleLine = g.googleRating ? `★ ${lang === 'en' ? g.googleRating.replac
   )}
 
   {(() => {
-    const quote = l.quote && (
+    // Retours clients : même bloc que l'accueil (note Google à gauche), mais trois avis fixes choisis pour cette landing.
+    const cards = [
+      ...(l.quote ? [{ name: l.quoteFrom || '', role: '', quote: l.quote, source: 'client', highlight: true }] : []),
+      ...reviews,
+    ];
+    const quote = cards.length > 0 && (
       <section class="wide lp-sec" aria-label={t('lp.feedback')}>
-        <figure class:list={['panel', 'stack', 'lp-quote', { 'is-accent': isEvent }]}>
-          <span class="eyebrow">{t('lp.feedback')}</span>
-          <blockquote class="quote-lg">« {l.quote} »</blockquote>
-          {l.quoteFrom && <figcaption class="quote-by"><strong>{l.quoteFrom}</strong></figcaption>}
-          {reviews.length > 0 && (
-            <div class="quotes">
-              {reviews.map((q) => (
-                <figure>
-                  <blockquote>« {q.quote} »</blockquote>
-                  <figcaption class="quote-by"><strong>{q.name}</strong>{q.role ? ` · ${q.role}` : ''} · {q.source === 'google' ? t('tm.google') : t('tm.client')}</figcaption>
-                </figure>
-              ))}
+        <div class="tm">
+          <div class="tm-side">
+            <div class="stack" style="gap:16px">
+              <span class="eyebrow">{t('lp.feedback')}</span>
+              <h2 class="tm-title">{t('tm.title')}</h2>
             </div>
-          )}
-        </figure>
+            {rating && (
+              <div class="tm-rating">
+                <span class="tm-score">{rating}</span>
+                <span class="tm-stars" role="img" aria-label={t('tm.stars')}>★★★★★</span>
+                <span class="mono">{g.googleReviews ? `${g.googleReviews} ${t('tm.googleCount')}` : t('tm.google')}{g.googleRating === '5,0' ? ` · ${t('tm.allFive')}` : ''}</span>
+                {g.googleProfile && <a class="btn btn-light" href={g.googleProfile} target="_blank" rel="noopener">{t('tm.read')}</a>}
+              </div>
+            )}
+          </div>
+          <div class="tm-static">
+            {cards.map((q: any) => (
+              <figure class:list={['tm-card', { 'is-hi': q.highlight }]}>
+                <blockquote>« {q.quote} »</blockquote>
+                <figcaption>
+                  <span><strong>{q.name}</strong>{q.role && <span class="tm-role">{q.role}</span>}</span>
+                  <span class:list={['tm-chip', { 'is-google': q.source === 'google' }]}>{q.source === 'google' ? t('tm.google') : t('tm.client')}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </section>
     );
     const steps = l.steps.length > 0 && (

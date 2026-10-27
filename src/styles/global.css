@@ -706,3 +706,8 @@ html, body { overflow-x: clip; }
   .tm-row { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
   .tm-card[aria-hidden='true'] { display: none; }
 }
+
+/* Landings : mêmes cartes, fixes, trois avis choisis par landing. */
+.tm-static { flex: 999 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-content: center; padding: clamp(20px, 3vw, 40px); }
+.tm-static .tm-card { width: auto; transition: transform 250ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .tm-static .tm-card:hover { transform: translateY(-4px); } }
