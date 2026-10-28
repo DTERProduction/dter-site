@@ -1,8 +1,8 @@
 layout: event
 seoTitle: "Aftermovie et captation d'événement à Bruxelles · DTER"
 eyebrow: "Aftermovie · Captation d'événement · Bruxelles"
-title: "Un soir. Un film. Des mois de contenus."
-lead: "Conférences, lancements et soirées d'entreprise. Vidéo et photo par la même équipe, le même soir."
+title: "Le film qui montre que votre événement a marché."
+lead: "À montrer à votre direction et à vos sponsors. Vidéo et photo tournées le même soir par la même équipe, teaser en ligne sous 5 jours ouvrables."
 heroProject: "aperol-rock-werchter"
 vimeoId: "1233648452"
 reels:
@@ -15,11 +15,11 @@ reels:
 formTitle: "Votre date est-elle libre ? Devis sous 24 h."
 priceNote: "Pack sur mesure, aftermovie seul dès 1 500 € HTVA"
 submitLabel: "Vérifier ma date"
-quote: "Dès le départ, Thomas a parfaitement compris nos besoins. Les photos et la vidéo ont dépassé nos attentes."
-quoteFrom: "BabylissPro"
+quote: "Un grand merci pour ta patience et réactivité ainsi que pour la qualité de la vidéo, nous avons reçu des feedbacks positifs de tous les intervenants !"
+quoteFrom: "Mastercard"
 reviews:
   - "L'Oréal Groupe"
-  - "The Friends"
+  - "BabylissPro"
 dateLabel: "Date de l'événement"
 messageLabel: "Votre événement en deux lignes"
 clientsLabel: "Ils nous ont confié leur événement"
@@ -31,11 +31,11 @@ clients:
   - "Golazo"
   - "BabylissPro"
   - "Brussels Bar Show"
-deliverEyebrow: "Le pack aftermovie"
+deliverEyebrow: "Le pack aftermovie pour événements de marque"
 deliverTitle: "Une soirée, de quoi communiquer pendant des mois."
 deliverables:
   - title: "L'aftermovie"
-    text: "L'ambiance, les moments forts et les visages. Pour vos invités, en interne et pour vendre la prochaine édition."
+    text: "L'ambiance, les moments forts et les visages. Pour vos invités, votre direction et vos sponsors, et pour vendre la prochaine édition."
   - title: "Des extraits verticaux"
     text: "Sous-titrés, prêts pour LinkedIn et Instagram. Pensés dès le tournage, pas recadrés après coup."
   - title: "Le reportage photo"
@@ -75,8 +75,8 @@ ctaTitle: "Votre date est-elle encore libre ?"
 en:
   seoTitle: Event aftermovie and video coverage in Brussels · DTER
   eyebrow: Aftermovie · Event coverage · Brussels
-  title: One evening. One film. Months of content.
-  lead: Conferences, launches and corporate evenings. Video and photo by the same crew, on the same evening.
+  title: The film that shows your event worked.
+  lead: To show your leadership and your sponsors. Video and photo shot the same evening by the same crew, teaser online within 5 working days.
   formTitle: Is your date free? Quote within 24 hours.
   priceNote: Tailored package, aftermovie alone from €1,500 excl. VAT
   submitLabel: Check my date
@@ -87,16 +87,16 @@ en:
     label: Vertical clip
   - project: aperol-rock-werchter
     label: Event film
-  quote: From the start, Thomas understood exactly what we needed. The photos and the video exceeded our expectations.
+  quote: Many thanks for your patience and responsiveness, and for the quality of the video. We received positive feedback from all the speakers!
   dateLabel: Event date
   messageLabel: Your event in two lines
   clientsLabel: They trusted us with their event
   proof: Since 2020 · 130+ shooting days since summer 2024
-  deliverEyebrow: The aftermovie package
+  deliverEyebrow: The aftermovie package for brand events
   deliverTitle: One evening, enough to communicate for months.
   deliverables:
   - title: The aftermovie
-    text: The atmosphere, the highlights and the faces. For your guests, internally, and to sell the next edition.
+    text: The atmosphere, the highlights and the faces. For your guests, your leadership and sponsors, and to sell the next edition.
   - title: Vertical clips
     text: Subtitled, ready for LinkedIn and Instagram. Planned during the shoot, not cropped afterwards.
   - title: Photo coverage
