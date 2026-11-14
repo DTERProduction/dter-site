@@ -2,8 +2,7 @@
 title: "Solve with Google"
 client: "Google"
 categories:
-  - "evenement"
-  - "social"
+  - "corporate"
 vimeoId: "1246807437"
 thumb: "https://i.vimeocdn.com/video/2226338760-76c10a71d98d5f8a8f95182f546440d0f529dcda14c509c88c7206d0c2de9ffa-d_1280?region=us"
 vertical: false

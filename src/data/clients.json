@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "name": "Google",
+      "logo": ""
+    },
+    {
       "name": "L'Oréal",
       "logo": "/images/clients/loreal.png"
     },

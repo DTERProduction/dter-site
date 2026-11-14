@@ -55,7 +55,7 @@ steps:
     text: "Deux tours de retours inclus."
 examplesTitle: "Trois objectifs, trois films."
 examples:
-  - "solvint-ferme-de-mont-saint-jean"
+  - "google-solve-with-google"
   - "mastercard-cyber-crisis-exercise"
   - "bruxelles-mobilite-parkway"
 faqTitle: "Avant de demander un devis."
