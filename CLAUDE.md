@@ -73,9 +73,11 @@ Engagements validés par Thomas (26 octobre 2026) : date de livraison garantie a
 
 - Retours clients : six citations prêtes dans `docs/retours-clients-en-attente.md`, non affichées en attendant la décision de Thomas.
 
+- Google Solve with Google (`google-solve-with-google.md`, 14 novembre 2026) : fiche en prévisualisation, mise en avant sur l'accueil (ordre 4, passe devant Carolina Herrera) et en exemple sur la landing aftermovie à la place de Nesquik, dont la fiche n'a pas de texte. Seule la vidéo aftermovie 16:9 a un identifiant Vimeo (1246807437). À faire avec Thomas avant publication : accord de diffusion de Google et de d-side group (champ Droits Notion encore vide, « Logo sur dter.eu » à Non : pas de logo Google sur le site), identifiants Vimeo des vidéos d'invitation Espagne et Google Research et des versions 9:16 et 4:5 une fois validées par le client, retour client citable (nom de société seulement), vérification de la vignette et de la lecture Vimeo sur dter.eu. Retours du client encore en cours sur ces deux vidéos au 13 novembre, pas de prix ni de nom de personne sur la fiche.
+
 - Page « À propos » factuelle (année de début, nombre de projets, secteurs, langues) : en attente des informations de Thomas.
 
-- Projets : 30 fiches (Zeekr Paris Motor Show ajouté le 13 octobre 2026). Fiches encore sans texte : PwC Future of Sales, PwC Prophix, Nesquik, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
+- Projets : 31 fiches (Zeekr Paris Motor Show ajouté le 13 octobre 2026, Google Solve with Google le 14 novembre 2026). Fiches encore sans texte : PwC Future of Sales, PwC Prophix, Nesquik, Cohabs Bota 1, Crodino, Mlle Derrico, Marius Story. Le champ « Avec » cite l'agence partenaire, à la demande de Thomas.
 - Logos clients : le bandeau de l'accueil affiche le logo quand un fichier est fourni (`logo` dans `src/data/clients.json`, fichiers dans `public/images/clients/`), sinon le nom en texte. Dès que six clients ont un logo, seuls ceux-là sont affichés. N'utiliser que des fichiers officiels fournis par le client ou par Thomas, jamais un logo redessiné. Photo du studio à ajouter. Le portrait de Thomas (`src/assets/thomas-dubois.jpg`) est sur la carte « Parler à Thomas » de l'accueil.
 - Photo : 35 images choisies par Thomas, rangées en trois thématiques (Événement, Brand content, Corporate), une série par thématique.
 - Supprimer le site Netlify une fois thomasdubois.pro actif chez Cloudflare. Arrêter Webflow.
