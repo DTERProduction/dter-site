@@ -7,7 +7,7 @@ const titled = z.array(z.object({ title: z.string(), text: z.string() })).defaul
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     client: z.string(),
     categories: z.array(z.enum(['evenement', 'brand-content', 'corporate', 'social', 'influence', 'temoignage'])).min(1),
@@ -30,6 +30,7 @@ const projects = defineCollection({
     quote: z.string().optional(),
     quoteFrom: z.string().optional(),
     videos: z.array(z.object({ title: z.string(), vimeoId: z.coerce.string(), thumb: z.string().optional(), vertical: z.boolean().default(false) })).default([]),
+    photos: z.array(z.object({ image: image(), alt: z.string().optional(), altEn: z.string().optional() })).default([]),
     draft: z.boolean().default(false),
     // Version anglaise : seuls les champs remplis remplacent le français.
     en: z.record(z.string(), z.any()).optional(),

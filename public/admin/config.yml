@@ -40,6 +40,8 @@ collections:
     create: true
     slug: '{{client}}-{{title}}'
     summary: '{{client}} · {{title}}'
+    media_folder: /src/assets/projects
+    public_folder: ../../assets/projects
     sortable_fields: [order, client]
     fields:
       - { label: Titre du projet, name: title, widget: string }
@@ -83,6 +85,16 @@ collections:
           - { label: Identifiant Vimeo, name: vimeoId, widget: string }
           - { label: Vignette (lien), name: thumb, widget: string, required: false }
           - { label: Vidéo verticale, name: vertical, widget: boolean, default: false }
+      - label: Photos du projet
+        name: photos
+        widget: list
+        required: false
+        summary: '{{fields.alt}}'
+        hint: "La première photo s'affiche en grand. Pas de visage de client sans son accord."
+        fields:
+          - { label: Photo, name: image, widget: image }
+          - { label: Description (pour Google et les lecteurs d'écran), name: alt, widget: string, required: false }
+          - { label: Description en anglais, name: altEn, widget: string, required: false }
       - label: Chiffres clés
         name: stats
         widget: list

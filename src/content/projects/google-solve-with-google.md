@@ -4,7 +4,7 @@ client: "Google"
 categories:
   - "corporate"
 vimeoId: "1246807437"
-thumb: "https://i.vimeocdn.com/video/2226338760-76c10a71d98d5f8a8f95182f546440d0f529dcda14c509c88c7206d0c2de9ffa-d_1280?region=us"
+thumb: "/images/projects/google-solve-with-google.jpg"
 vertical: false
 featured: true
 order: 4
@@ -20,6 +20,19 @@ resultTitle: ""
 result: "L'aftermovie a été validé par tous les intervenants filmés, puis relu par l'équipe sociale du client."
 stats: []
 videos: []
+photos:
+  - image: "../../assets/projects/google-solve-with-google/hall.jpg"
+    alt: "La halle du Wintercircus, à Gand, aménagée pour Solve with Google: Hacking for Good."
+    altEn: "The Wintercircus hall in Ghent, set up for Solve with Google: Hacking for Good."
+  - image: "../../assets/projects/google-solve-with-google/interview-monitor.jpg"
+    alt: "Le retour caméra pendant une interview, avec l'intervenant à l'écran."
+    altEn: "The camera monitor during an interview, with the speaker on screen."
+  - image: "../../assets/projects/google-solve-with-google/camera.jpg"
+    alt: "La caméra sur trépied, prête pour les interviews."
+    altEn: "The camera on its tripod, ready for the interviews."
+  - image: "../../assets/projects/google-solve-with-google/videographer.jpg"
+    alt: "Un vidéaste de l'équipe pendant les interviews, casque sur les oreilles."
+    altEn: "One of the videographers during the interviews, headphones on."
 draft: false
 en:
   summary: "An aftermovie, an invitation video and a Google Research video, shot in one day at the Wintercircus in Ghent for the Solve with Google event."
